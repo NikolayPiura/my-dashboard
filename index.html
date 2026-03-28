@@ -23,26 +23,26 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
 
 /* ── GLOBAL TABS ── */
-.global-nav{display:flex;background:var(--s1);border-bottom:2px solid var(--b1);height:64px;position:relative;z-index:100;padding:0 28px;gap:4px;align-items:flex-end}
-.gn-btn{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:var(--t2);padding:12px 24px;border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
-.gn-btn:hover{color:var(--a2)}
-.gn-btn.active{color:var(--a2);border-bottom-color:var(--accent)}
-.gn-clock{font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:3px;color:var(--text);margin-left:auto;align-self:center;padding-bottom:6px}
+.global-nav{display:flex;background:var(--s1);border-bottom:2px solid var(--b1);height:72px;position:relative;z-index:100;padding:0 32px;gap:0;align-items:stretch}
+.gn-btn{font-family:var(--mono);font-size:16px;letter-spacing:2px;color:var(--t2);padding:0 32px;border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center}
+.gn-btn:hover{color:var(--a2);background:var(--s2)}
+.gn-btn.active{color:var(--a2);border-bottom-color:var(--accent);background:var(--s2)}
+.gn-clock{font-family:var(--mono);font-size:28px;font-weight:700;letter-spacing:4px;color:var(--text);margin-left:auto;align-self:center}
 
 /* ── GLOBAL PAGES ── */
-.gpage{display:none;height:calc(100vh - 64px);overflow:hidden}
+.gpage{display:none;height:calc(100vh - 72px);overflow:hidden}
 .gpage.active{display:flex;flex-direction:column}
 
 /* ════════════════════════════════════════
    TAB 1 — TODAY
 ════════════════════════════════════════ */
-.today-body{display:grid;grid-template-columns:1fr 1fr;height:100%;overflow:hidden;gap:0}
+.today-body{display:grid;grid-template-columns:420px 1fr;height:100%;overflow:hidden;gap:0}
 
 /* — Header above timeline — */
-.tl-header{padding:20px 24px 14px;background:var(--s1);border-bottom:1px solid var(--b1)}
-.tl-date{font-family:var(--title);font-size:32px;font-weight:800;color:var(--text);line-height:1}
-.tl-sub{font-size:14px;color:var(--t2);margin-top:10px;display:flex;align-items:center;gap:14px}
-.tl-progress-mini{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden;max-width:220px}
+.tl-header{padding:22px 24px 16px;background:var(--s1);border-bottom:1px solid var(--b1)}
+.tl-date{font-family:var(--title);font-size:28px;font-weight:800;color:var(--text);line-height:1}
+.tl-sub{font-size:13px;color:var(--t2);margin-top:10px;display:flex;align-items:center;gap:12px}
+.tl-progress-mini{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
 .tl-progress-mini-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
 
 /* — Timeline — */
@@ -89,51 +89,54 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .sb-col::-webkit-scrollbar{width:3px}
 .sb-col::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
-.sb-section{padding:20px 20px 16px;border-bottom:1px solid var(--b1)}
-.sb-title{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:14px}
+.sb-section{padding:20px 24px 18px;border-bottom:1px solid var(--b1)}
+.sb-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:16px}
 
 /* — Big stat cards — */
-.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:0}
-.big-stat{background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:14px 12px;text-align:center}
-.big-stat-val{font-family:var(--title);font-size:28px;font-weight:800;line-height:1;margin-bottom:4px}
-.big-stat-lbl{font-size:9px;color:var(--t2);letter-spacing:.8px;font-family:var(--mono)}
+.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:0}
+.big-stat{background:var(--s3);border:1px solid var(--b1);border-radius:12px;padding:18px 14px;text-align:center}
+.big-stat-val{font-family:var(--title);font-size:36px;font-weight:800;line-height:1;margin-bottom:6px}
+.big-stat-lbl{font-size:10px;color:var(--t2);letter-spacing:.8px;font-family:var(--mono)}
 .big-stat.green .big-stat-val{color:var(--green)}
 .big-stat.blue .big-stat-val{color:var(--work)}
 .big-stat.red .big-stat-val{color:var(--red)}
 .big-stat.purple .big-stat-val{color:var(--a2)}
 
 /* — Progress bars — */
-.prog-item{margin-bottom:12px}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.prog-name{font-size:11px;color:var(--t2)}
-.prog-val{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--a2)}
-.prog-bg{background:var(--s3);border-radius:5px;overflow:hidden}
-.prog-fill{border-radius:5px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.prog-item{margin-bottom:16px}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.prog-name{font-size:13px;color:var(--t2);font-weight:500}
+.prog-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2)}
+.prog-bg{background:var(--s3);border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .1s}
+.prog-bg:hover{transform:scaleY(1.3)}
+.prog-fill{border-radius:6px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
 /* — Cat bars — */
-.cat-row{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:11px;color:var(--t2);width:60px;flex-shrink:0}
-.cat-bar-bg{flex:1;background:var(--s3);border-radius:4px;height:6px;overflow:hidden}
-.cat-bar-fill{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:10px;color:var(--t3);width:54px;text-align:right;flex-shrink:0}
+.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:11px;cursor:pointer;padding:4px 6px;border-radius:6px;transition:background .2s}
+.cat-row:hover{background:var(--s3)}
+.cat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:13px;color:var(--t2);width:70px;flex-shrink:0;font-weight:500}
+.cat-bar-bg{flex:1;background:var(--s3);border-radius:5px;height:8px;overflow:hidden}
+.cat-bar-fill{height:100%;border-radius:5px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:11px;color:var(--t3);width:60px;text-align:right;flex-shrink:0}
 
 /* — Doughnut — */
-.chart-wrap{position:relative;width:160px;height:160px;margin:0 auto}
+.chart-wrap{position:relative;width:200px;height:200px;margin:0 auto}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:28px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:9px;color:var(--t3);letter-spacing:1px;margin-top:2px;font-family:var(--mono)}
-.chart-legend{display:flex;flex-direction:column;gap:6px;margin-top:12px}
-.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--t2)}
-.leg-left{display:flex;align-items:center;gap:6px}
-.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:10px;color:var(--a2);font-weight:700}
+.chart-pct{font-family:var(--title);font-size:36px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:10px;color:var(--t3);letter-spacing:1px;margin-top:3px;font-family:var(--mono)}
+.chart-legend{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--t2);cursor:pointer;padding:4px 6px;border-radius:6px;transition:background .2s}
+.leg-item:hover{background:var(--s3)}
+.leg-left{display:flex;align-items:center;gap:8px}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.leg-val{font-family:var(--mono);font-size:12px;color:var(--a2);font-weight:700}
 
 /* — Mini stat grid — */
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:8px;padding:12px}
-.mini-val{font-family:var(--title);font-size:18px;font-weight:700;color:var(--a2);margin-bottom:3px}
-.mini-lbl{font-size:9px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:16px}
+.mini-val{font-family:var(--title);font-size:24px;font-weight:700;color:var(--a2);margin-bottom:4px}
+.mini-lbl{font-size:10px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
 
 /* ════════════════════════════════════════
    TAB 2 — HISTORY
@@ -306,10 +309,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="tl-header">
         <div class="tl-date" id="tl-date">пятница, 27 марта</div>
         <div class="tl-sub">
-          <span id="tl-sub-txt" style="font-size:15px;font-weight:600;color:var(--text)">выполнено 0 из 29</span>
+          <span id="tl-sub-txt" style="font-family:var(--title);font-size:20px;font-weight:800;color:var(--text)">выполнено 0 из 29</span>
           <div class="tl-progress-mini"><div class="tl-progress-mini-fill" id="tl-mini-bar" style="width:0%"></div></div>
-          <span id="tl-pct-mini" style="font-family:var(--mono);font-size:15px;color:var(--a2);font-weight:700">0%</span>
-          <button style="font-family:var(--mono);font-size:10px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:4px 10px;border-radius:5px;cursor:pointer;letter-spacing:.5px" onclick="resetDay()">СБРОС</button>
+          <span id="tl-pct-mini" style="font-family:var(--mono);font-size:20px;color:var(--a2);font-weight:700">0%</span>
+          <button style="font-family:var(--mono);font-size:10px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:5px 12px;border-radius:5px;cursor:pointer;letter-spacing:.5px;margin-left:auto" onclick="resetDay()">СБРОС</button>
         </div>
       </div>
       <div class="tl-scroll" id="tl-scroll"></div>
@@ -549,7 +552,7 @@ function renderSidebar(){
   sb.innerHTML=`
     <!-- STATS -->
     <div class="sb-section">
-      <div class="sb-title">Сводка</div>
+      <div class="sb-title">Сводка дня</div>
       <div class="big-stats">
         <div class="big-stat green"><div class="big-stat-val" id="sv-done">${s.done}</div><div class="big-stat-lbl">ГОТОВО</div></div>
         <div class="big-stat blue"><div class="big-stat-val" id="sv-rem">${s.remaining}</div><div class="big-stat-lbl">ОСТАЛОСЬ</div></div>
@@ -562,15 +565,32 @@ function renderSidebar(){
       <div class="sb-title">Прогресс</div>
       <div class="prog-item">
         <div class="prog-meta"><span class="prog-name">Задачи дня</span><span class="prog-val" id="pp-tasks">${s.pct}%</span></div>
-        <div class="prog-bg" style="height:10px"><div class="prog-fill" id="pf-tasks" style="width:${s.pct}%;height:10px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
+        <div class="prog-bg" style="height:14px" title="Прогресс задач"><div class="prog-fill" id="pf-tasks" style="width:${s.pct}%;height:14px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
       </div>
       <div class="prog-item">
         <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val">${tp}%</span></div>
-        <div class="prog-bg" style="height:7px"><div class="prog-fill" id="pf-time" style="width:${tp}%;height:7px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
+        <div class="prog-bg" style="height:10px"><div class="prog-fill" id="pf-time" style="width:${tp}%;height:10px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
       </div>
       <div class="prog-item">
         <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" style="color:var(--study)">${doneH}ч ${doneM}м / ${totalH}ч</span></div>
-        <div class="prog-bg" style="height:7px"><div class="prog-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:7px;background:var(--study)"></div></div>
+        <div class="prog-bg" style="height:10px"><div class="prog-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:10px;background:var(--study)"></div></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        ${Object.entries(CAT_META).map(([k,m])=>{
+          const v=cs[k]||{total:0,done:0};
+          const p=v.total?Math.round(v.done/v.total*100):0;
+          const r=16;const circ=2*Math.PI*r;
+          return`<div title="${m.label}: ${p}%" style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;cursor:default">
+            <svg width="40" height="40" viewBox="0 0 40 40" style="transform:rotate(-90deg)">
+              <circle fill="none" stroke="var(--b1)" stroke-width="3" cx="20" cy="20" r="${r}"/>
+              <circle fill="none" stroke="${m.color}" stroke-width="3" stroke-linecap="round"
+                cx="20" cy="20" r="${r}" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${(circ*(1-p/100)).toFixed(1)}"
+                style="transition:stroke-dashoffset .5s"/>
+            </svg>
+            <span style="font-family:var(--mono);font-size:9px;color:${m.color};margin-top:-4px">${p}%</span>
+            <span style="font-size:9px;color:var(--t3)">${m.label.slice(0,3)}</span>
+          </div>`;
+        }).join('')}
       </div>
     </div>
 
@@ -583,11 +603,13 @@ function renderSidebar(){
     <!-- DOUGHNUT -->
     <div class="sb-section">
       <div class="sb-title">Распределение</div>
-      <div class="chart-wrap"><canvas id="dnt"></canvas>
-        <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
-      </div>
-      <div class="chart-legend">
-        ${Object.entries(CAT_META).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
+      <div style="display:flex;align-items:center;gap:20px">
+        <div class="chart-wrap" style="width:180px;height:180px;flex-shrink:0"><canvas id="dnt"></canvas>
+          <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
+        </div>
+        <div class="chart-legend" style="flex:1;margin-top:0">
+          ${Object.entries(CAT_META).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
+        </div>
       </div>
     </div>
 
