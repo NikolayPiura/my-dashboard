@@ -23,64 +23,139 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
 
 /* ══ NAV ══ */
-.nav{display:flex;height:80px;background:var(--s1);border-bottom:2px solid var(--b1);align-items:stretch;padding:0 36px;flex-shrink:0}
-.nav-btn{font-family:var(--mono);font-size:22px;letter-spacing:3px;color:var(--t2);padding:0 44px;border:none;background:transparent;cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center}
-.nav-btn:hover{color:var(--a2);background:rgba(167,139,250,.06)}
-.nav-btn.active{color:var(--a2);border-bottom-color:var(--accent);background:rgba(167,139,250,.08)}
-.nav-clock{font-family:var(--mono);font-size:38px;font-weight:700;letter-spacing:5px;color:var(--text);margin-left:auto;align-self:center}
+.nav{
+  display:flex;height:100px;
+  background:var(--s1);
+  border-bottom:2px solid var(--b1);
+  align-items:stretch;
+  padding:0 48px;
+  flex-shrink:0;
+  gap:8px;
+}
+.nav-btn{
+  font-family:var(--mono);
+  font-size:26px;
+  letter-spacing:4px;
+  color:var(--t2);
+  padding:0 52px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  border-bottom:5px solid transparent;
+  margin-bottom:-2px;
+  transition:all .2s;
+  white-space:nowrap;
+  display:flex;align-items:center;
+  border-radius:8px 8px 0 0;
+}
+.nav-btn:hover{color:var(--a2);background:rgba(167,139,250,.08)}
+.nav-btn.active{
+  color:#fff;
+  border-bottom-color:var(--accent);
+  background:rgba(124,92,252,.18);
+  font-weight:700;
+}
+.nav-clock{
+  font-family:var(--mono);
+  font-size:46px;
+  font-weight:700;
+  letter-spacing:6px;
+  color:var(--text);
+  margin-left:auto;
+  align-self:center;
+}
 
 /* ══ PAGES ══ */
-.page{display:none;height:calc(100vh - 80px);overflow:hidden}
+.page{display:none;height:calc(100vh - 100px);overflow:hidden}
 .page.active{display:grid}
 #pg-today{grid-template-columns:1fr 1fr}
 #pg-history{grid-template-columns:1fr}
 
 /* ══ LEFT COL ══ */
-.left-col{display:grid;grid-template-rows:auto 1fr auto;border-right:1px solid var(--b1);overflow:hidden}
+.left-col{
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  border-right:1px solid var(--b1);
+  overflow:hidden;
+}
 
-/* Header */
-.lh{background:var(--s1);border-bottom:1px solid var(--b1);padding:24px 28px 20px;display:flex;flex-direction:column;gap:16px}
-.lh-date{font-family:var(--title);font-size:38px;font-weight:800;color:var(--text);line-height:1}
-.lh-row{display:flex;align-items:center;gap:14px}
-.lh-done{font-family:var(--title);font-size:26px;font-weight:800;color:var(--text)}
-.lh-pct{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--a2)}
-.lh-bar{flex:1;height:10px;background:var(--b1);border-radius:5px;overflow:hidden}
-.lh-bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
-.lh-reset{font-family:var(--mono);font-size:12px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:7px 16px;border-radius:7px;cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s}
+.lh{
+  background:var(--s1);
+  border-bottom:1px solid var(--b1);
+  padding:36px 36px 28px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.lh-date{
+  font-family:var(--title);
+  font-size:42px;
+  font-weight:800;
+  color:var(--text);
+  line-height:1;
+}
+.lh-row{display:flex;align-items:center;gap:16px;margin-top:4px}
+.lh-done{font-family:var(--title);font-size:30px;font-weight:800;color:var(--text)}
+.lh-pct{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--a2)}
+.lh-bar{flex:1;height:12px;background:var(--b1);border-radius:6px;overflow:hidden}
+.lh-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
+.lh-reset{
+  font-family:var(--mono);font-size:13px;
+  background:transparent;border:1px solid var(--b2);
+  color:var(--t2);padding:8px 18px;border-radius:8px;
+  cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s;
+}
 .lh-reset:hover{border-color:var(--accent);color:var(--a2)}
-.lh-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.lh-card{background:var(--s3);border:1px solid var(--b1);border-radius:14px;padding:20px 16px;text-align:center}
-.lh-card-val{font-family:var(--title);font-size:52px;font-weight:800;line-height:1;margin-bottom:6px}
-.lh-card-lbl{font-size:12px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
+
+.lh-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.lh-card{
+  background:var(--s3);border:1px solid var(--b1);
+  border-radius:18px;padding:28px 16px;text-align:center;
+}
+.lh-card-val{
+  font-family:var(--title);font-size:72px;font-weight:800;
+  line-height:1;margin-bottom:10px;
+}
+.lh-card-lbl{font-size:13px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
 .lh-card.g .lh-card-val{color:var(--green)}
 .lh-card.b .lh-card-val{color:var(--work)}
 .lh-card.r .lh-card-val{color:var(--red)}
 
 /* Tasks */
-.tasks-scroll{overflow-y:auto;overflow-x:hidden;padding:10px 14px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.tasks-scroll{
+  overflow-y:auto;overflow-x:hidden;
+  padding:12px 16px;
+  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
+}
 .tasks-scroll::-webkit-scrollbar{width:4px}
 .tasks-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
-.task-card{display:flex;align-items:center;gap:12px;background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:13px 14px;margin-bottom:6px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}
-.task-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.task-card{
+  display:flex;align-items:center;gap:14px;
+  background:var(--s2);border:1px solid var(--b1);
+  border-radius:12px;padding:18px 16px;
+  margin-bottom:8px;cursor:pointer;transition:all .18s;
+  position:relative;overflow:hidden;
+}
+.task-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px}
 .task-card.cat-work::before{background:var(--work)}
 .task-card.cat-health::before{background:var(--health)}
 .task-card.cat-personal::before{background:var(--personal)}
 .task-card.cat-focus::before{background:var(--focus)}
 .task-card.cat-study::before{background:var(--study)}
 .task-card.cat-sport::before{background:var(--sport)}
-.task-card:hover{border-color:var(--b2);background:var(--s3);transform:translateX(3px)}
-.task-card.done{opacity:.32}
+.task-card:hover{border-color:var(--b2);background:var(--s3);transform:translateX(4px)}
+.task-card.done{opacity:.3}
 .task-card.done .tname{text-decoration:line-through;color:var(--t3)}
 .task-card.current-task{border-color:var(--accent)}
 .task-card.missed:not(.done){border-color:#ef444430}
-.cb{width:20px;height:20px;border-radius:5px;border:2px solid var(--b3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cb{width:24px;height:24px;border-radius:6px;border:2px solid var(--b3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .cb.on{background:var(--accent);border-color:var(--accent)}
-.cb.on::after{content:'✓';font-size:12px;color:#fff;font-weight:700}
-.ttime{font-family:var(--mono);font-size:12px;color:var(--t3);flex-shrink:0;min-width:40px}
-.tname{font-size:14px;flex:1;line-height:1.3;font-weight:500}
-.tdur{font-size:11px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
-.ttag{font-size:11px;padding:3px 8px;border-radius:5px;font-weight:600;flex-shrink:0}
+.cb.on::after{content:'✓';font-size:14px;color:#fff;font-weight:700}
+.ttime{font-family:var(--mono);font-size:13px;color:var(--t3);flex-shrink:0;min-width:44px}
+.tname{font-size:16px;flex:1;line-height:1.3;font-weight:500}
+.tdur{font-size:12px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
+.ttag{font-size:12px;padding:4px 10px;border-radius:6px;font-weight:600;flex-shrink:0}
 .tag-work{background:#1a3050;color:#60a5fa}
 .tag-health{background:#0f3020;color:#4ade80}
 .tag-personal{background:#382008;color:#fbbf24}
@@ -88,104 +163,124 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .tag-study{background:#052535;color:#67e8f9}
 .tag-sport{background:#38200a;color:#fb923c}
 
-.now-bar{display:flex;align-items:center;gap:10px;margin:6px 0;padding:7px 14px;background:#ef444412;border:1px solid #ef444440;border-radius:8px}
-.now-dot{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
+.now-bar{
+  display:flex;align-items:center;gap:12px;
+  margin:8px 0;padding:9px 16px;
+  background:#ef444412;border:1px solid #ef444440;border-radius:10px;
+}
+.now-dot{
+  width:13px;height:13px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 12px var(--red);
+  flex-shrink:0;animation:pulse 1.5s infinite;
+}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.now-t{font-family:var(--mono);font-size:13px;color:var(--red);font-weight:700}
-.now-sep{font-size:12px;color:var(--t3)}
+.now-t{font-family:var(--mono);font-size:14px;color:var(--red);font-weight:700}
+.now-sep{font-size:13px;color:var(--t3)}
 
-/* Bottom extras: streak + quote */
-.lh-extras{background:var(--s1);border-top:1px solid var(--b1);padding:16px 28px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
-.streak-box{background:var(--s3);border:1px solid var(--b1);border-radius:14px;padding:14px 22px;text-align:center;flex-shrink:0}
-.streak-fire{font-size:22px;line-height:1;margin-bottom:2px}
-.streak-n{font-family:var(--title);font-size:40px;font-weight:800;color:#f97316;line-height:1}
-.streak-lbl{font-size:10px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px;margin-top:3px}
-.quote-box{background:var(--s3);border:1px solid var(--b1);border-left:4px solid var(--accent);border-radius:0 14px 14px 0;padding:16px 20px}
-.quote-text{font-size:14px;color:var(--text);line-height:1.6;font-style:italic}
-.quote-author{font-size:11px;color:var(--t3);margin-top:8px;font-family:var(--mono)}
+/* Streak + quote */
+.lh-extras{
+  background:var(--s1);border-top:1px solid var(--b1);
+  padding:20px 32px;
+  display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
+}
+.streak-box{
+  background:var(--s3);border:1px solid var(--b1);
+  border-radius:16px;padding:18px 28px;text-align:center;flex-shrink:0;
+}
+.streak-fire{font-size:28px;line-height:1;margin-bottom:4px}
+.streak-n{font-family:var(--title);font-size:48px;font-weight:800;color:#f97316;line-height:1}
+.streak-lbl{font-size:12px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px;margin-top:4px}
+.quote-box{
+  background:var(--s3);border:1px solid var(--b1);
+  border-left:5px solid var(--accent);border-radius:0 16px 16px 0;
+  padding:18px 22px;
+}
+.quote-text{font-size:16px;color:var(--text);line-height:1.6;font-style:italic}
+.quote-author{font-size:12px;color:var(--t3);margin-top:8px;font-family:var(--mono)}
 
 /* ══ RIGHT COL ══ */
-.right-col{display:flex;flex-direction:column;overflow:hidden;background:var(--s1)}
+.right-col{
+  display:flex;flex-direction:column;
+  overflow:hidden;background:var(--s1);
+}
+.rb{
+  padding:26px 32px;border-bottom:1px solid var(--b1);
+  flex-shrink:0;
+}
+.rb.stretch{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.rb-title{
+  font-family:var(--mono);font-size:12px;
+  letter-spacing:2px;color:var(--t3);
+  text-transform:uppercase;margin-bottom:18px;
+}
 
-.rb{padding:22px 26px;border-bottom:1px solid var(--b1);flex-shrink:0}
-.rb-title{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:14px}
-
-/* Progress bars */
-.prog-item{margin-bottom:14px}
+/* Progress */
+.prog-item{margin-bottom:20px}
 .prog-item:last-child{margin-bottom:0}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.prog-name{font-size:15px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--a2)}
-.prog-bg{background:var(--s3);border-radius:8px;overflow:hidden}
-.prog-fill{border-radius:8px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.prog-name{font-size:18px;color:var(--t2);font-weight:500}
+.prog-val{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--a2)}
+.prog-bg{background:var(--s3);border-radius:10px;overflow:hidden}
+.prog-fill{border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
 /* Cat bars */
-.cat-row{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.cat-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
 .cat-row:last-child{margin-bottom:0}
-.cat-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:14px;color:var(--t2);width:76px;flex-shrink:0;font-weight:500}
-.cat-bg{flex:1;background:var(--s3);border-radius:6px;height:10px;overflow:hidden}
-.cat-fill{height:100%;border-radius:6px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:12px;color:var(--t3);width:70px;text-align:right;flex-shrink:0}
+.cat-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:17px;color:var(--t2);width:90px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:8px;height:14px;overflow:hidden}
+.cat-fill{height:100%;border-radius:8px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:14px;color:var(--t3);width:80px;text-align:right;flex-shrink:0}
 
 /* Doughnut */
-.chart-wrap{position:relative;width:180px;height:180px;margin:0 auto}
+.chart-wrap{position:relative;width:220px;height:220px;margin:0 auto}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:34px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:11px;color:var(--t3);letter-spacing:1px;margin-top:3px;font-family:var(--mono)}
-.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
-.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--t2);background:var(--s3);border:1px solid var(--b1);border-radius:8px;padding:8px 12px}
-.leg-left{display:flex;align-items:center;gap:8px}
-.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:12px;color:var(--a2);font-weight:700}
+.chart-pct{font-family:var(--title);font-size:40px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:12px;color:var(--t3);letter-spacing:1px;margin-top:4px;font-family:var(--mono)}
+.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.leg-item{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:15px;color:var(--t2);
+  background:var(--s3);border:1px solid var(--b1);
+  border-radius:10px;padding:10px 14px;
+}
+.leg-left{display:flex;align-items:center;gap:10px}
+.leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.leg-val{font-family:var(--mono);font-size:14px;color:var(--a2);font-weight:700}
 
-/* Mini stats */
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:12px;padding:18px}
-.mini-val{font-family:var(--title);font-size:30px;font-weight:700;color:var(--a2);margin-bottom:5px}
-.mini-lbl{font-size:11px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
-
-/* Activity bars */
-.act-bars{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:10px}
-.act-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
-.act-bar{width:100%;border-radius:5px 5px 0 0;min-height:4px;transition:height .4s}
-.act-lbl{font-size:10px;color:var(--t3);font-family:var(--mono)}
-
-/* Countdown */
-.cd-wrap{display:flex;align-items:center;justify-content:space-between}
-.cd-left{display:flex;flex-direction:column;gap:4px}
-.cd-val{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--a2)}
-.cd-lbl{font-size:12px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
-.cd-ring{position:relative;width:70px;height:70px;flex-shrink:0}
-.cd-ring svg{transform:rotate(-90deg)}
-.cd-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--a2)}
+/* Activity */
+.act-bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:12px}
+.act-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.act-bar{width:100%;border-radius:6px 6px 0 0;min-height:5px;transition:height .4s}
+.act-lbl{font-size:12px;color:var(--t3);font-family:var(--mono)}
 
 /* HISTORY */
-.hist-body{padding:28px 32px;overflow-y:auto;height:100%;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.hist-body::-webkit-scrollbar{width:4px}
-.hist-body::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-.hist-title{font-family:var(--title);font-size:24px;font-weight:800;margin-bottom:8px}
-.hist-sub{font-size:14px;color:var(--t2);margin-bottom:28px}
-.hist-days{display:flex;flex-direction:column;gap:16px}
+.hist-body{
+  padding:32px 36px;overflow-y:auto;height:100%;
+  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
+}
+.hist-title{font-family:var(--title);font-size:26px;font-weight:800;margin-bottom:8px}
+.hist-sub{font-size:15px;color:var(--t2);margin-bottom:30px}
+.hist-days{display:flex;flex-direction:column;gap:18px}
 .hist-day{background:var(--s2);border:1px solid var(--b1);border-radius:14px;overflow:hidden}
-.hist-day-hdr{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
+.hist-day-hdr{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
 .hist-day-hdr:hover{background:var(--s3)}
-.hist-day-date{font-family:var(--title);font-size:14px;font-weight:700}
-.hist-day-meta{display:flex;align-items:center;gap:14px}
-.hist-day-pct{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--a2)}
-.hist-day-bar{width:130px;height:6px;background:var(--b1);border-radius:3px;overflow:hidden}
-.hist-day-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .4s}
-.hist-tasks{padding:0 20px 16px;display:none;border-top:1px solid var(--b1)}
+.hist-day-date{font-family:var(--title);font-size:15px;font-weight:700}
+.hist-day-meta{display:flex;align-items:center;gap:16px}
+.hist-day-pct{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--a2)}
+.hist-day-bar{width:140px;height:7px;background:var(--b1);border-radius:4px;overflow:hidden}
+.hist-day-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .4s}
+.hist-tasks{padding:0 22px 18px;display:none;border-top:1px solid var(--b1)}
 .hist-tasks.open{display:block}
-.hist-task-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #2a2a4022}
+.hist-task-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #2a2a4022}
 .hist-task-row:last-child{border-bottom:none}
-.hist-task-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.hist-task-name{font-size:13px;flex:1;color:var(--t2)}
-.hist-task-done{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:4px}
+.hist-task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hist-task-name{font-size:14px;flex:1;color:var(--t2)}
+.hist-task-done{font-family:var(--mono);font-size:11px;padding:3px 7px;border-radius:4px}
 .hd-yes{background:#22c55e20;color:#4ade80}
 .hd-no{background:#ef444420;color:#f87171}
-.no-hist{text-align:center;padding:80px 20px;color:var(--t3);font-size:14px}
-.no-hist-ico{font-size:56px;margin-bottom:16px}
+.no-hist{text-align:center;padding:80px 20px;color:var(--t3);font-size:15px}
+.no-hist-ico{font-size:60px;margin-bottom:18px}
 
 /* CONFETTI */
 .conf-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
@@ -203,11 +298,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 <!-- TODAY -->
 <div class="page active" id="pg-today">
+
+  <!-- LEFT -->
   <div class="left-col">
     <div class="lh">
       <div class="lh-date" id="lh-date">суббота, 28 марта</div>
       <div class="lh-row">
-        <span class="lh-done" id="lh-done-txt">выполнено 0 из 29</span>
+        <span class="lh-done" id="lh-done-txt">выполнено 0 из 15</span>
         <div class="lh-bar"><div class="lh-bar-fill" id="lh-bar" style="width:0%"></div></div>
         <span class="lh-pct" id="lh-pct">0%</span>
         <button class="lh-reset" onclick="resetDay()">СБРОС</button>
@@ -218,7 +315,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="lh-card r"><div class="lh-card-val" id="card-miss">0</div><div class="lh-card-lbl">ПРОПУЩЕНО</div></div>
       </div>
     </div>
+
     <div class="tasks-scroll" id="tasks-scroll"></div>
+
     <div class="lh-extras">
       <div class="streak-box">
         <div class="streak-fire">🔥</div>
@@ -232,12 +331,56 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
   </div>
 
-  <div class="right-col" id="right-col"></div>
+  <!-- RIGHT -->
+  <div class="right-col" id="right-col">
+
+    <!-- ПРОГРЕСС -->
+    <div class="rb">
+      <div class="rb-title">Прогресс дня</div>
+      <div class="prog-item">
+        <div class="prog-meta"><span class="prog-name">Задачи</span><span class="prog-val" id="pp">0%</span></div>
+        <div class="prog-bg" style="height:22px"><div class="prog-fill" id="pf-t" style="width:0%;height:22px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val" id="pv-d">0%</span></div>
+        <div class="prog-bg" style="height:18px"><div class="prog-fill" id="pf-d" style="width:0%;height:18px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" id="pv-m" style="color:var(--study)">0ч 0м / 0ч</span></div>
+        <div class="prog-bg" style="height:18px"><div class="prog-fill" id="pf-m" style="width:0%;height:18px;background:var(--study)"></div></div>
+      </div>
+    </div>
+
+    <!-- КАТЕГОРИИ -->
+    <div class="rb" id="rb-cat">
+      <div class="rb-title">По категориям</div>
+      <div id="cat-rows"></div>
+    </div>
+
+    <!-- ДИАГРАММА -->
+    <div class="rb">
+      <div class="rb-title">Распределение</div>
+      <div class="chart-wrap"><canvas id="dnt"></canvas>
+        <div class="chart-center">
+          <div class="chart-pct" id="cpct">0%</div>
+          <div class="chart-sub">ГОТОВО</div>
+        </div>
+      </div>
+      <div class="chart-legend" id="chart-legend"></div>
+    </div>
+
+    <!-- АКТИВНОСТЬ -->
+    <div class="rb stretch">
+      <div class="rb-title">Активность — 7 дней</div>
+      <div class="act-bars" id="act-bars"></div>
+    </div>
+
+  </div>
 </div>
 
 <!-- HISTORY -->
 <div class="page" id="pg-history">
-  <div class="hist-body" id="hist-body">
+  <div class="hist-body">
     <div class="hist-title">История дней</div>
     <div class="hist-sub">Архив выполнения задач по дням</div>
     <div class="hist-days" id="hist-days"></div>
@@ -250,36 +393,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 const TASK_SAVE='dash_v5';
 const HIST_SAVE='dash_hist_v1';
 
+// ~15 ключевых задач
 const INIT_TASKS=[
-  {id:1,time:'06:30',name:'Подъём и стакан воды',cat:'health',dur:10},
-  {id:2,time:'06:45',name:'Утренняя зарядка',cat:'sport',dur:15},
-  {id:3,time:'07:00',name:'Контрастный душ',cat:'health',dur:10},
-  {id:4,time:'07:15',name:'Завтрак',cat:'personal',dur:20},
-  {id:5,time:'07:40',name:'Чтение новостей',cat:'study',dur:20},
-  {id:6,time:'08:00',name:'Пробежка 30 минут',cat:'sport',dur:30},
-  {id:7,time:'08:35',name:'Планирование дня',cat:'focus',dur:15},
-  {id:8,time:'09:00',name:'Проверить почту',cat:'work',dur:20},
-  {id:9,time:'09:30',name:'Обработка задач из почты',cat:'work',dur:30},
-  {id:10,time:'10:00',name:'Встреча с командой',cat:'work',dur:60},
-  {id:11,time:'11:00',name:'Deep work — основной проект',cat:'focus',dur:90},
-  {id:12,time:'12:30',name:'Обед',cat:'personal',dur:30},
-  {id:13,time:'13:00',name:'Код-ревью',cat:'work',dur:45},
-  {id:14,time:'13:50',name:'Ответы на Slack',cat:'work',dur:20},
-  {id:15,time:'14:00',name:'Звонок с клиентом',cat:'work',dur:45},
-  {id:16,time:'15:00',name:'Изучить новую библиотеку',cat:'study',dur:60},
-  {id:17,time:'15:30',name:'Написать отчёт',cat:'work',dur:60},
-  {id:18,time:'16:30',name:'Прогулка / разгрузка',cat:'health',dur:30},
-  {id:19,time:'17:00',name:'Блок фокусной работы',cat:'focus',dur:90},
-  {id:20,time:'18:00',name:'Чтение — 30 минут',cat:'study',dur:30},
-  {id:21,time:'18:30',name:'Приготовить ужин',cat:'personal',dur:30},
-  {id:22,time:'19:00',name:'Ужин',cat:'personal',dur:30},
-  {id:23,time:'19:30',name:'Онлайн-курс / лекция',cat:'study',dur:60},
-  {id:24,time:'20:00',name:'Спортзал',cat:'sport',dur:60},
-  {id:25,time:'21:00',name:'Медитация',cat:'health',dur:20},
-  {id:26,time:'21:30',name:'Журнал — записать мысли',cat:'personal',dur:15},
-  {id:27,time:'22:00',name:'Планирование на завтра',cat:'focus',dur:20},
-  {id:28,time:'22:20',name:'Чтение перед сном',cat:'study',dur:30},
-  {id:29,time:'23:00',name:'Отбой',cat:'health',dur:0},
+  {id:1,time:'07:00',name:'Подъём, вода, зарядка',cat:'health',dur:30},
+  {id:2,time:'07:30',name:'Завтрак',cat:'personal',dur:20},
+  {id:3,time:'08:00',name:'Пробежка',cat:'sport',dur:30},
+  {id:4,time:'09:00',name:'Проверить почту',cat:'work',dur:20},
+  {id:5,time:'09:30',name:'Встреча с командой',cat:'work',dur:60},
+  {id:6,time:'11:00',name:'Deep work — основной проект',cat:'focus',dur:90},
+  {id:7,time:'12:30',name:'Обед',cat:'personal',dur:30},
+  {id:8,time:'13:30',name:'Код-ревью',cat:'work',dur:45},
+  {id:9,time:'15:00',name:'Написать отчёт',cat:'work',dur:60},
+  {id:10,time:'16:30',name:'Прогулка / разгрузка',cat:'health',dur:30},
+  {id:11,time:'17:00',name:'Блок фокусной работы',cat:'focus',dur:90},
+  {id:12,time:'19:00',name:'Ужин',cat:'personal',dur:30},
+  {id:13,time:'20:00',name:'Спортзал',cat:'sport',dur:60},
+  {id:14,time:'21:30',name:'Чтение / учёба',cat:'study',dur:45},
+  {id:15,time:'22:30',name:'Планирование на завтра',cat:'focus',dur:20},
 ];
 
 const CAT={
@@ -297,8 +427,8 @@ const QUOTES=[
   {t:'Не жди. Время никогда не будет «подходящим».',a:'Наполеон Хилл'},
   {t:'Единственный способ делать великую работу — любить то, что делаешь.',a:'Стив Джобс'},
   {t:'Каждое утро — это новый шанс изменить свою жизнь.',a:'неизвестно'},
-  {t:'Твои привычки определяют твою судьбу.',a:'Джек Ма'},
-  {t:'Сделай сегодня то, что другие не хотят, и завтра будешь жить иначе.',a:'неизвестно'},
+  {t:'Твои привычки определяют твою судьбу.',a:'неизвестно'},
+  {t:'Сделай сегодня то, что другие не хотят — и завтра будешь жить иначе.',a:'неизвестно'},
 ];
 
 function loadTasks(){try{const s=localStorage.getItem(TASK_SAVE);if(s)return JSON.parse(s);}catch(e){}return INIT_TASKS.map(t=>({...t,done:false}));}
@@ -315,7 +445,7 @@ const fmtNow=()=>new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2
 const todayKey=()=>{const d=new Date();return`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;};
 
 function getStats(){
-  const total=tasks.length, done=tasks.filter(t=>t.done).length;
+  const total=tasks.length,done=tasks.filter(t=>t.done).length;
   const nm=nowMin();
   const missed=tasks.filter(t=>!t.done&&toMin(t.time)<nm).length;
   const remaining=total-done-missed;
@@ -353,7 +483,7 @@ function showPage(id,btn){
 function renderTimeline(){
   const tl=document.getElementById('tasks-scroll');if(!tl)return;
   const nm=nowMin();
-  let html='', nowInserted=false;
+  let html='',nowInserted=false;
   tasks.forEach((t,i)=>{
     const tMin=toMin(t.time);
     const nextMin=tasks[i+1]?toMin(tasks[i+1].time):Infinity;
@@ -379,125 +509,49 @@ function renderTimeline(){
 
 /* SIDEBAR */
 function renderSidebar(){
-  const sb=document.getElementById('right-col');if(!sb)return;
-  const s=getStats(), cs=getCatStats(), tp=timePct();
-  const dH=Math.floor(s.doneMin/60), dM=s.doneMin%60, tH=Math.floor(s.totalMin/60);
+  const s=getStats(),cs=getCatStats(),tp=timePct();
+  const dH=Math.floor(s.doneMin/60),dM=s.doneMin%60,tH=Math.floor(s.totalMin/60);
 
-  let catRows='';
-  Object.entries(CAT).forEach(([k,m])=>{
-    const v=cs[k]||{total:0,done:0};
-    const p=v.total?Math.round(v.done/v.total*100):0;
-    catRows+=`<div class="cat-row">
-      <div class="cat-dot" style="background:${m.color}"></div>
-      <div class="cat-name">${m.label}</div>
-      <div class="cat-bg"><div class="cat-fill" style="width:${p}%;background:${m.color}"></div></div>
-      <div class="cat-meta">${v.done}/${v.total} · ${p}%</div>
-    </div>`;
-  });
+  // progress
+  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  byId('pp',s.pct+'%');byId('pv-d',tp+'%');
+  byId('pv-m',`${dH}ч ${dM}м / ${tH}ч`);
+  byId('cpct',s.pct+'%');
+  byId('lh-done-txt',`выполнено ${s.done} из ${s.total}`);
+  byId('lh-pct',s.pct+'%');
+  byId('card-done',s.done);byId('card-rem',s.remaining);byId('card-miss',s.missed);
+  const pf=id=>document.getElementById(id);
+  if(pf('lh-bar'))pf('lh-bar').style.width=s.pct+'%';
+  if(pf('pf-t'))pf('pf-t').style.width=s.pct+'%';
+  if(pf('pf-d'))pf('pf-d').style.width=tp+'%';
+  if(pf('pf-m'))pf('pf-m').style.width=(s.totalMin?Math.round(s.doneMin/s.totalMin*100):0)+'%';
 
-  // activity bars
-  const hist=loadHist();
-  const dayNames=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
-  let actBars='';
-  for(let i=6;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i);
-    const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-    const entry=hist.find(h=>h.key===key);
-    const total=entry?entry.tasks.length:29;
-    const done=entry?entry.tasks.filter(t=>t.done).length:0;
-    const pct=total?Math.round(done/total*100):0;
-    const hPx=Math.max(4,Math.round(pct/100*60));
-    const isToday=i===0;
-    const col=isToday?'var(--accent)':pct>0?'var(--a2)44':'var(--b1)';
-    actBars+=`<div class="act-col">
-      <div class="act-bar" style="height:${hPx}px;background:${col}" title="${pct}%"></div>
-      <div class="act-lbl" style="color:${isToday?'var(--a2)':'var(--t3)'}">${dayNames[d.getDay()]}</div>
-    </div>`;
+  // cat rows
+  const catEl=document.getElementById('cat-rows');
+  if(catEl){
+    catEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
+      const v=cs[k]||{total:0,done:0};
+      const p=v.total?Math.round(v.done/v.total*100):0;
+      return`<div class="cat-row">
+        <div class="cat-dot" style="background:${m.color}"></div>
+        <div class="cat-name">${m.label}</div>
+        <div class="cat-bg"><div class="cat-fill" style="width:${p}%;background:${m.color}"></div></div>
+        <div class="cat-meta">${v.done}/${v.total} · ${p}%</div>
+      </div>`;
+    }).join('');
   }
 
-  // countdown
-  const now=new Date();
-  const end=new Date();end.setHours(23,0,0,0);
-  const start=new Date();start.setHours(6,0,0,0);
-  const leftMs=Math.max(0,end-now);
-  const cdH=Math.floor(leftMs/3600000);
-  const cdM=Math.floor((leftMs%3600000)/60000);
-  const cdPct=Math.round((1-leftMs/(end-start))*100);
-  const cdDash=144.5*(1-cdPct/100);
+  // chart legend
+  const legEl=document.getElementById('chart-legend');
+  if(legEl){
+    legEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
+      const v=cs[k]||{total:0,done:0};
+      return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;
+    }).join('');
+  }
 
-  sb.innerHTML=`
-    <!-- ПРОГРЕСС -->
-    <div class="rb">
-      <div class="rb-title">Прогресс дня</div>
-      <div class="prog-item">
-        <div class="prog-meta"><span class="prog-name">Задачи</span><span class="prog-val" id="pp">${s.pct}%</span></div>
-        <div class="prog-bg" style="height:18px"><div class="prog-fill" id="pf-t" style="width:${s.pct}%;height:18px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val">${tp}%</span></div>
-        <div class="prog-bg" style="height:14px"><div class="prog-fill" id="pf-d" style="width:${tp}%;height:14px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" style="color:var(--study)">${dH}ч ${dM}м / ${tH}ч</span></div>
-        <div class="prog-bg" style="height:14px"><div class="prog-fill" id="pf-m" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:14px;background:var(--study)"></div></div>
-      </div>
-    </div>
-
-    <!-- КАТЕГОРИИ -->
-    <div class="rb">
-      <div class="rb-title">По категориям</div>
-      ${catRows}
-    </div>
-
-    <!-- ДИАГРАММА -->
-    <div class="rb">
-      <div class="rb-title">Распределение</div>
-      <div class="chart-wrap"><canvas id="dnt"></canvas>
-        <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
-      </div>
-      <div class="chart-legend">
-        ${Object.entries(CAT).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
-      </div>
-    </div>
-
-    <!-- ДЕТАЛИ -->
-    <div class="rb">
-      <div class="rb-title">Детали</div>
-      <div class="mini-grid">
-        <div class="mini-card"><div class="mini-val" id="md">${s.done}</div><div class="mini-lbl">ЗАДАЧ ГОТОВО</div></div>
-        <div class="mini-card"><div class="mini-val">${dH}ч ${dM}м</div><div class="mini-lbl">ПРОДУКТИВНОСТЬ</div></div>
-        <div class="mini-card"><div class="mini-val" style="color:var(--red)">${s.missed}</div><div class="mini-lbl">ПРОПУЩЕНО</div></div>
-        <div class="mini-card"><div class="mini-val" style="color:var(--study)">${(cs.study||{done:0}).done}</div><div class="mini-lbl">УЧЁБА ГОТОВА</div></div>
-      </div>
-    </div>
-
-    <!-- АКТИВНОСТЬ -->
-    <div class="rb">
-      <div class="rb-title">Активность — 7 дней</div>
-      <div class="act-bars">${actBars}</div>
-    </div>
-
-    <!-- ТАЙМЕР -->
-    <div class="rb">
-      <div class="rb-title">До конца дня</div>
-      <div class="cd-wrap">
-        <div class="cd-left">
-          <div class="cd-val" id="cd-val">${cdH}ч ${cdM}м</div>
-          <div class="cd-lbl">ЧАСОВ ОСТАЛОСЬ</div>
-        </div>
-        <div class="cd-ring">
-          <svg width="70" height="70" viewBox="0 0 70 70">
-            <circle fill="none" stroke="var(--b1)" stroke-width="6" cx="35" cy="35" r="28"/>
-            <circle fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round"
-              cx="35" cy="35" r="28" stroke-dasharray="175.9" stroke-dashoffset="${175.9*(1-cdPct/100)}"
-              id="cd-ring" style="transition:stroke-dashoffset .5s"/>
-          </svg>
-          <div class="cd-pct" id="cd-pct">${cdPct}%</div>
-        </div>
-      </div>
-    </div>
-  `;
   buildChart(s,cs);
+  renderActivityBars();
 }
 
 function buildChart(s,cs){
@@ -514,26 +568,31 @@ function buildChart(s,cs){
   });
 }
 
+function renderActivityBars(){
+  const el=document.getElementById('act-bars');if(!el)return;
+  const hist=loadHist();
+  const dayNames=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+  let html='';
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+    const entry=hist.find(h=>h.key===key);
+    const total=entry?entry.tasks.length:15;
+    const done=entry?entry.tasks.filter(t=>t.done).length:0;
+    const pct=total?Math.round(done/total*100):0;
+    const hPx=Math.max(5,Math.round(pct/100*80));
+    const isToday=i===0;
+    const col=isToday?'var(--accent)':pct>0?'var(--a2)55':'var(--b1)';
+    html+=`<div class="act-col">
+      <div class="act-bar" style="height:${hPx}px;background:${col}" title="${pct}%"></div>
+      <div class="act-lbl" style="color:${isToday?'var(--a2)':'var(--t3)'}">${dayNames[d.getDay()]}</div>
+    </div>`;
+  }
+  el.innerHTML=html;
+}
+
 function patchUI(){
-  const s=getStats(), cs=getCatStats();
-  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('lh-done-txt',`выполнено ${s.done} из ${s.total}`);
-  byId('lh-pct',s.pct+'%');
-  byId('card-done',s.done);byId('card-rem',s.remaining);byId('card-miss',s.missed);
-  byId('cpct',s.pct+'%');byId('md',s.done);byId('pp',s.pct+'%');
-  const pf=id=>document.getElementById(id);
-  if(pf('lh-bar'))pf('lh-bar').style.width=s.pct+'%';
-  if(pf('pf-t'))pf('pf-t').style.width=s.pct+'%';
-  if(pf('pf-d'))pf('pf-d').style.width=timePct()+'%';
-  if(pf('pf-m'))pf('pf-m').style.width=(s.totalMin?Math.round(s.doneMin/s.totalMin*100):0)+'%';
-  const catFills=document.querySelectorAll('.cat-fill');
-  const catMetas=document.querySelectorAll('.cat-meta');
-  Object.keys(CAT).forEach((k,i)=>{
-    const v=cs[k]||{total:0,done:0};
-    const p=v.total?Math.round(v.done/v.total*100):0;
-    if(catFills[i])catFills[i].style.width=p+'%';
-    if(catMetas[i])catMetas[i].textContent=`${v.done}/${v.total} · ${p}%`;
-  });
+  renderSidebar();
   document.querySelectorAll('.task-card').forEach(card=>{
     const oc=card.getAttribute('onclick')||'';
     const m=oc.match(/toggle\((\d+)\)/);if(!m)return;
@@ -542,7 +601,6 @@ function patchUI(){
     if(t.done){card.classList.add('done');if(cb)cb.classList.add('on');}
     else{card.classList.remove('done');if(cb)cb.classList.remove('on');}
   });
-  buildChart(s,cs);
 }
 
 function toggle(id){
@@ -570,9 +628,7 @@ function resetDay(){
 }
 
 function calcStreak(){
-  const hist=loadHist();
-  let streak=0;
-  const today=new Date();
+  const hist=loadHist();let streak=0;const today=new Date();
   for(let i=0;i<30;i++){
     const d=new Date(today);d.setDate(d.getDate()-i);
     const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
@@ -583,7 +639,6 @@ function calcStreak(){
   return streak;
 }
 
-/* HISTORY */
 function renderHistory(){
   const container=document.getElementById('hist-days');if(!container)return;
   const hist=loadHist();
@@ -592,9 +647,9 @@ function renderHistory(){
     return;
   }
   container.innerHTML=hist.map((day,idx)=>{
-    const total=day.tasks.length, done=day.tasks.filter(t=>t.done).length;
+    const total=day.tasks.length,done=day.tasks.filter(t=>t.done).length;
     const pct=total?Math.round(done/total*100):0;
-    const tasksHTML=day.tasks.map(t=>{
+    const tHTML=day.tasks.map(t=>{
       const m=CAT[t.cat]||CAT.work;
       return`<div class="hist-task-row">
         <div class="hist-task-dot" style="background:${m.color}"></div>
@@ -603,20 +658,20 @@ function renderHistory(){
       </div>`;
     }).join('');
     return`<div class="hist-day">
-      <div class="hist-day-hdr" onclick="toggleHistDay(${idx})">
+      <div class="hist-day-hdr" onclick="toggleHist(${idx})">
         <div class="hist-day-date">${day.label}</div>
         <div class="hist-day-meta">
           <div class="hist-day-pct">${pct}%</div>
           <div class="hist-day-bar"><div class="hist-day-bar-fill" style="width:${pct}%"></div></div>
-          <span style="font-family:var(--mono);font-size:12px;color:var(--t3)">${done}/${total}</span>
+          <span style="font-family:var(--mono);font-size:13px;color:var(--t3)">${done}/${total}</span>
         </div>
       </div>
-      <div class="hist-tasks" id="hdt-${idx}">${tasksHTML}</div>
+      <div class="hist-tasks" id="hdt-${idx}">${tHTML}</div>
     </div>`;
   }).join('');
 }
 
-function toggleHistDay(idx){
+function toggleHist(idx){
   const el=document.getElementById('hdt-'+idx);
   if(el)el.classList.toggle('open');
 }
@@ -628,32 +683,21 @@ function launchConfetti(){
   for(let i=0;i<120;i++){
     setTimeout(()=>{
       const el=document.createElement('div');el.className='cp';
-      el.style.cssText=`left:${Math.random()*100}%;background:${colors[~~(Math.random()*colors.length)]};width:${7+Math.random()*8}px;height:${7+Math.random()*8}px;animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s`;
+      el.style.cssText=`left:${Math.random()*100}%;background:${colors[~~(Math.random()*colors.length)]};width:${7+Math.random()*9}px;height:${7+Math.random()*9}px;animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s`;
       layer.appendChild(el);setTimeout(()=>el.remove(),5000);
     },i*20);
   }
-}
-
-function updateCountdown(){
-  const now=new Date();
-  const end=new Date();end.setHours(23,0,0,0);
-  const start=new Date();start.setHours(6,0,0,0);
-  const leftMs=Math.max(0,end-now);
-  const cdH=Math.floor(leftMs/3600000);
-  const cdM=Math.floor((leftMs%3600000)/60000);
-  const cdPct=Math.round((1-leftMs/(end-start))*100);
-  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('cd-val',`${cdH}ч ${cdM}м`);
-  byId('cd-pct',cdPct+'%');
-  const ring=document.getElementById('cd-ring');
-  if(ring)ring.style.strokeDashoffset=175.9*(1-cdPct/100);
 }
 
 function tick(){
   const now=new Date();
   const cl=document.getElementById('clock');if(cl)cl.textContent=fmtTime(now);
   const nt=document.getElementById('now-t');if(nt)nt.textContent=fmtNow();
-  const pfd=document.getElementById('pf-d');if(pfd)pfd.style.width=timePct()+'%';
+  const pfd=document.getElementById('pf-d');
+  const pvd=document.getElementById('pv-d');
+  const tp=timePct();
+  if(pfd)pfd.style.width=tp+'%';
+  if(pvd)pvd.textContent=tp+'%';
 }
 
 /* INIT */
@@ -661,22 +705,18 @@ const nowD=new Date();
 const dl=document.getElementById('lh-date');
 if(dl)dl.textContent=nowD.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
 
-// Quote
 const q=QUOTES[nowD.getDay()%QUOTES.length];
 const qtEl=document.getElementById('quote-text');
 const qaEl=document.getElementById('quote-author');
 if(qtEl)qtEl.textContent=q.t;
 if(qaEl)qaEl.textContent='— '+q.a;
 
-// Streak
 const snEl=document.getElementById('streak-n');
 if(snEl)snEl.textContent=calcStreak();
 
 renderTimeline();
 renderSidebar();
-
 setInterval(tick,1000);
-setInterval(updateCountdown,30000);
 </script>
 </body>
 </html>
