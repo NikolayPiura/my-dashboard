@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Дашборд</title>
+<script src="tasks.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Unbounded:wght@400;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -24,118 +25,64 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 /* ══ NAV ══ */
 .nav{
-  display:flex;height:100px;
-  background:var(--s1);
-  border-bottom:2px solid var(--b1);
-  align-items:stretch;
-  padding:0 48px;
-  flex-shrink:0;
-  gap:8px;
+  display:flex;height:90px;
+  background:var(--s1);border-bottom:2px solid var(--b1);
+  align-items:stretch;padding:0 56px;flex-shrink:0;
 }
 .nav-btn{
-  font-family:var(--mono);
-  font-size:26px;
-  letter-spacing:4px;
-  color:var(--t2);
-  padding:0 52px;
-  border:none;
-  background:transparent;
-  cursor:pointer;
-  border-bottom:5px solid transparent;
-  margin-bottom:-2px;
-  transition:all .2s;
-  white-space:nowrap;
-  display:flex;align-items:center;
-  border-radius:8px 8px 0 0;
+  font-family:var(--mono);font-size:26px;letter-spacing:4px;
+  color:var(--t2);padding:0 56px;
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:5px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;display:flex;align-items:center;
 }
 .nav-btn:hover{color:var(--a2);background:rgba(167,139,250,.08)}
-.nav-btn.active{
-  color:#fff;
-  border-bottom-color:var(--accent);
-  background:rgba(124,92,252,.18);
-  font-weight:700;
-}
+.nav-btn.active{color:#fff;border-bottom-color:var(--accent);background:rgba(124,92,252,.18);font-weight:700}
 .nav-clock{
-  font-family:var(--mono);
-  font-size:46px;
-  font-weight:700;
-  letter-spacing:6px;
-  color:var(--text);
-  margin-left:auto;
-  align-self:center;
+  font-family:var(--mono);font-size:48px;font-weight:700;
+  letter-spacing:6px;color:var(--text);margin-left:auto;align-self:center;
 }
 
 /* ══ PAGES ══ */
-.page{display:none;height:calc(100vh - 100px);overflow:hidden}
+.page{display:none;height:calc(100vh - 90px);overflow:hidden}
 .page.active{display:grid}
 #pg-today{grid-template-columns:1fr 1fr}
-#pg-history{grid-template-columns:1fr}
 
 /* ══ LEFT COL ══ */
-.left-col{
-  display:grid;
-  grid-template-rows:auto 1fr auto;
-  border-right:1px solid var(--b1);
-  overflow:hidden;
-}
+.left-col{display:grid;grid-template-rows:auto 1fr auto;border-right:1px solid var(--b1);overflow:hidden}
 
-.lh{
-  background:var(--s1);
-  border-bottom:1px solid var(--b1);
-  padding:36px 36px 28px;
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-}
-.lh-date{
-  font-family:var(--title);
-  font-size:42px;
-  font-weight:800;
-  color:var(--text);
-  line-height:1;
-}
-.lh-row{display:flex;align-items:center;gap:16px;margin-top:4px}
-.lh-done{font-family:var(--title);font-size:30px;font-weight:800;color:var(--text)}
-.lh-pct{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--a2)}
+.lh{background:var(--s1);border-bottom:1px solid var(--b1);padding:44px 40px 36px;display:flex;flex-direction:column;gap:28px}
+.lh-date{font-family:var(--title);font-size:44px;font-weight:800;color:var(--text);line-height:1}
+.lh-row{display:flex;align-items:center;gap:18px;margin-top:6px}
+.lh-done{font-family:var(--title);font-size:32px;font-weight:800;color:var(--text)}
+.lh-pct{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--a2)}
 .lh-bar{flex:1;height:12px;background:var(--b1);border-radius:6px;overflow:hidden}
 .lh-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
 .lh-reset{
-  font-family:var(--mono);font-size:13px;
-  background:transparent;border:1px solid var(--b2);
-  color:var(--t2);padding:8px 18px;border-radius:8px;
-  cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s;
+  font-family:var(--mono);font-size:13px;background:transparent;
+  border:1px solid var(--b2);color:var(--t2);padding:9px 20px;
+  border-radius:8px;cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s;
 }
 .lh-reset:hover{border-color:var(--accent);color:var(--a2)}
 
-.lh-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-.lh-card{
-  background:var(--s3);border:1px solid var(--b1);
-  border-radius:18px;padding:28px 16px;text-align:center;
-}
-.lh-card-val{
-  font-family:var(--title);font-size:72px;font-weight:800;
-  line-height:1;margin-bottom:10px;
-}
-.lh-card-lbl{font-size:13px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
+.lh-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.lh-card{background:var(--s3);border:1px solid var(--b1);border-radius:20px;padding:32px 20px;text-align:center}
+.lh-card-val{font-family:var(--title);font-size:80px;font-weight:800;line-height:1;margin-bottom:12px}
+.lh-card-lbl{font-size:14px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
 .lh-card.g .lh-card-val{color:var(--green)}
 .lh-card.b .lh-card-val{color:var(--work)}
 .lh-card.r .lh-card-val{color:var(--red)}
 
 /* Tasks */
-.tasks-scroll{
-  overflow-y:auto;overflow-x:hidden;
-  padding:12px 16px;
-  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
-}
+.tasks-scroll{overflow-y:auto;overflow-x:hidden;padding:14px 18px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
 .tasks-scroll::-webkit-scrollbar{width:4px}
 .tasks-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
 .task-card{
   display:flex;align-items:center;gap:14px;
   background:var(--s2);border:1px solid var(--b1);
-  border-radius:12px;padding:18px 16px;
-  margin-bottom:8px;cursor:pointer;transition:all .18s;
-  position:relative;overflow:hidden;
+  border-radius:12px;padding:18px 16px;margin-bottom:8px;
+  cursor:pointer;transition:all .18s;position:relative;overflow:hidden;
 }
 .task-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px}
 .task-card.cat-work::before{background:var(--work)}
@@ -145,10 +92,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .task-card.cat-study::before{background:var(--study)}
 .task-card.cat-sport::before{background:var(--sport)}
 .task-card:hover{border-color:var(--b2);background:var(--s3);transform:translateX(4px)}
-.task-card.done{opacity:.3}
-.task-card.done .tname{text-decoration:line-through;color:var(--t3)}
+
+/* ЗАЧЁРКНУТЫЕ — читаемый серый вместо невидимого */
+.task-card.done{opacity:1;background:var(--s1)}
+.task-card.done .tname{text-decoration:line-through;color:var(--t2)}
+.task-card.done .ttime{color:var(--t3)}
+.task-card.done .ttag{opacity:.4}
+.task-card.done .cb{background:var(--b2);border-color:var(--b2)}
 .task-card.current-task{border-color:var(--accent)}
 .task-card.missed:not(.done){border-color:#ef444430}
+
 .cb{width:24px;height:24px;border-radius:6px;border:2px solid var(--b3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .cb.on{background:var(--accent);border-color:var(--accent)}
 .cb.on::after{content:'✓';font-size:14px;color:#fff;font-weight:700}
@@ -163,126 +116,89 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .tag-study{background:#052535;color:#67e8f9}
 .tag-sport{background:#38200a;color:#fb923c}
 
-.now-bar{
-  display:flex;align-items:center;gap:12px;
-  margin:8px 0;padding:9px 16px;
-  background:#ef444412;border:1px solid #ef444440;border-radius:10px;
-}
-.now-dot{
-  width:13px;height:13px;border-radius:50%;
-  background:var(--red);box-shadow:0 0 12px var(--red);
-  flex-shrink:0;animation:pulse 1.5s infinite;
-}
+.now-bar{display:flex;align-items:center;gap:12px;margin:8px 0;padding:10px 16px;background:#ef444412;border:1px solid #ef444440;border-radius:10px}
+.now-dot{width:13px;height:13px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 .now-t{font-family:var(--mono);font-size:14px;color:var(--red);font-weight:700}
 .now-sep{font-size:13px;color:var(--t3)}
 
 /* Streak + quote */
-.lh-extras{
-  background:var(--s1);border-top:1px solid var(--b1);
-  padding:20px 32px;
-  display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
-}
-.streak-box{
-  background:var(--s3);border:1px solid var(--b1);
-  border-radius:16px;padding:18px 28px;text-align:center;flex-shrink:0;
-}
-.streak-fire{font-size:28px;line-height:1;margin-bottom:4px}
-.streak-n{font-family:var(--title);font-size:48px;font-weight:800;color:#f97316;line-height:1}
-.streak-lbl{font-size:12px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px;margin-top:4px}
-.quote-box{
-  background:var(--s3);border:1px solid var(--b1);
-  border-left:5px solid var(--accent);border-radius:0 16px 16px 0;
-  padding:18px 22px;
-}
-.quote-text{font-size:16px;color:var(--text);line-height:1.6;font-style:italic}
-.quote-author{font-size:12px;color:var(--t3);margin-top:8px;font-family:var(--mono)}
+.lh-extras{background:var(--s1);border-top:1px solid var(--b1);padding:24px 36px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.streak-box{background:var(--s3);border:1px solid var(--b1);border-radius:18px;padding:22px 32px;text-align:center;flex-shrink:0}
+.streak-fire{font-size:30px;line-height:1;margin-bottom:4px}
+.streak-n{font-family:var(--title);font-size:52px;font-weight:800;color:#f97316;line-height:1}
+.streak-lbl{font-size:12px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px;margin-top:5px}
+.quote-box{background:var(--s3);border:1px solid var(--b1);border-left:5px solid var(--accent);border-radius:0 18px 18px 0;padding:20px 26px}
+.quote-text{font-size:17px;color:var(--text);line-height:1.65;font-style:italic}
+.quote-author{font-size:13px;color:var(--t3);margin-top:10px;font-family:var(--mono)}
 
 /* ══ RIGHT COL ══ */
-.right-col{
-  display:flex;flex-direction:column;
-  overflow:hidden;background:var(--s1);
-}
-.rb{
-  padding:26px 32px;border-bottom:1px solid var(--b1);
-  flex-shrink:0;
-}
-.rb.stretch{flex:1;overflow:hidden;display:flex;flex-direction:column}
-.rb-title{
-  font-family:var(--mono);font-size:12px;
-  letter-spacing:2px;color:var(--t3);
-  text-transform:uppercase;margin-bottom:18px;
-}
+.right-col{display:flex;flex-direction:column;overflow:hidden;background:var(--s1)}
+
+.rb{padding:32px 36px;border-bottom:1px solid var(--b1);flex-shrink:0}
+.rb.grow{flex:1;display:flex;flex-direction:column;min-height:0}
+.rb-title{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:22px}
 
 /* Progress */
-.prog-item{margin-bottom:20px}
+.prog-item{margin-bottom:24px}
 .prog-item:last-child{margin-bottom:0}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.prog-name{font-size:18px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--a2)}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.prog-name{font-size:20px;color:var(--t2);font-weight:500}
+.prog-val{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--a2)}
 .prog-bg{background:var(--s3);border-radius:10px;overflow:hidden}
 .prog-fill{border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
 /* Cat bars */
-.cat-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cat-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .cat-row:last-child{margin-bottom:0}
 .cat-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:17px;color:var(--t2);width:90px;flex-shrink:0;font-weight:500}
-.cat-bg{flex:1;background:var(--s3);border-radius:8px;height:14px;overflow:hidden}
+.cat-name{font-size:18px;color:var(--t2);width:100px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:8px;height:16px;overflow:hidden}
 .cat-fill{height:100%;border-radius:8px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:14px;color:var(--t3);width:80px;text-align:right;flex-shrink:0}
+.cat-meta{font-family:var(--mono);font-size:15px;color:var(--t3);width:90px;text-align:right;flex-shrink:0}
 
 /* Doughnut */
-.chart-wrap{position:relative;width:220px;height:220px;margin:0 auto}
+.chart-wrap{position:relative;width:240px;height:240px;margin:0 auto}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:40px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:12px;color:var(--t3);letter-spacing:1px;margin-top:4px;font-family:var(--mono)}
-.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-.leg-item{
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:15px;color:var(--t2);
-  background:var(--s3);border:1px solid var(--b1);
-  border-radius:10px;padding:10px 14px;
-}
+.chart-pct{font-family:var(--title);font-size:44px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:13px;color:var(--t3);letter-spacing:1px;margin-top:5px;font-family:var(--mono)}
+.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:16px;color:var(--t2);background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:12px 16px}
 .leg-left{display:flex;align-items:center;gap:10px}
 .leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:14px;color:var(--a2);font-weight:700}
+.leg-val{font-family:var(--mono);font-size:15px;color:var(--a2);font-weight:700}
 
 /* Activity */
-.act-bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:12px}
-.act-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
-.act-bar{width:100%;border-radius:6px 6px 0 0;min-height:5px;transition:height .4s}
-.act-lbl{font-size:12px;color:var(--t3);font-family:var(--mono)}
+.act-bars{display:flex;align-items:flex-end;gap:10px;height:100px;margin-top:16px;flex:1}
+.act-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%}
+.act-bar{width:100%;border-radius:8px 8px 0 0;min-height:5px;transition:height .4s}
+.act-lbl{font-size:14px;color:var(--t3);font-family:var(--mono)}
 
 /* HISTORY */
-.hist-body{
-  padding:32px 36px;overflow-y:auto;height:100%;
-  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
-}
-.hist-title{font-family:var(--title);font-size:26px;font-weight:800;margin-bottom:8px}
-.hist-sub{font-size:15px;color:var(--t2);margin-bottom:30px}
+.hist-body{padding:36px 40px;overflow-y:auto;height:100%;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.hist-title{font-family:var(--title);font-size:28px;font-weight:800;margin-bottom:10px}
+.hist-sub{font-size:16px;color:var(--t2);margin-bottom:32px}
 .hist-days{display:flex;flex-direction:column;gap:18px}
 .hist-day{background:var(--s2);border:1px solid var(--b1);border-radius:14px;overflow:hidden}
-.hist-day-hdr{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
+.hist-day-hdr{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
 .hist-day-hdr:hover{background:var(--s3)}
-.hist-day-date{font-family:var(--title);font-size:15px;font-weight:700}
+.hist-day-date{font-family:var(--title);font-size:16px;font-weight:700}
 .hist-day-meta{display:flex;align-items:center;gap:16px}
-.hist-day-pct{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--a2)}
-.hist-day-bar{width:140px;height:7px;background:var(--b1);border-radius:4px;overflow:hidden}
+.hist-day-pct{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--a2)}
+.hist-day-bar{width:150px;height:7px;background:var(--b1);border-radius:4px;overflow:hidden}
 .hist-day-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .4s}
-.hist-tasks{padding:0 22px 18px;display:none;border-top:1px solid var(--b1)}
+.hist-tasks{padding:0 24px 20px;display:none;border-top:1px solid var(--b1)}
 .hist-tasks.open{display:block}
-.hist-task-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #2a2a4022}
+.hist-task-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #2a2a4022}
 .hist-task-row:last-child{border-bottom:none}
 .hist-task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.hist-task-name{font-size:14px;flex:1;color:var(--t2)}
-.hist-task-done{font-family:var(--mono);font-size:11px;padding:3px 7px;border-radius:4px}
+.hist-task-name{font-size:15px;flex:1;color:var(--t2)}
+.hist-task-done{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px}
 .hd-yes{background:#22c55e20;color:#4ade80}
 .hd-no{background:#ef444420;color:#f87171}
-.no-hist{text-align:center;padding:80px 20px;color:var(--t3);font-size:15px}
+.no-hist{text-align:center;padding:80px 20px;color:var(--t3);font-size:16px}
 .no-hist-ico{font-size:60px;margin-bottom:18px}
 
-/* CONFETTI */
 .conf-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
 @keyframes cpfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
@@ -296,15 +212,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="nav-clock" id="clock">00:00:00</div>
 </div>
 
-<!-- TODAY -->
 <div class="page active" id="pg-today">
-
-  <!-- LEFT -->
   <div class="left-col">
     <div class="lh">
       <div class="lh-date" id="lh-date">суббота, 28 марта</div>
       <div class="lh-row">
-        <span class="lh-done" id="lh-done-txt">выполнено 0 из 15</span>
+        <span class="lh-done" id="lh-done-txt">выполнено 0</span>
         <div class="lh-bar"><div class="lh-bar-fill" id="lh-bar" style="width:0%"></div></div>
         <span class="lh-pct" id="lh-pct">0%</span>
         <button class="lh-reset" onclick="resetDay()">СБРОС</button>
@@ -325,39 +238,34 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="streak-lbl">ДНЕЙ ПОДРЯД</div>
       </div>
       <div class="quote-box">
-        <div class="quote-text" id="quote-text">Дисциплина — это мост между целями и достижениями.</div>
-        <div class="quote-author" id="quote-author">— Джим Рон</div>
+        <div class="quote-text" id="quote-text"></div>
+        <div class="quote-author" id="quote-author"></div>
       </div>
     </div>
   </div>
 
-  <!-- RIGHT -->
-  <div class="right-col" id="right-col">
-
-    <!-- ПРОГРЕСС -->
+  <div class="right-col">
     <div class="rb">
       <div class="rb-title">Прогресс дня</div>
       <div class="prog-item">
         <div class="prog-meta"><span class="prog-name">Задачи</span><span class="prog-val" id="pp">0%</span></div>
-        <div class="prog-bg" style="height:22px"><div class="prog-fill" id="pf-t" style="width:0%;height:22px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
+        <div class="prog-bg" style="height:26px"><div class="prog-fill" id="pf-t" style="width:0%;height:26px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
       </div>
       <div class="prog-item">
         <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val" id="pv-d">0%</span></div>
-        <div class="prog-bg" style="height:18px"><div class="prog-fill" id="pf-d" style="width:0%;height:18px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
+        <div class="prog-bg" style="height:20px"><div class="prog-fill" id="pf-d" style="width:0%;height:20px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
       </div>
       <div class="prog-item">
-        <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" id="pv-m" style="color:var(--study)">0ч 0м / 0ч</span></div>
-        <div class="prog-bg" style="height:18px"><div class="prog-fill" id="pf-m" style="width:0%;height:18px;background:var(--study)"></div></div>
+        <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" id="pv-m" style="color:var(--study)">0ч / 0ч</span></div>
+        <div class="prog-bg" style="height:20px"><div class="prog-fill" id="pf-m" style="width:0%;height:20px;background:var(--study)"></div></div>
       </div>
     </div>
 
-    <!-- КАТЕГОРИИ -->
-    <div class="rb" id="rb-cat">
+    <div class="rb">
       <div class="rb-title">По категориям</div>
       <div id="cat-rows"></div>
     </div>
 
-    <!-- ДИАГРАММА -->
     <div class="rb">
       <div class="rb-title">Распределение</div>
       <div class="chart-wrap"><canvas id="dnt"></canvas>
@@ -369,16 +277,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="chart-legend" id="chart-legend"></div>
     </div>
 
-    <!-- АКТИВНОСТЬ -->
-    <div class="rb stretch">
+    <div class="rb grow">
       <div class="rb-title">Активность — 7 дней</div>
       <div class="act-bars" id="act-bars"></div>
     </div>
-
   </div>
 </div>
 
-<!-- HISTORY -->
 <div class="page" id="pg-history">
   <div class="hist-body">
     <div class="hist-title">История дней</div>
@@ -390,27 +295,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 <div class="conf-layer" id="confetti"></div>
 
 <script>
-const TASK_SAVE='dash_v5';
+const TASK_SAVE='dash_v6';
 const HIST_SAVE='dash_hist_v1';
-
-// ~15 ключевых задач
-const INIT_TASKS=[
-  {id:1,time:'07:00',name:'Подъём, вода, зарядка',cat:'health',dur:30},
-  {id:2,time:'07:30',name:'Завтрак',cat:'personal',dur:20},
-  {id:3,time:'08:00',name:'Пробежка',cat:'sport',dur:30},
-  {id:4,time:'09:00',name:'Проверить почту',cat:'work',dur:20},
-  {id:5,time:'09:30',name:'Встреча с командой',cat:'work',dur:60},
-  {id:6,time:'11:00',name:'Deep work — основной проект',cat:'focus',dur:90},
-  {id:7,time:'12:30',name:'Обед',cat:'personal',dur:30},
-  {id:8,time:'13:30',name:'Код-ревью',cat:'work',dur:45},
-  {id:9,time:'15:00',name:'Написать отчёт',cat:'work',dur:60},
-  {id:10,time:'16:30',name:'Прогулка / разгрузка',cat:'health',dur:30},
-  {id:11,time:'17:00',name:'Блок фокусной работы',cat:'focus',dur:90},
-  {id:12,time:'19:00',name:'Ужин',cat:'personal',dur:30},
-  {id:13,time:'20:00',name:'Спортзал',cat:'sport',dur:60},
-  {id:14,time:'21:30',name:'Чтение / учёба',cat:'study',dur:45},
-  {id:15,time:'22:30',name:'Планирование на завтра',cat:'focus',dur:20},
-];
 
 const CAT={
   work:{label:'Работа',color:'#3b82f6',tag:'tag-work'},
@@ -431,7 +317,23 @@ const QUOTES=[
   {t:'Сделай сегодня то, что другие не хотят — и завтра будешь жить иначе.',a:'неизвестно'},
 ];
 
-function loadTasks(){try{const s=localStorage.getItem(TASK_SAVE);if(s)return JSON.parse(s);}catch(e){}return INIT_TASKS.map(t=>({...t,done:false}));}
+// Берём задачи из tasks.js, добавляем id и done
+const INIT = (typeof TODAY_TASKS !== 'undefined' ? TODAY_TASKS : []).map((t,i)=>({...t,id:i+1,done:false}));
+
+function loadTasks(){
+  try{
+    const s=localStorage.getItem(TASK_SAVE);
+    if(s){
+      const saved=JSON.parse(s);
+      // Мёрджим с актуальным списком из tasks.js
+      return INIT.map(t=>{
+        const found=saved.find(s=>s.time===t.time&&s.name===t.name);
+        return found?{...t,done:found.done}:t;
+      });
+    }
+  }catch(e){}
+  return INIT.map(t=>({...t}));
+}
 function saveTasks(t){try{localStorage.setItem(TASK_SAVE,JSON.stringify(t));}catch(e){}}
 function loadHist(){try{const s=localStorage.getItem(HIST_SAVE);if(s)return JSON.parse(s);}catch(e){}return [];}
 function saveHist(h){try{localStorage.setItem(HIST_SAVE,JSON.stringify(h));}catch(e){}}
@@ -459,8 +361,7 @@ function getCatStats(){
   const r={};
   tasks.forEach(t=>{
     if(!r[t.cat])r[t.cat]={total:0,done:0};
-    r[t.cat].total++;
-    if(t.done)r[t.cat].done++;
+    r[t.cat].total++;if(t.done)r[t.cat].done++;
   });
   return r;
 }
@@ -479,7 +380,6 @@ function showPage(id,btn){
   if(id==='history')renderHistory();
 }
 
-/* TIMELINE */
 function renderTimeline(){
   const tl=document.getElementById('tasks-scroll');if(!tl)return;
   const nm=nowMin();
@@ -507,26 +407,23 @@ function renderTimeline(){
   setTimeout(()=>{const nb=tl.querySelector('.now-bar');if(nb)nb.scrollIntoView({block:'center',behavior:'smooth'});},100);
 }
 
-/* SIDEBAR */
-function renderSidebar(){
+function updateSidebar(){
   const s=getStats(),cs=getCatStats(),tp=timePct();
   const dH=Math.floor(s.doneMin/60),dM=s.doneMin%60,tH=Math.floor(s.totalMin/60);
-
-  // progress
   const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('pp',s.pct+'%');byId('pv-d',tp+'%');
-  byId('pv-m',`${dH}ч ${dM}м / ${tH}ч`);
-  byId('cpct',s.pct+'%');
+
   byId('lh-done-txt',`выполнено ${s.done} из ${s.total}`);
   byId('lh-pct',s.pct+'%');
   byId('card-done',s.done);byId('card-rem',s.remaining);byId('card-miss',s.missed);
+  byId('pp',s.pct+'%');byId('pv-d',tp+'%');byId('pv-m',`${dH}ч ${dM}м / ${tH}ч`);
+  byId('cpct',s.pct+'%');
+
   const pf=id=>document.getElementById(id);
   if(pf('lh-bar'))pf('lh-bar').style.width=s.pct+'%';
   if(pf('pf-t'))pf('pf-t').style.width=s.pct+'%';
   if(pf('pf-d'))pf('pf-d').style.width=tp+'%';
   if(pf('pf-m'))pf('pf-m').style.width=(s.totalMin?Math.round(s.doneMin/s.totalMin*100):0)+'%';
 
-  // cat rows
   const catEl=document.getElementById('cat-rows');
   if(catEl){
     catEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
@@ -541,7 +438,6 @@ function renderSidebar(){
     }).join('');
   }
 
-  // chart legend
   const legEl=document.getElementById('chart-legend');
   if(legEl){
     legEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
@@ -577,12 +473,12 @@ function renderActivityBars(){
     const d=new Date();d.setDate(d.getDate()-i);
     const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
     const entry=hist.find(h=>h.key===key);
-    const total=entry?entry.tasks.length:15;
+    const total=entry?entry.tasks.length:tasks.length||15;
     const done=entry?entry.tasks.filter(t=>t.done).length:0;
     const pct=total?Math.round(done/total*100):0;
-    const hPx=Math.max(5,Math.round(pct/100*80));
+    const hPx=Math.max(5,Math.round(pct/100*90));
     const isToday=i===0;
-    const col=isToday?'var(--accent)':pct>0?'var(--a2)55':'var(--b1)';
+    const col=isToday?'var(--accent)':pct>0?'var(--a2)66':'var(--b1)';
     html+=`<div class="act-col">
       <div class="act-bar" style="height:${hPx}px;background:${col}" title="${pct}%"></div>
       <div class="act-lbl" style="color:${isToday?'var(--a2)':'var(--t3)'}">${dayNames[d.getDay()]}</div>
@@ -591,8 +487,7 @@ function renderActivityBars(){
   el.innerHTML=html;
 }
 
-function patchUI(){
-  renderSidebar();
+function patchTaskCards(){
   document.querySelectorAll('.task-card').forEach(card=>{
     const oc=card.getAttribute('onclick')||'';
     const m=oc.match(/toggle\((\d+)\)/);if(!m)return;
@@ -605,7 +500,8 @@ function patchUI(){
 
 function toggle(id){
   tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
-  saveTasks(tasks);saveHistEntry();patchUI();
+  saveTasks(tasks);saveHistEntry();
+  patchTaskCards();updateSidebar();
   const s=getStats();
   if(s.done===s.total&&s.total>0&&!confDone)launchConfetti();
 }
@@ -622,9 +518,9 @@ function saveHistEntry(){
 
 function resetDay(){
   saveHistEntry();
-  tasks=INIT_TASKS.map(t=>({...t,done:false}));
+  tasks=INIT.map(t=>({...t,done:false}));
   saveTasks(tasks);confDone=false;
-  renderTimeline();renderSidebar();
+  renderTimeline();updateSidebar();
 }
 
 function calcStreak(){
@@ -663,7 +559,7 @@ function renderHistory(){
         <div class="hist-day-meta">
           <div class="hist-day-pct">${pct}%</div>
           <div class="hist-day-bar"><div class="hist-day-bar-fill" style="width:${pct}%"></div></div>
-          <span style="font-family:var(--mono);font-size:13px;color:var(--t3)">${done}/${total}</span>
+          <span style="font-family:var(--mono);font-size:14px;color:var(--t3)">${done}/${total}</span>
         </div>
       </div>
       <div class="hist-tasks" id="hdt-${idx}">${tHTML}</div>
@@ -671,10 +567,7 @@ function renderHistory(){
   }).join('');
 }
 
-function toggleHist(idx){
-  const el=document.getElementById('hdt-'+idx);
-  if(el)el.classList.toggle('open');
-}
+function toggleHist(idx){const el=document.getElementById('hdt-'+idx);if(el)el.classList.toggle('open');}
 
 function launchConfetti(){
   confDone=true;
@@ -693,29 +586,24 @@ function tick(){
   const now=new Date();
   const cl=document.getElementById('clock');if(cl)cl.textContent=fmtTime(now);
   const nt=document.getElementById('now-t');if(nt)nt.textContent=fmtNow();
-  const pfd=document.getElementById('pf-d');
-  const pvd=document.getElementById('pv-d');
   const tp=timePct();
-  if(pfd)pfd.style.width=tp+'%';
-  if(pvd)pvd.textContent=tp+'%';
+  const pfd=document.getElementById('pf-d');if(pfd)pfd.style.width=tp+'%';
+  const pvd=document.getElementById('pv-d');if(pvd)pvd.textContent=tp+'%';
 }
 
-/* INIT */
+/* ── INIT ── */
 const nowD=new Date();
 const dl=document.getElementById('lh-date');
 if(dl)dl.textContent=nowD.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
 
 const q=QUOTES[nowD.getDay()%QUOTES.length];
-const qtEl=document.getElementById('quote-text');
-const qaEl=document.getElementById('quote-author');
-if(qtEl)qtEl.textContent=q.t;
-if(qaEl)qaEl.textContent='— '+q.a;
+const qtEl=document.getElementById('quote-text');if(qtEl)qtEl.textContent=q.t;
+const qaEl=document.getElementById('quote-author');if(qaEl)qaEl.textContent='— '+q.a;
 
-const snEl=document.getElementById('streak-n');
-if(snEl)snEl.textContent=calcStreak();
+const snEl=document.getElementById('streak-n');if(snEl)snEl.textContent=calcStreak();
 
 renderTimeline();
-renderSidebar();
+updateSidebar();
 setInterval(tick,1000);
 </script>
 </body>
