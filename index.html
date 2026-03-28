@@ -23,14 +23,14 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
 
 /* ── GLOBAL TABS ── */
-.global-nav{display:flex;background:var(--s1);border-bottom:2px solid var(--b1);height:44px;position:relative;z-index:100;padding:0 20px;gap:2px;align-items:flex-end}
-.gn-btn{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--t2);padding:8px 18px;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.global-nav{display:flex;background:var(--s1);border-bottom:2px solid var(--b1);height:64px;position:relative;z-index:100;padding:0 28px;gap:4px;align-items:flex-end}
+.gn-btn{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:var(--t2);padding:12px 24px;border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
 .gn-btn:hover{color:var(--a2)}
 .gn-btn.active{color:var(--a2);border-bottom-color:var(--accent)}
-.gn-clock{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:2px;color:var(--text);margin-left:auto;align-self:center;padding-bottom:4px}
+.gn-clock{font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:3px;color:var(--text);margin-left:auto;align-self:center;padding-bottom:6px}
 
 /* ── GLOBAL PAGES ── */
-.gpage{display:none;height:calc(100vh - 44px);overflow:hidden}
+.gpage{display:none;height:calc(100vh - 64px);overflow:hidden}
 .gpage.active{display:flex;flex-direction:column}
 
 /* ════════════════════════════════════════
@@ -39,11 +39,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .today-body{display:grid;grid-template-columns:1fr 1fr;height:100%;overflow:hidden;gap:0}
 
 /* — Header above timeline — */
-.tl-header{padding:16px 20px 10px;background:var(--s1);border-bottom:1px solid var(--b1)}
-.tl-date{font-family:var(--title);font-size:22px;font-weight:800;color:var(--text);line-height:1}
-.tl-sub{font-size:12px;color:var(--t2);margin-top:6px;display:flex;align-items:center;gap:12px}
-.tl-progress-mini{flex:1;height:4px;background:var(--b1);border-radius:2px;overflow:hidden;max-width:200px}
-.tl-progress-mini-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
+.tl-header{padding:20px 24px 14px;background:var(--s1);border-bottom:1px solid var(--b1)}
+.tl-date{font-family:var(--title);font-size:32px;font-weight:800;color:var(--text);line-height:1}
+.tl-sub{font-size:14px;color:var(--t2);margin-top:10px;display:flex;align-items:center;gap:14px}
+.tl-progress-mini{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden;max-width:220px}
+.tl-progress-mini-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
 
 /* — Timeline — */
 .tl-col{display:flex;flex-direction:column;border-right:1px solid var(--b1)}
@@ -51,7 +51,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .tl-scroll::-webkit-scrollbar{width:3px}
 .tl-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
-.task-card{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:9px 12px;margin-bottom:5px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}
+.task-card{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;padding:11px 14px;margin-bottom:6px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}
 .task-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0}
 .task-card.cat-work::before{background:var(--work)}
 .task-card.cat-health::before{background:var(--health)}
@@ -67,10 +67,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--b3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .cb.on{background:var(--accent);border-color:var(--accent)}
 .cb.on::after{content:'✓';font-size:11px;color:#fff;font-weight:700}
-.ttime{font-family:var(--mono);font-size:10px;color:var(--t3);flex-shrink:0;min-width:36px}
-.tname{font-size:12px;flex:1;line-height:1.35;font-weight:500}
-.tdur{font-size:9px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
-.ttag{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:600;flex-shrink:0}
+.ttime{font-family:var(--mono);font-size:11px;color:var(--t3);flex-shrink:0;min-width:38px}
+.tname{font-size:13px;flex:1;line-height:1.35;font-weight:500}
+.tdur{font-size:10px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
+.ttag{font-size:10px;padding:3px 7px;border-radius:5px;font-weight:600;flex-shrink:0}
 .tag-work{background:#1a3050;color:#60a5fa}
 .tag-health{background:#0f3020;color:#4ade80}
 .tag-personal{background:#382008;color:#fbbf24}
@@ -306,10 +306,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="tl-header">
         <div class="tl-date" id="tl-date">пятница, 27 марта</div>
         <div class="tl-sub">
-          <span id="tl-sub-txt">выполнено 0 из 29</span>
+          <span id="tl-sub-txt" style="font-size:15px;font-weight:600;color:var(--text)">выполнено 0 из 29</span>
           <div class="tl-progress-mini"><div class="tl-progress-mini-fill" id="tl-mini-bar" style="width:0%"></div></div>
-          <span id="tl-pct-mini" style="font-family:var(--mono);font-size:11px;color:var(--a2);font-weight:700">0%</span>
-          <button style="font-family:var(--mono);font-size:9px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:3px 9px;border-radius:5px;cursor:pointer;letter-spacing:.5px" onclick="resetDay()">СБРОС</button>
+          <span id="tl-pct-mini" style="font-family:var(--mono);font-size:15px;color:var(--a2);font-weight:700">0%</span>
+          <button style="font-family:var(--mono);font-size:10px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:4px 10px;border-radius:5px;cursor:pointer;letter-spacing:.5px" onclick="resetDay()">СБРОС</button>
         </div>
       </div>
       <div class="tl-scroll" id="tl-scroll"></div>
@@ -503,7 +503,7 @@ function showGPage(id,btn){
 function renderTimeline(){
   const tl=document.getElementById('tl-scroll');if(!tl)return;
   const nm=nowMin();
-  let html='',nowInserted=false;
+  let html='<div style="height:35vh"></div>',nowInserted=false;
   tasks.forEach((t,i)=>{
     const tMin=toMin(t.time);
     const nextMin=tasks[i+1]?toMin(tasks[i+1].time):Infinity;
