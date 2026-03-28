@@ -36,7 +36,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* ════════════════════════════════════════
    TAB 1 — TODAY
 ════════════════════════════════════════ */
-.today-body{display:grid;grid-template-columns:420px 1fr;height:100%;overflow:hidden;gap:0}
+.today-body{display:grid;grid-template-columns:1fr 1fr;height:100%;overflow:hidden;gap:0}
 
 /* — Header above timeline — */
 .tl-header{padding:22px 24px 16px;background:var(--s1);border-bottom:1px solid var(--b1)}
@@ -85,58 +85,61 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .now-sep{font-size:10px;color:var(--t3)}
 
 /* — Sidebar — */
-.sb-col{display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;background:var(--s1);scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.sb-col::-webkit-scrollbar{width:3px}
-.sb-col::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-
+.sb-col{display:flex;flex-direction:column;overflow:hidden;background:var(--s1);border-left:1px solid var(--b1)}
+.sb-grid{display:grid;grid-template-rows:auto auto 1fr auto;height:100%;overflow:hidden}
+.sb-top{padding:16px 20px 12px;border-bottom:1px solid var(--b1);background:var(--s1)}
+.sb-mid{padding:14px 20px;border-bottom:1px solid var(--b1);background:var(--s2)}
+.sb-main{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-bottom:1px solid var(--b1)}
+.sb-main-left{padding:14px 16px 14px 20px;border-right:1px solid var(--b1);overflow-y:auto;scrollbar-width:none}
+.sb-main-left::-webkit-scrollbar{display:none}
+.sb-main-right{padding:14px 20px 14px 16px;overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:12px}
+.sb-main-right::-webkit-scrollbar{display:none}
+.sb-bot{padding:14px 20px;background:var(--s1)}
 .sb-section{padding:20px 24px 18px;border-bottom:1px solid var(--b1)}
-.sb-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:16px}
+.sb-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px}
 
 /* — Big stat cards — */
-.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:0}
-.big-stat{background:var(--s3);border:1px solid var(--b1);border-radius:12px;padding:18px 14px;text-align:center}
-.big-stat-val{font-family:var(--title);font-size:36px;font-weight:800;line-height:1;margin-bottom:6px}
-.big-stat-lbl{font-size:10px;color:var(--t2);letter-spacing:.8px;font-family:var(--mono)}
+.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.big-stat{background:var(--s3);border:1px solid var(--b1);border-radius:12px;padding:14px 12px;text-align:center}
+.big-stat-val{font-family:var(--title);font-size:32px;font-weight:800;line-height:1;margin-bottom:5px}
+.big-stat-lbl{font-size:9px;color:var(--t2);letter-spacing:.8px;font-family:var(--mono)}
 .big-stat.green .big-stat-val{color:var(--green)}
 .big-stat.blue .big-stat-val{color:var(--work)}
 .big-stat.red .big-stat-val{color:var(--red)}
-.big-stat.purple .big-stat-val{color:var(--a2)}
 
 /* — Progress bars — */
-.prog-item{margin-bottom:16px}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
-.prog-name{font-size:13px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2)}
-.prog-bg{background:var(--s3);border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .1s}
-.prog-bg:hover{transform:scaleY(1.3)}
+.prog-item{margin-bottom:10px}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.prog-name{font-size:12px;color:var(--t2);font-weight:500}
+.prog-val{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--a2)}
+.prog-bg{background:var(--s3);border-radius:6px;overflow:hidden;cursor:pointer}
+.prog-bg:active{opacity:.8}
 .prog-fill{border-radius:6px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
 /* — Cat bars — */
-.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:11px;cursor:pointer;padding:4px 6px;border-radius:6px;transition:background .2s}
-.cat-row:hover{background:var(--s3)}
-.cat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:13px;color:var(--t2);width:70px;flex-shrink:0;font-weight:500}
-.cat-bar-bg{flex:1;background:var(--s3);border-radius:5px;height:8px;overflow:hidden}
-.cat-bar-fill{height:100%;border-radius:5px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:11px;color:var(--t3);width:60px;text-align:right;flex-shrink:0}
+.cat-row{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:11px;color:var(--t2);width:62px;flex-shrink:0;font-weight:500}
+.cat-bar-bg{flex:1;background:var(--s3);border-radius:4px;height:7px;overflow:hidden}
+.cat-bar-fill{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:10px;color:var(--t3);width:58px;text-align:right;flex-shrink:0}
 
 /* — Doughnut — */
-.chart-wrap{position:relative;width:200px;height:200px;margin:0 auto}
+.chart-wrap{position:relative;width:150px;height:150px;margin:0 auto}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:36px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:10px;color:var(--t3);letter-spacing:1px;margin-top:3px;font-family:var(--mono)}
-.chart-legend{display:flex;flex-direction:column;gap:8px;margin-top:16px}
-.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--t2);cursor:pointer;padding:4px 6px;border-radius:6px;transition:background .2s}
-.leg-item:hover{background:var(--s3)}
-.leg-left{display:flex;align-items:center;gap:8px}
-.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:12px;color:var(--a2);font-weight:700}
+.chart-pct{font-family:var(--title);font-size:28px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:9px;color:var(--t3);letter-spacing:1px;margin-top:2px;font-family:var(--mono)}
+.chart-legend{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--t2)}
+.leg-left{display:flex;align-items:center;gap:6px}
+.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.leg-val{font-family:var(--mono);font-size:10px;color:var(--a2);font-weight:700}
 
 /* — Mini stat grid — */
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:16px}
-.mini-val{font-family:var(--title);font-size:24px;font-weight:700;color:var(--a2);margin-bottom:4px}
-.mini-lbl{font-size:10px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:12px 14px}
+.mini-val{font-family:var(--title);font-size:22px;font-weight:700;color:var(--a2);margin-bottom:3px}
+.mini-lbl{font-size:9px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
 
 /* ════════════════════════════════════════
    TAB 2 — HISTORY
@@ -506,7 +509,7 @@ function showGPage(id,btn){
 function renderTimeline(){
   const tl=document.getElementById('tl-scroll');if(!tl)return;
   const nm=nowMin();
-  let html='<div style="height:35vh"></div>',nowInserted=false;
+  let html='',nowInserted=false;
   tasks.forEach((t,i)=>{
     const tMin=toMin(t.time);
     const nextMin=tasks[i+1]?toMin(tasks[i+1].time):Infinity;
@@ -550,9 +553,11 @@ function renderSidebar(){
   });
 
   sb.innerHTML=`
-    <!-- STATS -->
-    <div class="sb-section">
-      <div class="sb-title">Сводка дня</div>
+  <div style="display:grid;grid-template-rows:auto auto 1fr auto;height:100%;overflow:hidden">
+
+    <!-- ROW 1: BIG STATS -->
+    <div style="padding:14px 20px 12px;border-bottom:1px solid var(--b1);background:var(--s1)">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:10px">СВОДКА ДНЯ</div>
       <div class="big-stats">
         <div class="big-stat green"><div class="big-stat-val" id="sv-done">${s.done}</div><div class="big-stat-lbl">ГОТОВО</div></div>
         <div class="big-stat blue"><div class="big-stat-val" id="sv-rem">${s.remaining}</div><div class="big-stat-lbl">ОСТАЛОСЬ</div></div>
@@ -560,69 +565,84 @@ function renderSidebar(){
       </div>
     </div>
 
-    <!-- PROGRESS BARS -->
-    <div class="sb-section">
-      <div class="sb-title">Прогресс</div>
-      <div class="prog-item">
+    <!-- ROW 2: PROGRESS BARS -->
+    <div style="padding:12px 20px 10px;border-bottom:1px solid var(--b1);background:var(--s2)">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:10px">ПРОГРЕСС</div>
+      <div class="prog-item" style="margin-bottom:8px">
         <div class="prog-meta"><span class="prog-name">Задачи дня</span><span class="prog-val" id="pp-tasks">${s.pct}%</span></div>
-        <div class="prog-bg" style="height:14px" title="Прогресс задач"><div class="prog-fill" id="pf-tasks" style="width:${s.pct}%;height:14px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
+        <div class="prog-bg" style="height:12px"><div class="prog-fill" id="pf-tasks" style="width:${s.pct}%;height:12px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
       </div>
-      <div class="prog-item">
+      <div class="prog-item" style="margin-bottom:8px">
         <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val">${tp}%</span></div>
-        <div class="prog-bg" style="height:10px"><div class="prog-fill" id="pf-time" style="width:${tp}%;height:10px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
+        <div class="prog-bg" style="height:8px"><div class="prog-fill" id="pf-time" style="width:${tp}%;height:8px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
       </div>
-      <div class="prog-item">
+      <div class="prog-item" style="margin-bottom:0">
         <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" style="color:var(--study)">${doneH}ч ${doneM}м / ${totalH}ч</span></div>
-        <div class="prog-bg" style="height:10px"><div class="prog-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:10px;background:var(--study)"></div></div>
-      </div>
-      <div style="display:flex;gap:10px;margin-top:6px">
-        ${Object.entries(CAT_META).map(([k,m])=>{
-          const v=cs[k]||{total:0,done:0};
-          const p=v.total?Math.round(v.done/v.total*100):0;
-          const r=16;const circ=2*Math.PI*r;
-          return`<div title="${m.label}: ${p}%" style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;cursor:default">
-            <svg width="40" height="40" viewBox="0 0 40 40" style="transform:rotate(-90deg)">
-              <circle fill="none" stroke="var(--b1)" stroke-width="3" cx="20" cy="20" r="${r}"/>
-              <circle fill="none" stroke="${m.color}" stroke-width="3" stroke-linecap="round"
-                cx="20" cy="20" r="${r}" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${(circ*(1-p/100)).toFixed(1)}"
-                style="transition:stroke-dashoffset .5s"/>
-            </svg>
-            <span style="font-family:var(--mono);font-size:9px;color:${m.color};margin-top:-4px">${p}%</span>
-            <span style="font-size:9px;color:var(--t3)">${m.label.slice(0,3)}</span>
-          </div>`;
-        }).join('')}
+        <div class="prog-bg" style="height:8px"><div class="prog-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:8px;background:var(--study)"></div></div>
       </div>
     </div>
 
-    <!-- CAT BARS -->
-    <div class="sb-section">
-      <div class="sb-title">По категориям</div>
-      ${catRows}
-    </div>
+    <!-- ROW 3: MAIN CONTENT — 2 columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;overflow:hidden;min-height:0">
 
-    <!-- DOUGHNUT -->
-    <div class="sb-section">
-      <div class="sb-title">Распределение</div>
-      <div style="display:flex;align-items:center;gap:20px">
-        <div class="chart-wrap" style="width:180px;height:180px;flex-shrink:0"><canvas id="dnt"></canvas>
+      <!-- LEFT: categories + mini rings -->
+      <div style="padding:14px 16px 14px 20px;border-right:1px solid var(--b1);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:0">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:12px">ПО КАТЕГОРИЯМ</div>
+        ${catRows}
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin:14px 0 10px">МИНИ-ПРОГРЕСС</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          ${Object.entries(CAT_META).map(([k,m])=>{
+            const v=cs[k]||{total:0,done:0};
+            const p=v.total?Math.round(v.done/v.total*100):0;
+            const r=22;const circ=2*Math.PI*r;
+            return`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:10px 6px">
+              <svg width="52" height="52" viewBox="0 0 52 52" style="transform:rotate(-90deg)">
+                <circle fill="none" stroke="var(--b1)" stroke-width="4" cx="26" cy="26" r="${r}"/>
+                <circle fill="none" stroke="${m.color}" stroke-width="4" stroke-linecap="round"
+                  cx="26" cy="26" r="${r}" stroke-dasharray="${(2*Math.PI*r).toFixed(1)}"
+                  stroke-dashoffset="${(2*Math.PI*r*(1-p/100)).toFixed(1)}"
+                  style="transition:stroke-dashoffset .6s"/>
+              </svg>
+              <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:${m.color}">${p}%</span>
+              <span style="font-size:9px;color:var(--t2);text-align:center">${m.label}</span>
+              <span style="font-size:9px;color:var(--t3);font-family:var(--mono)">${v.done}/${v.total}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+
+      <!-- RIGHT: doughnut + legend + mini stats -->
+      <div style="padding:14px 20px 14px 16px;overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:12px">РАСПРЕДЕЛЕНИЕ</div>
+        <div class="chart-wrap" style="width:160px;height:160px"><canvas id="dnt"></canvas>
           <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
         </div>
-        <div class="chart-legend" style="flex:1;margin-top:0">
+        <div class="chart-legend" style="margin-top:12px">
           ${Object.entries(CAT_META).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin:16px 0 10px">ДЕТАЛИ</div>
+        <div class="mini-grid">
+          <div class="mini-card"><div class="mini-val" id="ms-done">${s.done}</div><div class="mini-lbl">ЗАДАЧ ГОТОВО</div></div>
+          <div class="mini-card"><div class="mini-val">${doneH}ч ${doneM}м</div><div class="mini-lbl">ПРОДУКТИВНОСТЬ</div></div>
+          <div class="mini-card"><div class="mini-val" style="color:var(--red)">${s.missed}</div><div class="mini-lbl">ПРОПУЩЕНО</div></div>
+          <div class="mini-card"><div class="mini-val" style="color:var(--study)">${(cs.study||{done:0}).done}</div><div class="mini-lbl">УЧЁБА ГОТОВА</div></div>
         </div>
       </div>
     </div>
 
-    <!-- MINI STATS -->
-    <div class="sb-section">
-      <div class="sb-title">Детали</div>
-      <div class="mini-grid">
-        <div class="mini-card"><div class="mini-val" id="ms-done">${s.done}</div><div class="mini-lbl">ЗАДАЧ ГОТОВО</div></div>
-        <div class="mini-card"><div class="mini-val">${doneH}ч ${doneM}м</div><div class="mini-lbl">ПРОДУКТИВНОСТЬ</div></div>
-        <div class="mini-card"><div class="mini-val" style="color:var(--red)">${s.missed}</div><div class="mini-lbl">ПРОПУЩЕНО</div></div>
-        <div class="mini-card"><div class="mini-val" style="color:var(--study)">${(cs.study||{done:0}).done}</div><div class="mini-lbl">УЧЁБА ГОТОВА</div></div>
-      </div>
+    <!-- ROW 4: BOTTOM BAR -->
+    <div style="padding:10px 20px;border-top:1px solid var(--b1);background:var(--s1);display:flex;gap:16px;align-items:center">
+      ${Object.entries(CAT_META).map(([k,m])=>{
+        const v=cs[k]||{total:0,done:0};
+        return`<div style="display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;border-radius:50%;background:${m.color}"></div>
+          <span style="font-size:10px;color:var(--t2)">${m.label}</span>
+          <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:${m.color}">${v.done}/${v.total}</span>
+        </div>`;
+      }).join('')}
+      <div style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--a2);font-weight:700">${s.pct}% дня выполнено</div>
     </div>
+  </div>
   `;
 
   buildChart(s,cs);
