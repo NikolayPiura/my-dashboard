@@ -11,7 +11,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#07070c;--s1:#0f0f18;--s2:#141420;--s3:#1a1a28;
-  --b1:#2a2a40;--b2:#363650;--b3:#424260;
+  --b1:#2a2a40;--b2:#363650;
   --accent:#7c5cfc;--a2:#a78bfa;
   --text:#e8e8f4;--t2:#8888a8;--t3:#4a4a68;
   --work:#3b82f6;--health:#22c55e;--personal:#f59e0b;
@@ -21,94 +21,123 @@
   --title:'Unbounded',sans-serif;
   --sans:'Golos Text',sans-serif;
 }
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
-
-/* ══ NAV ══ */
-.nav{
-  display:flex;height:90px;
-  background:var(--s1);border-bottom:2px solid var(--b1);
-  align-items:stretch;padding:0 56px;flex-shrink:0;
-}
-.nav-btn{
-  font-family:var(--mono);font-size:26px;letter-spacing:4px;
-  color:var(--t2);padding:0 56px;
-  border:none;background:transparent;cursor:pointer;
-  border-bottom:5px solid transparent;margin-bottom:-2px;
-  transition:all .2s;white-space:nowrap;display:flex;align-items:center;
-}
-.nav-btn:hover{color:var(--a2);background:rgba(167,139,250,.08)}
-.nav-btn.active{color:#fff;border-bottom-color:var(--accent);background:rgba(124,92,252,.18);font-weight:700}
-.nav-clock{
-  font-family:var(--mono);font-size:48px;font-weight:700;
-  letter-spacing:6px;color:var(--text);margin-left:auto;align-self:center;
+html,body{
+  height:100%;overflow:hidden;
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);
 }
 
-/* ══ PAGES ══ */
-.page{display:none;height:calc(100vh - 90px);overflow:hidden}
-.page.active{display:grid}
-#pg-today{grid-template-columns:1fr 1fr}
-
-/* ══ LEFT COL ══ */
-.left-col{display:grid;grid-template-rows:auto 1fr auto;border-right:1px solid var(--b1);overflow:hidden}
-
-.lh{background:var(--s1);border-bottom:1px solid var(--b1);padding:44px 40px 36px;display:flex;flex-direction:column;gap:28px}
-.lh-date{font-family:var(--title);font-size:44px;font-weight:800;color:var(--text);line-height:1}
-.lh-row{display:flex;align-items:center;gap:18px;margin-top:6px}
-.lh-done{font-family:var(--title);font-size:32px;font-weight:800;color:var(--text)}
-.lh-pct{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--a2)}
-.lh-bar{flex:1;height:12px;background:var(--b1);border-radius:6px;overflow:hidden}
-.lh-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
-.lh-reset{
-  font-family:var(--mono);font-size:13px;background:transparent;
-  border:1px solid var(--b2);color:var(--t2);padding:9px 20px;
-  border-radius:8px;cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s;
+/* ══ LAYOUT: вертикальный экран, 2 колонки ══ */
+.app{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  height:100vh;
+  overflow:hidden;
 }
-.lh-reset:hover{border-color:var(--accent);color:var(--a2)}
 
-.lh-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.lh-card{background:var(--s3);border:1px solid var(--b1);border-radius:20px;padding:32px 20px;text-align:center}
-.lh-card-val{font-family:var(--title);font-size:80px;font-weight:800;line-height:1;margin-bottom:12px}
-.lh-card-lbl{font-size:14px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
-.lh-card.g .lh-card-val{color:var(--green)}
-.lh-card.b .lh-card-val{color:var(--work)}
-.lh-card.r .lh-card-val{color:var(--red)}
+/* ══ LEFT ══ */
+.left{
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--b1);
+  overflow:hidden;
+}
 
-/* Tasks */
-.tasks-scroll{overflow-y:auto;overflow-x:hidden;padding:14px 18px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.tasks-scroll::-webkit-scrollbar{width:4px}
-.tasks-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+/* Шапка */
+.top{
+  flex-shrink:0;
+  padding:48px 44px 36px;
+  background:var(--s1);
+  border-bottom:1px solid var(--b1);
+  display:flex;flex-direction:column;
+  gap:28px;
+}
+.clock-row{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.clock{
+  font-family:var(--mono);font-size:52px;font-weight:700;
+  letter-spacing:6px;color:var(--text);
+}
+.date{
+  font-family:var(--title);font-size:28px;font-weight:800;
+  color:var(--t2);text-align:right;
+}
+.done-row{
+  display:flex;align-items:center;gap:20px;
+}
+.done-txt{
+  font-family:var(--title);font-size:34px;font-weight:800;color:var(--text);
+}
+.done-pct{
+  font-family:var(--mono);font-size:34px;font-weight:700;color:var(--a2);
+}
+.done-bar-wrap{flex:1;height:14px;background:var(--b1);border-radius:7px;overflow:hidden}
+.done-bar{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
+.reset-btn{
+  font-family:var(--mono);font-size:14px;
+  background:transparent;border:1px solid var(--b2);
+  color:var(--t2);padding:10px 22px;border-radius:9px;
+  cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s;
+}
+.reset-btn:hover{border-color:var(--accent);color:var(--a2)}
 
-.task-card{
-  display:flex;align-items:center;gap:14px;
+/* Карточки ГОТОВО/ОСТАЛОСЬ/ПРОПУЩЕНО */
+.stat-cards{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;
+}
+.stat-card{
+  background:var(--s3);border:1px solid var(--b1);
+  border-radius:22px;padding:36px 20px;text-align:center;
+}
+.stat-val{
+  font-family:var(--title);font-size:88px;font-weight:800;
+  line-height:1;margin-bottom:14px;
+}
+.stat-lbl{font-size:15px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
+.stat-card.g .stat-val{color:var(--green)}
+.stat-card.b .stat-val{color:var(--work)}
+.stat-card.r .stat-val{color:var(--red)}
+
+/* Задачи */
+.tasks{
+  flex:1;overflow-y:auto;padding:16px 20px;
+  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
+}
+.tasks::-webkit-scrollbar{width:4px}
+.tasks::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+
+.task{
+  display:flex;align-items:center;gap:16px;
   background:var(--s2);border:1px solid var(--b1);
-  border-radius:12px;padding:18px 16px;margin-bottom:8px;
+  border-radius:14px;padding:22px 18px;margin-bottom:10px;
   cursor:pointer;transition:all .18s;position:relative;overflow:hidden;
 }
-.task-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px}
-.task-card.cat-work::before{background:var(--work)}
-.task-card.cat-health::before{background:var(--health)}
-.task-card.cat-personal::before{background:var(--personal)}
-.task-card.cat-focus::before{background:var(--focus)}
-.task-card.cat-study::before{background:var(--study)}
-.task-card.cat-sport::before{background:var(--sport)}
-.task-card:hover{border-color:var(--b2);background:var(--s3);transform:translateX(4px)}
+.task::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px}
+.task.cat-work::before{background:var(--work)}
+.task.cat-health::before{background:var(--health)}
+.task.cat-personal::before{background:var(--personal)}
+.task.cat-focus::before{background:var(--focus)}
+.task.cat-study::before{background:var(--study)}
+.task.cat-sport::before{background:var(--sport)}
+.task:hover{border-color:var(--b2);background:var(--s3);transform:translateX(5px)}
+.task.done{background:var(--s1);border-color:var(--b1)}
+.task.done .tname{text-decoration:line-through;color:var(--t2)}
+.task.done .ttime,.task.done .tdur{color:var(--t3)}
+.task.done .ttag{opacity:.35}
+.task.now{border-color:var(--accent)}
+.task.missed:not(.done){border-color:#ef444428}
 
-/* ЗАЧЁРКНУТЫЕ — читаемый серый вместо невидимого */
-.task-card.done{opacity:1;background:var(--s1)}
-.task-card.done .tname{text-decoration:line-through;color:var(--t2)}
-.task-card.done .ttime{color:var(--t3)}
-.task-card.done .ttag{opacity:.4}
-.task-card.done .cb{background:var(--b2);border-color:var(--b2)}
-.task-card.current-task{border-color:var(--accent)}
-.task-card.missed:not(.done){border-color:#ef444430}
-
-.cb{width:24px;height:24px;border-radius:6px;border:2px solid var(--b3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cb{
+  width:28px;height:28px;border-radius:8px;
+  border:2px solid var(--b2);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
 .cb.on{background:var(--accent);border-color:var(--accent)}
-.cb.on::after{content:'✓';font-size:14px;color:#fff;font-weight:700}
-.ttime{font-family:var(--mono);font-size:13px;color:var(--t3);flex-shrink:0;min-width:44px}
-.tname{font-size:16px;flex:1;line-height:1.3;font-weight:500}
-.tdur{font-size:12px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
-.ttag{font-size:12px;padding:4px 10px;border-radius:6px;font-weight:600;flex-shrink:0}
+.cb.on::after{content:'✓';font-size:16px;color:#fff;font-weight:700}
+.ttime{font-family:var(--mono);font-size:15px;color:var(--t3);flex-shrink:0;min-width:50px}
+.tname{font-size:18px;flex:1;line-height:1.3;font-weight:500}
+.tdur{font-size:13px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
+.ttag{font-size:13px;padding:5px 12px;border-radius:7px;font-weight:600;flex-shrink:0}
 .tag-work{background:#1a3050;color:#60a5fa}
 .tag-health{background:#0f3020;color:#4ade80}
 .tag-personal{background:#382008;color:#fbbf24}
@@ -116,154 +145,163 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .tag-study{background:#052535;color:#67e8f9}
 .tag-sport{background:#38200a;color:#fb923c}
 
-.now-bar{display:flex;align-items:center;gap:12px;margin:8px 0;padding:10px 16px;background:#ef444412;border:1px solid #ef444440;border-radius:10px}
-.now-dot{width:13px;height:13px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
+.now-bar{
+  display:flex;align-items:center;gap:14px;
+  margin:10px 0;padding:12px 18px;
+  background:#ef444412;border:1px solid #ef444440;border-radius:12px;
+}
+.now-dot{
+  width:15px;height:15px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 14px var(--red);
+  flex-shrink:0;animation:pulse 1.5s infinite;
+}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.now-t{font-family:var(--mono);font-size:14px;color:var(--red);font-weight:700}
-.now-sep{font-size:13px;color:var(--t3)}
+.now-t{font-family:var(--mono);font-size:16px;color:var(--red);font-weight:700}
+.now-sep{font-size:14px;color:var(--t3)}
 
-/* Streak + quote */
-.lh-extras{background:var(--s1);border-top:1px solid var(--b1);padding:24px 36px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
-.streak-box{background:var(--s3);border:1px solid var(--b1);border-radius:18px;padding:22px 32px;text-align:center;flex-shrink:0}
-.streak-fire{font-size:30px;line-height:1;margin-bottom:4px}
-.streak-n{font-family:var(--title);font-size:52px;font-weight:800;color:#f97316;line-height:1}
-.streak-lbl{font-size:12px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px;margin-top:5px}
-.quote-box{background:var(--s3);border:1px solid var(--b1);border-left:5px solid var(--accent);border-radius:0 18px 18px 0;padding:20px 26px}
-.quote-text{font-size:17px;color:var(--text);line-height:1.65;font-style:italic}
-.quote-author{font-size:13px;color:var(--t3);margin-top:10px;font-family:var(--mono)}
+/* Стрик + цитата */
+.bottom{
+  flex-shrink:0;
+  padding:24px 36px;
+  background:var(--s1);border-top:1px solid var(--b1);
+  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;
+}
+.streak{
+  background:var(--s3);border:1px solid var(--b1);
+  border-radius:20px;padding:24px 36px;text-align:center;
+}
+.streak-fire{font-size:32px;margin-bottom:6px}
+.streak-n{font-family:var(--title);font-size:60px;font-weight:800;color:#f97316;line-height:1}
+.streak-lbl{font-size:13px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px;margin-top:6px}
+.quote{
+  background:var(--s3);border:1px solid var(--b1);
+  border-left:6px solid var(--accent);
+  border-radius:0 20px 20px 0;padding:22px 28px;
+}
+.quote-text{font-size:18px;color:var(--text);line-height:1.65;font-style:italic}
+.quote-auth{font-size:14px;color:var(--t3);margin-top:10px;font-family:var(--mono)}
 
-/* ══ RIGHT COL ══ */
-.right-col{display:flex;flex-direction:column;overflow:hidden;background:var(--s1)}
-
-.rb{padding:32px 36px;border-bottom:1px solid var(--b1);flex-shrink:0}
+/* ══ RIGHT ══ */
+.right{
+  display:flex;flex-direction:column;
+  overflow:hidden;background:var(--s1);
+}
+.rb{
+  flex-shrink:0;
+  padding:36px 40px;border-bottom:1px solid var(--b1);
+}
 .rb.grow{flex:1;display:flex;flex-direction:column;min-height:0}
-.rb-title{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:22px}
+.rb-title{
+  font-family:var(--mono);font-size:13px;letter-spacing:2.5px;
+  color:var(--t3);text-transform:uppercase;margin-bottom:24px;
+}
 
-/* Progress */
-.prog-item{margin-bottom:24px}
-.prog-item:last-child{margin-bottom:0}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.prog-name{font-size:20px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--a2)}
-.prog-bg{background:var(--s3);border-radius:10px;overflow:hidden}
-.prog-fill{border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+/* Прогресс бары */
+.prog{margin-bottom:26px}
+.prog:last-child{margin-bottom:0}
+.prog-meta{display:flex;justify-content:space-between;margin-bottom:12px}
+.prog-name{font-size:22px;color:var(--t2);font-weight:500}
+.prog-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--a2)}
+.prog-bg{background:var(--s3);border-radius:12px;overflow:hidden}
+.prog-fill{border-radius:12px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
-/* Cat bars */
-.cat-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.cat-row:last-child{margin-bottom:0}
-.cat-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:18px;color:var(--t2);width:100px;flex-shrink:0;font-weight:500}
-.cat-bg{flex:1;background:var(--s3);border-radius:8px;height:16px;overflow:hidden}
-.cat-fill{height:100%;border-radius:8px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:15px;color:var(--t3);width:90px;text-align:right;flex-shrink:0}
+/* Категории */
+.cat{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.cat:last-child{margin-bottom:0}
+.cat-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:20px;color:var(--t2);width:110px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:9px;height:18px;overflow:hidden}
+.cat-fill{height:100%;border-radius:9px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:16px;color:var(--t3);width:100px;text-align:right;flex-shrink:0}
 
-/* Doughnut */
-.chart-wrap{position:relative;width:240px;height:240px;margin:0 auto}
+/* Диаграмма */
+.chart-wrap{position:relative;width:260px;height:260px;margin:0 auto}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:44px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:13px;color:var(--t3);letter-spacing:1px;margin-top:5px;font-family:var(--mono)}
-.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
-.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:16px;color:var(--t2);background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:12px 16px}
-.leg-left{display:flex;align-items:center;gap:10px}
-.leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:15px;color:var(--a2);font-weight:700}
+.chart-pct{font-family:var(--title);font-size:52px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:14px;color:var(--t3);letter-spacing:1px;margin-top:6px;font-family:var(--mono)}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.leg-item{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:17px;color:var(--t2);
+  background:var(--s3);border:1px solid var(--b1);
+  border-radius:12px;padding:14px 18px;
+}
+.leg-left{display:flex;align-items:center;gap:12px}
+.leg-dot{width:14px;height:14px;border-radius:4px;flex-shrink:0}
+.leg-val{font-family:var(--mono);font-size:16px;color:var(--a2);font-weight:700}
 
-/* Activity */
-.act-bars{display:flex;align-items:flex-end;gap:10px;height:100px;margin-top:16px;flex:1}
-.act-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%}
-.act-bar{width:100%;border-radius:8px 8px 0 0;min-height:5px;transition:height .4s}
-.act-lbl{font-size:14px;color:var(--t3);font-family:var(--mono)}
+/* Активность */
+.act-bars{display:flex;align-items:flex-end;gap:12px;flex:1;margin-top:18px}
+.act-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;height:100%}
+.act-bar{width:100%;border-radius:10px 10px 0 0;min-height:6px;transition:height .4s}
+.act-lbl{font-size:15px;color:var(--t3);font-family:var(--mono)}
 
-/* HISTORY */
-.hist-body{padding:36px 40px;overflow-y:auto;height:100%;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.hist-title{font-family:var(--title);font-size:28px;font-weight:800;margin-bottom:10px}
-.hist-sub{font-size:16px;color:var(--t2);margin-bottom:32px}
-.hist-days{display:flex;flex-direction:column;gap:18px}
-.hist-day{background:var(--s2);border:1px solid var(--b1);border-radius:14px;overflow:hidden}
-.hist-day-hdr{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
-.hist-day-hdr:hover{background:var(--s3)}
-.hist-day-date{font-family:var(--title);font-size:16px;font-weight:700}
-.hist-day-meta{display:flex;align-items:center;gap:16px}
-.hist-day-pct{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--a2)}
-.hist-day-bar{width:150px;height:7px;background:var(--b1);border-radius:4px;overflow:hidden}
-.hist-day-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .4s}
-.hist-tasks{padding:0 24px 20px;display:none;border-top:1px solid var(--b1)}
-.hist-tasks.open{display:block}
-.hist-task-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #2a2a4022}
-.hist-task-row:last-child{border-bottom:none}
-.hist-task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.hist-task-name{font-size:15px;flex:1;color:var(--t2)}
-.hist-task-done{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px}
-.hd-yes{background:#22c55e20;color:#4ade80}
-.hd-no{background:#ef444420;color:#f87171}
-.no-hist{text-align:center;padding:80px 20px;color:var(--t3);font-size:16px}
-.no-hist-ico{font-size:60px;margin-bottom:18px}
-
-.conf-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+/* CONFETTI */
+.conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
 @keyframes cpfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 </style>
 </head>
 <body>
+<div class="app">
 
-<div class="nav">
-  <button class="nav-btn active" onclick="showPage('today',this)">СЕГОДНЯ</button>
-  <button class="nav-btn" onclick="showPage('history',this)">ИСТОРИЯ</button>
-  <div class="nav-clock" id="clock">00:00:00</div>
-</div>
-
-<div class="page active" id="pg-today">
-  <div class="left-col">
-    <div class="lh">
-      <div class="lh-date" id="lh-date">суббота, 28 марта</div>
-      <div class="lh-row">
-        <span class="lh-done" id="lh-done-txt">выполнено 0</span>
-        <div class="lh-bar"><div class="lh-bar-fill" id="lh-bar" style="width:0%"></div></div>
-        <span class="lh-pct" id="lh-pct">0%</span>
-        <button class="lh-reset" onclick="resetDay()">СБРОС</button>
+  <!-- LEFT -->
+  <div class="left">
+    <div class="top">
+      <div class="clock-row">
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="date" id="date-lbl">суббота<br>28 марта</div>
       </div>
-      <div class="lh-cards">
-        <div class="lh-card g"><div class="lh-card-val" id="card-done">0</div><div class="lh-card-lbl">ГОТОВО</div></div>
-        <div class="lh-card b"><div class="lh-card-val" id="card-rem">0</div><div class="lh-card-lbl">ОСТАЛОСЬ</div></div>
-        <div class="lh-card r"><div class="lh-card-val" id="card-miss">0</div><div class="lh-card-lbl">ПРОПУЩЕНО</div></div>
+      <div class="done-row">
+        <span class="done-txt" id="done-txt">выполнено 0 из 15</span>
+        <div class="done-bar-wrap"><div class="done-bar" id="done-bar" style="width:0%"></div></div>
+        <span class="done-pct" id="done-pct">0%</span>
+        <button class="reset-btn" onclick="resetDay()">СБРОС</button>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card g"><div class="stat-val" id="s-done">0</div><div class="stat-lbl">ГОТОВО</div></div>
+        <div class="stat-card b"><div class="stat-val" id="s-rem">0</div><div class="stat-lbl">ОСТАЛОСЬ</div></div>
+        <div class="stat-card r"><div class="stat-val" id="s-miss">0</div><div class="stat-lbl">ПРОПУЩЕНО</div></div>
       </div>
     </div>
 
-    <div class="tasks-scroll" id="tasks-scroll"></div>
+    <div class="tasks" id="tasks"></div>
 
-    <div class="lh-extras">
-      <div class="streak-box">
+    <div class="bottom">
+      <div class="streak">
         <div class="streak-fire">🔥</div>
         <div class="streak-n" id="streak-n">0</div>
         <div class="streak-lbl">ДНЕЙ ПОДРЯД</div>
       </div>
-      <div class="quote-box">
-        <div class="quote-text" id="quote-text"></div>
-        <div class="quote-author" id="quote-author"></div>
+      <div class="quote">
+        <div class="quote-text" id="qt"></div>
+        <div class="quote-auth" id="qa"></div>
       </div>
     </div>
   </div>
 
-  <div class="right-col">
+  <!-- RIGHT -->
+  <div class="right">
+
     <div class="rb">
       <div class="rb-title">Прогресс дня</div>
-      <div class="prog-item">
+      <div class="prog">
         <div class="prog-meta"><span class="prog-name">Задачи</span><span class="prog-val" id="pp">0%</span></div>
-        <div class="prog-bg" style="height:26px"><div class="prog-fill" id="pf-t" style="width:0%;height:26px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
+        <div class="prog-bg" style="height:28px"><div class="prog-fill" id="pf-t" style="width:0%;height:28px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
       </div>
-      <div class="prog-item">
+      <div class="prog">
         <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val" id="pv-d">0%</span></div>
-        <div class="prog-bg" style="height:20px"><div class="prog-fill" id="pf-d" style="width:0%;height:20px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
+        <div class="prog-bg" style="height:22px"><div class="prog-fill" id="pf-d" style="width:0%;height:22px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
       </div>
-      <div class="prog-item">
+      <div class="prog">
         <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" id="pv-m" style="color:var(--study)">0ч / 0ч</span></div>
-        <div class="prog-bg" style="height:20px"><div class="prog-fill" id="pf-m" style="width:0%;height:20px;background:var(--study)"></div></div>
+        <div class="prog-bg" style="height:22px"><div class="prog-fill" id="pf-m" style="width:0%;height:22px;background:var(--study)"></div></div>
       </div>
     </div>
 
     <div class="rb">
       <div class="rb-title">По категориям</div>
-      <div id="cat-rows"></div>
+      <div id="cats"></div>
     </div>
 
     <div class="rb">
@@ -274,40 +312,33 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div class="chart-sub">ГОТОВО</div>
         </div>
       </div>
-      <div class="chart-legend" id="chart-legend"></div>
+      <div class="legend" id="legend"></div>
     </div>
 
     <div class="rb grow">
       <div class="rb-title">Активность — 7 дней</div>
       <div class="act-bars" id="act-bars"></div>
     </div>
+
   </div>
 </div>
-
-<div class="page" id="pg-history">
-  <div class="hist-body">
-    <div class="hist-title">История дней</div>
-    <div class="hist-sub">Архив выполнения задач по дням</div>
-    <div class="hist-days" id="hist-days"></div>
-  </div>
-</div>
-
-<div class="conf-layer" id="confetti"></div>
+<div class="conf" id="conf"></div>
 
 <script>
-const TASK_SAVE='dash_v6';
-const HIST_SAVE='dash_hist_v1';
-
+const SAVE='dash_v7', HSAVE='dash_hist_v1';
 const CAT={
-  work:{label:'Работа',color:'#3b82f6',tag:'tag-work'},
-  health:{label:'Здоровье',color:'#22c55e',tag:'tag-health'},
-  personal:{label:'Личное',color:'#f59e0b',tag:'tag-personal'},
-  focus:{label:'Фокус',color:'#ec4899',tag:'tag-focus'},
-  study:{label:'Учёба',color:'#06b6d4',tag:'tag-study'},
-  sport:{label:'Спорт',color:'#f97316',tag:'tag-sport'},
+  work:{label:'Работа',color:'#3b82f6'},
+  health:{label:'Здоровье',color:'#22c55e'},
+  personal:{label:'Личное',color:'#f59e0b'},
+  focus:{label:'Фокус',color:'#ec4899'},
+  study:{label:'Учёба',color:'#06b6d4'},
+  sport:{label:'Спорт',color:'#f97316'},
 };
-
-const QUOTES=[
+const TAGS={
+  work:'tag-work',health:'tag-health',personal:'tag-personal',
+  focus:'tag-focus',study:'tag-study',sport:'tag-sport'
+};
+const QQ=[
   {t:'Дисциплина — это мост между целями и достижениями.',a:'Джим Рон'},
   {t:'Успех — это сумма небольших усилий, повторяемых изо дня в день.',a:'Роберт Кольер'},
   {t:'Не жди. Время никогда не будет «подходящим».',a:'Наполеон Хилл'},
@@ -317,32 +348,27 @@ const QUOTES=[
   {t:'Сделай сегодня то, что другие не хотят — и завтра будешь жить иначе.',a:'неизвестно'},
 ];
 
-// Берём задачи из tasks.js, добавляем id и done
-const INIT = (typeof TODAY_TASKS !== 'undefined' ? TODAY_TASKS : []).map((t,i)=>({...t,id:i+1,done:false}));
+const INIT=(typeof TODAY_TASKS!=='undefined'?TODAY_TASKS:[]).map((t,i)=>({...t,id:i+1,done:false}));
 
-function loadTasks(){
+function loadT(){
   try{
-    const s=localStorage.getItem(TASK_SAVE);
+    const s=localStorage.getItem(SAVE);
     if(s){
-      const saved=JSON.parse(s);
-      // Мёрджим с актуальным списком из tasks.js
-      return INIT.map(t=>{
-        const found=saved.find(s=>s.time===t.time&&s.name===t.name);
-        return found?{...t,done:found.done}:t;
-      });
+      const sv=JSON.parse(s);
+      return INIT.map(t=>{const f=sv.find(x=>x.time===t.time&&x.name===t.name);return f?{...t,done:f.done}:t;});
     }
   }catch(e){}
   return INIT.map(t=>({...t}));
 }
-function saveTasks(t){try{localStorage.setItem(TASK_SAVE,JSON.stringify(t));}catch(e){}}
-function loadHist(){try{const s=localStorage.getItem(HIST_SAVE);if(s)return JSON.parse(s);}catch(e){}return [];}
-function saveHist(h){try{localStorage.setItem(HIST_SAVE,JSON.stringify(h));}catch(e){}}
+function saveT(t){try{localStorage.setItem(SAVE,JSON.stringify(t));}catch(e){}}
+function loadH(){try{const s=localStorage.getItem(HSAVE);if(s)return JSON.parse(s);}catch(e){}return [];}
+function saveH(h){try{localStorage.setItem(HSAVE,JSON.stringify(h));}catch(e){}}
 
-let tasks=loadTasks(), chartInst=null, confDone=false;
+let tasks=loadT(), chart=null, confDone=false;
 
 const toMin=t=>{const[h,m]=t.split(':').map(Number);return h*60+m;};
 const nowMin=()=>{const n=new Date();return n.getHours()*60+n.getMinutes();};
-const fmtTime=d=>d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const fmtT=d=>d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 const fmtNow=()=>new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
 const todayKey=()=>{const d=new Date();return`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;};
 
@@ -350,19 +376,15 @@ function getStats(){
   const total=tasks.length,done=tasks.filter(t=>t.done).length;
   const nm=nowMin();
   const missed=tasks.filter(t=>!t.done&&toMin(t.time)<nm).length;
-  const remaining=total-done-missed;
   const pct=total?Math.round(done/total*100):0;
   const totalMin=tasks.reduce((a,t)=>a+(t.dur||0),0);
   const doneMin=tasks.filter(t=>t.done).reduce((a,t)=>a+(t.dur||0),0);
-  return{total,done,missed,remaining,pct,totalMin,doneMin};
+  return{total,done,missed,remaining:total-done-missed,pct,totalMin,doneMin};
 }
 
-function getCatStats(){
+function getCS(){
   const r={};
-  tasks.forEach(t=>{
-    if(!r[t.cat])r[t.cat]={total:0,done:0};
-    r[t.cat].total++;if(t.done)r[t.cat].done++;
-  });
+  tasks.forEach(t=>{if(!r[t.cat])r[t.cat]={total:0,done:0};r[t.cat].total++;if(t.done)r[t.cat].done++;});
   return r;
 }
 
@@ -372,64 +394,53 @@ function timePct(){
   return Math.round((nm-S)/(E-S)*100);
 }
 
-function showPage(id,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('pg-'+id).classList.add('active');
-  btn.classList.add('active');
-  if(id==='history')renderHistory();
-}
-
-function renderTimeline(){
-  const tl=document.getElementById('tasks-scroll');if(!tl)return;
+function renderTasks(){
+  const el=document.getElementById('tasks');if(!el)return;
   const nm=nowMin();
-  let html='',nowInserted=false;
+  let html='',nowDone=false;
   tasks.forEach((t,i)=>{
     const tMin=toMin(t.time);
     const nextMin=tasks[i+1]?toMin(tasks[i+1].time):Infinity;
-    if(!nowInserted&&((tMin<=nm&&nm<nextMin)||(i===0&&nm<tMin))){
-      nowInserted=true;
+    if(!nowDone&&((tMin<=nm&&nm<nextMin)||(i===0&&nm<tMin))){
+      nowDone=true;
       html+=`<div class="now-bar"><div class="now-dot"></div><div class="now-t" id="now-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`;
     }
-    const m=CAT[t.cat]||CAT.work;
     const missed=!t.done&&tMin<nm;
-    const current=tMin<=nm&&nm<tMin+(t.dur||30);
-    html+=`<div class="task-card cat-${t.cat}${t.done?' done':''}${missed?' missed':''}${current&&!t.done?' current-task':''}" onclick="toggle(${t.id})">
+    const curr=tMin<=nm&&nm<tMin+(t.dur||30);
+    html+=`<div class="task cat-${t.cat}${t.done?' done':''}${missed?' missed':''}${curr&&!t.done?' now':''}" onclick="toggle(${t.id})">
       <div class="cb${t.done?' on':''}"></div>
       <div class="ttime">${t.time}</div>
       <div class="tname">${t.name}</div>
       ${t.dur?`<div class="tdur">${t.dur}м</div>`:''}
-      <div class="ttag ${m.tag}">${m.label}</div>
+      <div class="ttag ${TAGS[t.cat]||''}">${(CAT[t.cat]||{label:''}).label}</div>
     </div>`;
   });
-  if(!nowInserted)html=`<div class="now-bar"><div class="now-dot"></div><div class="now-t" id="now-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`+html;
-  tl.innerHTML=html;
-  setTimeout(()=>{const nb=tl.querySelector('.now-bar');if(nb)nb.scrollIntoView({block:'center',behavior:'smooth'});},100);
+  if(!nowDone)html=`<div class="now-bar"><div class="now-dot"></div><div class="now-t" id="now-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`+html;
+  el.innerHTML=html;
+  setTimeout(()=>{const nb=el.querySelector('.now-bar');if(nb)nb.scrollIntoView({block:'center',behavior:'smooth'});},100);
 }
 
-function updateSidebar(){
-  const s=getStats(),cs=getCatStats(),tp=timePct();
+function updateUI(){
+  const s=getStats(),cs=getCS(),tp=timePct();
   const dH=Math.floor(s.doneMin/60),dM=s.doneMin%60,tH=Math.floor(s.totalMin/60);
-  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const setW=(id,w)=>{const e=document.getElementById(id);if(e)e.style.width=w+'%';};
 
-  byId('lh-done-txt',`выполнено ${s.done} из ${s.total}`);
-  byId('lh-pct',s.pct+'%');
-  byId('card-done',s.done);byId('card-rem',s.remaining);byId('card-miss',s.missed);
-  byId('pp',s.pct+'%');byId('pv-d',tp+'%');byId('pv-m',`${dH}ч ${dM}м / ${tH}ч`);
-  byId('cpct',s.pct+'%');
+  set('done-txt',`выполнено ${s.done} из ${s.total}`);
+  set('done-pct',s.pct+'%');
+  set('s-done',s.done);set('s-rem',s.remaining);set('s-miss',s.missed);
+  set('pp',s.pct+'%');set('pv-d',tp+'%');set('pv-m',`${dH}ч ${dM}м / ${tH}ч`);
+  set('cpct',s.pct+'%');
+  setW('done-bar',s.pct);setW('pf-t',s.pct);setW('pf-d',tp);
+  setW('pf-m',s.totalMin?Math.round(s.doneMin/s.totalMin*100):0);
 
-  const pf=id=>document.getElementById(id);
-  if(pf('lh-bar'))pf('lh-bar').style.width=s.pct+'%';
-  if(pf('pf-t'))pf('pf-t').style.width=s.pct+'%';
-  if(pf('pf-d'))pf('pf-d').style.width=tp+'%';
-  if(pf('pf-m'))pf('pf-m').style.width=(s.totalMin?Math.round(s.doneMin/s.totalMin*100):0)+'%';
-
-  const catEl=document.getElementById('cat-rows');
-  if(catEl){
-    catEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
+  // cats
+  const cEl=document.getElementById('cats');
+  if(cEl){
+    cEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
       const v=cs[k]||{total:0,done:0};
       const p=v.total?Math.round(v.done/v.total*100):0;
-      return`<div class="cat-row">
+      return`<div class="cat">
         <div class="cat-dot" style="background:${m.color}"></div>
         <div class="cat-name">${m.label}</div>
         <div class="cat-bg"><div class="cat-fill" style="width:${p}%;background:${m.color}"></div></div>
@@ -438,57 +449,58 @@ function updateSidebar(){
     }).join('');
   }
 
-  const legEl=document.getElementById('chart-legend');
-  if(legEl){
-    legEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
+  // legend
+  const lEl=document.getElementById('legend');
+  if(lEl){
+    lEl.innerHTML=Object.entries(CAT).map(([k,m])=>{
       const v=cs[k]||{total:0,done:0};
       return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;
     }).join('');
   }
 
   buildChart(s,cs);
-  renderActivityBars();
+  renderAct();
 }
 
 function buildChart(s,cs){
   const c=document.getElementById('dnt');if(!c)return;
-  if(chartInst){chartInst.destroy();chartInst=null;}
-  const labels=Object.keys(CAT);
-  const data=labels.map(k=>(cs[k]||{done:0}).done);
-  const colors=labels.map(k=>CAT[k].color);
-  const hasData=data.some(v=>v>0);
-  chartInst=new Chart(c,{
+  if(chart){chart.destroy();chart=null;}
+  const keys=Object.keys(CAT);
+  const data=keys.map(k=>(cs[k]||{done:0}).done);
+  const colors=keys.map(k=>CAT[k].color);
+  const has=data.some(v=>v>0);
+  chart=new Chart(c,{
     type:'doughnut',
-    data:{labels:labels.map(k=>CAT[k].label),datasets:[{data:hasData?data:[1],backgroundColor:hasData?colors:['#252535'],borderWidth:0,hoverOffset:6}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{enabled:hasData}}}
+    data:{labels:keys.map(k=>CAT[k].label),datasets:[{data:has?data:[1],backgroundColor:has?colors:['#252535'],borderWidth:0,hoverOffset:8}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{enabled:has}}}
   });
 }
 
-function renderActivityBars(){
+function renderAct(){
   const el=document.getElementById('act-bars');if(!el)return;
-  const hist=loadHist();
-  const dayNames=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+  const hist=loadH();
+  const dn=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
   let html='';
   for(let i=6;i>=0;i--){
     const d=new Date();d.setDate(d.getDate()-i);
     const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
     const entry=hist.find(h=>h.key===key);
-    const total=entry?entry.tasks.length:tasks.length||15;
+    const tot=entry?entry.tasks.length:tasks.length||15;
     const done=entry?entry.tasks.filter(t=>t.done).length:0;
-    const pct=total?Math.round(done/total*100):0;
-    const hPx=Math.max(5,Math.round(pct/100*90));
+    const pct=tot?Math.round(done/tot*100):0;
+    const hPx=Math.max(6,Math.round(pct/100*110));
     const isToday=i===0;
     const col=isToday?'var(--accent)':pct>0?'var(--a2)66':'var(--b1)';
     html+=`<div class="act-col">
       <div class="act-bar" style="height:${hPx}px;background:${col}" title="${pct}%"></div>
-      <div class="act-lbl" style="color:${isToday?'var(--a2)':'var(--t3)'}">${dayNames[d.getDay()]}</div>
+      <div class="act-lbl" style="color:${isToday?'var(--a2)':'var(--t3)'}">${dn[d.getDay()]}</div>
     </div>`;
   }
   el.innerHTML=html;
 }
 
-function patchTaskCards(){
-  document.querySelectorAll('.task-card').forEach(card=>{
+function patchCards(){
+  document.querySelectorAll('.task').forEach(card=>{
     const oc=card.getAttribute('onclick')||'';
     const m=oc.match(/toggle\((\d+)\)/);if(!m)return;
     const t=tasks.find(t=>t.id===+m[1]);if(!t)return;
@@ -500,83 +512,48 @@ function patchTaskCards(){
 
 function toggle(id){
   tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
-  saveTasks(tasks);saveHistEntry();
-  patchTaskCards();updateSidebar();
+  saveT(tasks);saveHist2();patchCards();updateUI();
   const s=getStats();
-  if(s.done===s.total&&s.total>0&&!confDone)launchConfetti();
+  if(s.done===s.total&&s.total>0&&!confDone)confetti();
 }
 
-function saveHistEntry(){
+function saveHist2(){
   const key=todayKey();
-  const hist=loadHist();
+  const hist=loadH();
   const label=new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  const existing=hist.findIndex(h=>h.key===key);
+  const ex=hist.findIndex(h=>h.key===key);
   const entry={key,label,tasks:tasks.map(t=>({id:t.id,name:t.name,cat:t.cat,time:t.time,done:t.done}))};
-  if(existing>=0)hist[existing]=entry;else hist.unshift(entry);
-  saveHist(hist.slice(0,30));
+  if(ex>=0)hist[ex]=entry;else hist.unshift(entry);
+  saveH(hist.slice(0,30));
 }
 
 function resetDay(){
-  saveHistEntry();
+  saveHist2();
   tasks=INIT.map(t=>({...t,done:false}));
-  saveTasks(tasks);confDone=false;
-  renderTimeline();updateSidebar();
+  saveT(tasks);confDone=false;
+  renderTasks();updateUI();
 }
 
 function calcStreak(){
-  const hist=loadHist();let streak=0;const today=new Date();
+  const hist=loadH();let s=0;const today=new Date();
   for(let i=0;i<30;i++){
     const d=new Date(today);d.setDate(d.getDate()-i);
     const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-    const entry=hist.find(h=>h.key===key);
-    if(entry&&entry.tasks&&entry.tasks.some(t=>t.done))streak++;
+    const e=hist.find(h=>h.key===key);
+    if(e&&e.tasks&&e.tasks.some(t=>t.done))s++;
     else if(i>0)break;
   }
-  return streak;
+  return s;
 }
 
-function renderHistory(){
-  const container=document.getElementById('hist-days');if(!container)return;
-  const hist=loadHist();
-  if(!hist.length){
-    container.innerHTML=`<div class="no-hist"><div class="no-hist-ico">📅</div><div>История появится, как только ты начнёшь отмечать задачи.</div></div>`;
-    return;
-  }
-  container.innerHTML=hist.map((day,idx)=>{
-    const total=day.tasks.length,done=day.tasks.filter(t=>t.done).length;
-    const pct=total?Math.round(done/total*100):0;
-    const tHTML=day.tasks.map(t=>{
-      const m=CAT[t.cat]||CAT.work;
-      return`<div class="hist-task-row">
-        <div class="hist-task-dot" style="background:${m.color}"></div>
-        <div class="hist-task-name">${t.time} · ${t.name}</div>
-        <div class="hist-task-done ${t.done?'hd-yes':'hd-no'}">${t.done?'✓':'—'}</div>
-      </div>`;
-    }).join('');
-    return`<div class="hist-day">
-      <div class="hist-day-hdr" onclick="toggleHist(${idx})">
-        <div class="hist-day-date">${day.label}</div>
-        <div class="hist-day-meta">
-          <div class="hist-day-pct">${pct}%</div>
-          <div class="hist-day-bar"><div class="hist-day-bar-fill" style="width:${pct}%"></div></div>
-          <span style="font-family:var(--mono);font-size:14px;color:var(--t3)">${done}/${total}</span>
-        </div>
-      </div>
-      <div class="hist-tasks" id="hdt-${idx}">${tHTML}</div>
-    </div>`;
-  }).join('');
-}
-
-function toggleHist(idx){const el=document.getElementById('hdt-'+idx);if(el)el.classList.toggle('open');}
-
-function launchConfetti(){
+function confetti(){
   confDone=true;
-  const layer=document.getElementById('confetti');if(!layer)return;
-  const colors=['#a78bfa','#60a5fa','#34d399','#f59e0b','#f87171','#c084fc','#fb923c','#06b6d4'];
-  for(let i=0;i<120;i++){
+  const layer=document.getElementById('conf');if(!layer)return;
+  const cols=['#a78bfa','#60a5fa','#34d399','#f59e0b','#f87171','#c084fc','#fb923c','#06b6d4'];
+  for(let i=0;i<130;i++){
     setTimeout(()=>{
       const el=document.createElement('div');el.className='cp';
-      el.style.cssText=`left:${Math.random()*100}%;background:${colors[~~(Math.random()*colors.length)]};width:${7+Math.random()*9}px;height:${7+Math.random()*9}px;animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s`;
+      el.style.cssText=`left:${Math.random()*100}%;background:${cols[~~(Math.random()*cols.length)]};width:${8+Math.random()*10}px;height:${8+Math.random()*10}px;animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s`;
       layer.appendChild(el);setTimeout(()=>el.remove(),5000);
     },i*20);
   }
@@ -584,26 +561,26 @@ function launchConfetti(){
 
 function tick(){
   const now=new Date();
-  const cl=document.getElementById('clock');if(cl)cl.textContent=fmtTime(now);
+  const cl=document.getElementById('clock');if(cl)cl.textContent=fmtT(now);
   const nt=document.getElementById('now-t');if(nt)nt.textContent=fmtNow();
   const tp=timePct();
   const pfd=document.getElementById('pf-d');if(pfd)pfd.style.width=tp+'%';
   const pvd=document.getElementById('pv-d');if(pvd)pvd.textContent=tp+'%';
 }
 
-/* ── INIT ── */
+/* INIT */
 const nowD=new Date();
-const dl=document.getElementById('lh-date');
-if(dl)dl.textContent=nowD.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
+const dl=document.getElementById('date-lbl');
+if(dl)dl.innerHTML=nowD.toLocaleDateString('ru-RU',{weekday:'long'})+'<br>'+nowD.toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
 
-const q=QUOTES[nowD.getDay()%QUOTES.length];
-const qtEl=document.getElementById('quote-text');if(qtEl)qtEl.textContent=q.t;
-const qaEl=document.getElementById('quote-author');if(qaEl)qaEl.textContent='— '+q.a;
+const q=QQ[nowD.getDay()%QQ.length];
+const qte=document.getElementById('qt');if(qte)qte.textContent=q.t;
+const qae=document.getElementById('qa');if(qae)qae.textContent='— '+q.a;
 
-const snEl=document.getElementById('streak-n');if(snEl)snEl.textContent=calcStreak();
+const sne=document.getElementById('streak-n');if(sne)sne.textContent=calcStreak();
 
-renderTimeline();
-updateSidebar();
+renderTasks();
+updateUI();
 setInterval(tick,1000);
 </script>
 </body>
