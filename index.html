@@ -9,7 +9,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#07070c;--s1:#0f0f18;--s2:#141420;--s3:#1a1a28;--s4:#202030;
+  --bg:#07070c;--s1:#0f0f18;--s2:#141420;--s3:#1a1a28;
   --b1:#2a2a40;--b2:#363650;--b3:#424260;
   --accent:#7c5cfc;--a2:#a78bfa;--a3:#c4b5fd;
   --text:#e8e8f4;--t2:#8888a8;--t3:#4a4a68;
@@ -22,47 +22,48 @@
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
 
-/* ── GLOBAL TABS ── */
-.global-nav{display:flex;background:var(--s1);border-bottom:2px solid var(--b1);height:88px;position:relative;z-index:100;padding:0 40px;gap:0;align-items:stretch}
-.gn-btn{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--t2);padding:0 40px;border:none;background:transparent;cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center}
-.gn-btn:hover{color:var(--a2);background:var(--s2)}
-.gn-btn.active{color:var(--a2);border-bottom-color:var(--accent);background:var(--s2)}
-.gn-clock{font-family:var(--mono);font-size:38px;font-weight:700;letter-spacing:5px;color:var(--text);margin-left:auto;align-self:center}
+/* ══ NAV ══ */
+.nav{display:flex;height:80px;background:var(--s1);border-bottom:2px solid var(--b1);align-items:stretch;padding:0 36px;gap:0;flex-shrink:0}
+.nav-btn{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--t2);padding:0 40px;border:none;background:transparent;cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center}
+.nav-btn:hover{color:var(--a2);background:rgba(167,139,250,.06)}
+.nav-btn.active{color:var(--a2);border-bottom-color:var(--accent);background:rgba(167,139,250,.08)}
+.nav-clock{font-family:var(--mono);font-size:36px;font-weight:700;letter-spacing:5px;color:var(--text);margin-left:auto;align-self:center}
 
-/* ── GLOBAL PAGES ── */
-.gpage{display:none;height:calc(100vh - 88px);overflow:hidden}
-.gpage.active{display:flex;flex-direction:column}
+/* ══ PAGES ══ */
+.page{display:none;height:calc(100vh - 80px);overflow:hidden}
+.page.active{display:grid}
 
-/* ════════════════════════════════════════
-   TAB 1 — TODAY
-════════════════════════════════════════ */
-.today-body{display:grid;grid-template-columns:1fr 1fr;height:100%;overflow:hidden}
+/* ══ TODAY — 2 columns ══ */
+#pg-today{grid-template-columns:1fr 1fr}
 
-/* LEFT COL — split into top stats + bottom tasks */
-.tl-col{display:grid;grid-template-rows:auto 1fr;border-right:1px solid var(--b1);overflow:hidden}
+/* ═══ LEFT COLUMN ═══ */
+.left-col{display:grid;grid-template-rows:auto 1fr;border-right:1px solid var(--b1);overflow:hidden}
 
-/* TOP STATS AREA (upper half of left col) */
-.tl-header{background:var(--s1);border-bottom:1px solid var(--b1);padding:28px 32px 24px;display:flex;flex-direction:column;gap:20px}
-.tl-date{font-family:var(--title);font-size:40px;font-weight:800;color:var(--text);line-height:1}
-.tl-sub-row{display:flex;align-items:center;gap:16px}
-.tl-done-label{font-family:var(--title);font-size:26px;font-weight:800;color:var(--text)}
-.tl-pct-label{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--a2)}
-.tl-progress-mini{flex:1;height:8px;background:var(--b1);border-radius:4px;overflow:hidden}
-.tl-progress-mini-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
-.tl-stat-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.tl-stat-card{background:var(--s3);border:1px solid var(--b1);border-radius:14px;padding:20px;text-align:center}
-.tl-stat-val{font-family:var(--title);font-size:48px;font-weight:800;line-height:1;margin-bottom:6px}
-.tl-stat-lbl{font-size:11px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
-.tl-stat-card.green .tl-stat-val{color:var(--green)}
-.tl-stat-card.blue .tl-stat-val{color:var(--work)}
-.tl-stat-card.red .tl-stat-val{color:var(--red)}
+/* Header block */
+.left-header{background:var(--s1);border-bottom:1px solid var(--b1);padding:24px 30px 20px;display:flex;flex-direction:column;gap:16px}
+.lh-date{font-family:var(--title);font-size:36px;font-weight:800;color:var(--text);line-height:1}
+.lh-row{display:flex;align-items:center;gap:14px}
+.lh-done{font-family:var(--title);font-size:24px;font-weight:800;color:var(--text)}
+.lh-pct{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--a2)}
+.lh-bar-wrap{flex:1;height:8px;background:var(--b1);border-radius:4px;overflow:hidden}
+.lh-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
+.lh-reset{font-family:var(--mono);font-size:11px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:6px 14px;border-radius:6px;cursor:pointer;letter-spacing:.5px;flex-shrink:0;transition:all .2s}
+.lh-reset:hover{border-color:var(--accent);color:var(--a2)}
+/* Big 3 cards */
+.lh-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.lh-card{background:var(--s3);border:1px solid var(--b1);border-radius:14px;padding:20px;text-align:center}
+.lh-card-val{font-family:var(--title);font-size:52px;font-weight:800;line-height:1;margin-bottom:6px}
+.lh-card-lbl{font-size:11px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
+.lh-card.green .lh-card-val{color:var(--green)}
+.lh-card.blue .lh-card-val{color:var(--work)}
+.lh-card.red .lh-card-val{color:var(--red)}
 
-/* BOTTOM TASKS */
-.tl-scroll{overflow-y:auto;overflow-x:hidden;padding:10px 14px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.tl-scroll::-webkit-scrollbar{width:3px}
-.tl-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+/* Tasks scroll */
+.tasks-scroll{overflow-y:auto;overflow-x:hidden;padding:10px 14px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.tasks-scroll::-webkit-scrollbar{width:3px}
+.tasks-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
-.task-card{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:10px 12px;margin-bottom:5px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}
+.task-card{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:9px 12px;margin-bottom:5px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}
 .task-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
 .task-card.cat-work::before{background:var(--work)}
 .task-card.cat-health::before{background:var(--health)}
@@ -71,10 +72,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .task-card.cat-study::before{background:var(--study)}
 .task-card.cat-sport::before{background:var(--sport)}
 .task-card:hover{border-color:var(--b2);background:var(--s3);transform:translateX(3px)}
-.task-card.done{opacity:.35}
+.task-card.done{opacity:.33}
 .task-card.done .tname{text-decoration:line-through;color:var(--t3)}
 .task-card.current-task{border-color:var(--accent)}
-.task-card.missed:not(.done){border-color:#ef444428}
+.task-card.missed:not(.done){border-color:#ef444430}
 .cb{width:17px;height:17px;border-radius:4px;border:1.5px solid var(--b3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .cb.on{background:var(--accent);border-color:var(--accent)}
 .cb.on::after{content:'✓';font-size:10px;color:#fff;font-weight:700}
@@ -88,117 +89,133 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .tag-focus{background:#400a25;color:#f9a8d4}
 .tag-study{background:#052535;color:#67e8f9}
 .tag-sport{background:#38200a;color:#fb923c}
-.now-bar{display:flex;align-items:center;gap:8px;margin:5px 0;padding:5px 12px;background:#ef444410;border:1px solid #ef444435;border-radius:7px}
+.now-bar{display:flex;align-items:center;gap:8px;margin:5px 0;padding:6px 12px;background:#ef444412;border:1px solid #ef444440;border-radius:7px}
 .now-dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
-.now-time-lbl{font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.now-t{font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700}
 .now-sep{font-size:10px;color:var(--t3)}
 
-/* RIGHT COL — single column, full width blocks */
-.sb-col{overflow-y:auto;overflow-x:hidden;background:var(--s1);display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.sb-col::-webkit-scrollbar{width:3px}
-.sb-col::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-.sb-block{padding:22px 28px;border-bottom:1px solid var(--b1)}
-.sb-block-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:16px}
+/* ═══ RIGHT COLUMN — single col, fills 100% ═══ */
+.right-col{display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;background:var(--s1);scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.right-col::-webkit-scrollbar{width:3px}
+.right-col::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+
+.rb{padding:20px 26px;border-bottom:1px solid var(--b1);flex-shrink:0}
+.rb-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:14px}
 
 /* Progress bars */
-.prog-item{margin-bottom:14px}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
-.prog-name{font-size:14px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--a2)}
-.prog-bg{background:var(--s3);border-radius:8px;overflow:hidden}
-.prog-fill{border-radius:8px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.pi{margin-bottom:13px}
+.pi:last-child{margin-bottom:0}
+.pi-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.pi-name{font-size:13px;color:var(--t2);font-weight:500}
+.pi-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2)}
+.pi-bg{background:var(--s3);border-radius:7px;overflow:hidden}
+.pi-fill{border-radius:7px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
 /* Cat bars */
-.cat-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.cat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:14px;color:var(--t2);width:72px;flex-shrink:0;font-weight:500}
-.cat-bar-bg{flex:1;background:var(--s3);border-radius:6px;height:10px;overflow:hidden}
-.cat-bar-fill{height:100%;border-radius:6px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:12px;color:var(--t3);width:68px;text-align:right;flex-shrink:0}
+.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.cat-row:last-child{margin-bottom:0}
+.cat-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:13px;color:var(--t2);width:68px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:5px;height:9px;overflow:hidden}
+.cat-fill{height:100%;border-radius:5px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:11px;color:var(--t3);width:64px;text-align:right;flex-shrink:0}
 
 /* Doughnut */
-.chart-wrap{position:relative;width:200px;height:200px;margin:0 auto}
+.chart-row{display:flex;align-items:center;gap:24px}
+.chart-wrap{position:relative;width:170px;height:170px;flex-shrink:0}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:36px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:10px;color:var(--t3);letter-spacing:1px;margin-top:3px;font-family:var(--mono)}
-.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.chart-pct{font-family:var(--title);font-size:32px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:9px;color:var(--t3);letter-spacing:1px;margin-top:2px;font-family:var(--mono)}
+.chart-legend{flex:1;display:flex;flex-direction:column;gap:8px}
 .leg-item{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--t2);background:var(--s3);border:1px solid var(--b1);border-radius:8px;padding:8px 12px}
 .leg-left{display:flex;align-items:center;gap:8px}
-.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.leg-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
 .leg-val{font-family:var(--mono);font-size:12px;color:var(--a2);font-weight:700}
 
-/* Mini stat grid */
+/* Mini cards */
 .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:12px;padding:18px}
-.mini-val{font-family:var(--title);font-size:32px;font-weight:700;color:var(--a2);margin-bottom:5px}
+.mini-val{font-family:var(--title);font-size:30px;font-weight:700;color:var(--a2);margin-bottom:4px}
 .mini-lbl{font-size:10px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
 
-/* ════════════════════════════════════════
-   TAB 2 — HISTORY
-════════════════════════════════════════ */
-.history-body{padding:24px 28px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.history-body::-webkit-scrollbar{width:4px}
-.history-body::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+/* Streak */
+.streak-row{display:flex;align-items:center;gap:16px}
+.streak-num{font-family:var(--title);font-size:56px;font-weight:800;color:#f97316;line-height:1}
+.streak-info{display:flex;flex-direction:column;gap:4px}
+.streak-lbl{font-size:13px;color:var(--t2)}
+.streak-sub{font-size:11px;color:var(--t3);font-family:var(--mono)}
 
-.hist-title{font-family:var(--title);font-size:20px;font-weight:800;color:var(--text);margin-bottom:6px}
-.hist-sub{font-size:12px;color:var(--t2);margin-bottom:24px}
+/* Week activity */
+.week-bars{display:flex;align-items:flex-end;gap:8px;height:60px;margin-top:4px}
+.week-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.week-bar-bg{flex:1;width:100%;background:var(--s3);border-radius:4px 4px 0 0;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.week-bar-fill{width:100%;border-radius:4px 4px 0 0;transition:height .5s cubic-bezier(.4,0,.2,1)}
+.week-bar-lbl{font-family:var(--mono);font-size:9px;color:var(--t3);text-align:center}
 
-.hist-days{display:flex;flex-direction:column;gap:16px}
-.hist-day{background:var(--s2);border:1px solid var(--b1);border-radius:12px;overflow:hidden}
-.hist-day-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
-.hist-day-header:hover{background:var(--s3)}
-.hist-day-date{font-family:var(--title);font-size:13px;font-weight:700;color:var(--text)}
+/* Countdown */
+.countdown-row{display:flex;align-items:center;justify-content:space-between}
+.cd-left{display:flex;flex-direction:column;gap:6px}
+.cd-num{font-family:var(--title);font-size:48px;font-weight:800;color:var(--a2);line-height:1}
+.cd-lbl{font-size:12px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px}
+.cd-ring-wrap{position:relative;width:90px;height:90px;flex-shrink:0}
+.cd-ring-wrap svg{transform:rotate(-90deg)}
+.cd-pct-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2)}
+
+/* Quote */
+.quote-block{background:var(--s3);border:1px solid var(--b1);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 18px}
+.quote-text{font-size:14px;color:var(--text);line-height:1.6;font-style:italic}
+.quote-author{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:8px}
+
+/* ══ HISTORY PAGE ══ */
+#pg-history{display:block!important;overflow-y:auto}
+#pg-history.active{display:block}
+.hist-body{padding:28px 32px;max-width:900px;margin:0 auto}
+.hist-title{font-family:var(--title);font-size:22px;font-weight:800;margin-bottom:6px}
+.hist-sub{font-size:13px;color:var(--t2);margin-bottom:24px}
+.hist-day{background:var(--s2);border:1px solid var(--b1);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.hist-day-hd{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
+.hist-day-hd:hover{background:var(--s3)}
+.hist-day-date{font-family:var(--title);font-size:13px;font-weight:700}
 .hist-day-meta{display:flex;align-items:center;gap:12px}
 .hist-day-pct{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2)}
-.hist-day-bar-wrap{width:120px;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
-.hist-day-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .4s}
-.hist-day-tasks{padding:0 18px 14px;display:none;border-top:1px solid var(--b1)}
-.hist-day-tasks.open{display:block}
-.hist-task-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)22}
+.hist-day-bw{width:120px;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
+.hist-day-bf{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--a2))}
+.hist-tasks{padding:0 18px 14px;display:none;border-top:1px solid var(--b1)}
+.hist-tasks.open{display:block}
+.hist-task-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--b1)22}
 .hist-task-row:last-child{border-bottom:none}
 .hist-task-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .hist-task-name{font-size:11px;flex:1;color:var(--t2)}
-.hist-task-done{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:3px}
-.hist-done-yes{background:#22c55e20;color:#4ade80}
-.hist-done-no{background:#ef444420;color:#f87171}
+.hist-done-y{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:3px;background:#22c55e20;color:#4ade80}
+.hist-done-n{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:3px;background:#ef444420;color:#f87171}
+.no-hist{text-align:center;padding:80px 20px;color:var(--t3)}
+.no-hist-ico{font-size:52px;margin-bottom:14px}
 
-.no-history{text-align:center;padding:60px 20px;color:var(--t3);font-size:13px}
-.no-hist-ico{font-size:48px;margin-bottom:12px}
-
-/* ════════════════════════════════════════
-   TAB 3 — LEARNING (апрель 2026)
-════════════════════════════════════════ */
-.learn-body{display:flex;flex-direction:column;overflow:hidden}
-.learn-header{padding:16px 20px 12px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.learn-title{font-family:var(--title);font-size:16px;font-weight:800;color:var(--text)}
-.learn-stats-row{display:flex;align-items:center;gap:16px}
-.learn-stat{text-align:right}
+/* ══ LEARNING PAGE ══ */
+#pg-learning{display:block!important;overflow:hidden}
+#pg-learning.active{display:flex;flex-direction:column}
+.learn-hd{padding:16px 22px 12px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.learn-hd-title{font-family:var(--title);font-size:16px;font-weight:800}
+.learn-hd-right{display:flex;align-items:center;gap:16px}
 .learn-stat-val{font-family:var(--title);font-size:18px;font-weight:800;color:var(--a2)}
-.learn-stat-lbl{font-size:9px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
-.learn-ring{position:relative;width:50px;height:50px;flex-shrink:0}
+.learn-stat-lbl{font-size:9px;color:var(--t3);font-family:var(--mono)}
+.learn-ring{position:relative;width:50px;height:50px}
 .learn-ring svg{transform:rotate(-90deg)}
 .ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--a2)}
-
 .learn-nav{display:flex;background:var(--s2);border-bottom:1px solid var(--b1);flex-shrink:0}
-.learn-nav-btn{flex:1;padding:9px 0;background:none;border:none;color:var(--t2);font-family:var(--mono);font-size:9px;letter-spacing:.8px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase}
+.learn-nav-btn{flex:1;padding:10px 0;background:none;border:none;color:var(--t2);font-family:var(--mono);font-size:10px;letter-spacing:1px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase}
 .learn-nav-btn.active{color:var(--a2);border-bottom-color:var(--accent)}
-
-.learn-tabs-scroll{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.learn-tabs-scroll::-webkit-scrollbar{width:3px}
-.learn-tabs-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-
+.learn-scroll{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.learn-scroll::-webkit-scrollbar{width:3px}
+.learn-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 .lpage{display:none;padding:12px 16px}
 .lpage.vis{display:block}
-
-/* Video filter tabs */
 .vid-filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
 .vf-btn{padding:4px 10px;border-radius:20px;border:1px solid var(--b2);background:transparent;color:var(--t2);font-family:var(--sans);font-size:10px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .vf-btn.active{font-weight:600;color:#0a0a0f}
-
-/* Video blocks */
 .vblk{margin-bottom:16px}
-.vblk-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.vblk-hd{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .vblk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .vblk-name{font-family:var(--title);font-size:10px;font-weight:700;letter-spacing:.5px;flex:1}
 .vblk-cnt{font-size:10px;color:var(--t2)}
@@ -225,8 +242,24 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .vid-btn.scr{font-size:9px}
 .scr-num{font-family:var(--mono);font-size:10px;font-weight:700}
 .scr-no{font-size:7px;color:var(--t3);text-align:center;line-height:1.2}
-
-/* Test modal */
+.lstats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.lstat-card{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px}
+.lstat-val{font-family:var(--title);font-size:22px;font-weight:800;margin-bottom:3px}
+.lstat-lbl{font-size:9px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px}
+.lrep-section{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-bottom:10px}
+.lrep-section h3{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--t3);margin-bottom:10px;text-transform:uppercase}
+.lrep-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #2a2a4033;font-size:11px}
+.lrep-row:last-child{border-bottom:none}
+.lrep-val{font-family:var(--mono);font-size:11px;font-weight:700}
+.lblk-stat-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #2a2a4033}
+.lblk-stat-row:last-child{border-bottom:none}
+.lblk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.lblk-name{font-size:11px;flex:1}
+.lblk-bw{width:80px;height:4px;background:var(--b1);border-radius:2px;overflow:hidden}
+.lblk-bf{height:100%;border-radius:2px}
+.lblk-val{font-family:var(--mono);font-size:9px;font-weight:700;width:28px;text-align:right}
+.lblk-score{font-size:9px;width:30px;text-align:right;font-family:var(--mono)}
+/* Test overlay */
 .test-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;overflow-y:auto;padding:16px;align-items:flex-start;justify-content:center}
 .test-overlay.open{display:flex}
 .test-modal{background:var(--s2);border:1px solid var(--b2);border-radius:14px;max-width:460px;width:100%;margin:auto}
@@ -252,36 +285,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .res-n{font-family:var(--title);font-size:36px;font-weight:800;margin-bottom:4px}
 .res-l{font-size:12px;color:var(--t2);margin-bottom:18px}
 .res-btn{padding:9px 22px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:600;background:var(--accent);color:#fff}
-
-/* Learn stats page */
-.lstats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.lstat-card{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px}
-.lstat-val{font-family:var(--title);font-size:22px;font-weight:800;margin-bottom:3px}
-.lstat-lbl{font-size:9px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px}
-.lstat-card.wide{grid-column:span 2}
-.lblk-stat-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--b1)33}
-.lblk-stat-row:last-child{border-bottom:none}
-.lblk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.lblk-name{font-size:11px;flex:1}
-.lblk-bar-wrap{width:80px;height:4px;background:var(--b1);border-radius:2px;overflow:hidden}
-.lblk-bar{height:100%;border-radius:2px}
-.lblk-val{font-family:var(--mono);font-size:9px;font-weight:700;width:28px;text-align:right}
-.lblk-score{font-size:9px;width:30px;text-align:right;font-family:var(--mono)}
-.streak-big{text-align:center;padding:14px 0}
-.streak-num{font-family:var(--title);font-size:44px;font-weight:800;color:#c8854a}
-.streak-lbl{font-size:11px;color:var(--t2);margin-top:4px}
-
-/* Learn report page */
-.lrep-section{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-bottom:10px}
-.lrep-section h3{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--t3);margin-bottom:10px;text-transform:uppercase}
-.lrep-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--b1)33;font-size:11px}
-.lrep-row:last-child{border-bottom:none}
-.lrep-val{font-family:var(--mono);font-size:11px;font-weight:700}
-.lrep-best{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px;margin-bottom:7px}
-.lrep-best-l{font-size:9px;color:var(--t2);margin-bottom:2px;font-family:var(--mono)}
-.lrep-best-v{font-size:12px;font-weight:500}
-
-/* CONFETTI */
+/* Confetti */
 .conf-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
 @keyframes cpfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
@@ -289,107 +293,90 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 </head>
 <body>
 
-<!-- GLOBAL NAV -->
-<div class="global-nav">
-  <button class="gn-btn active" onclick="showGPage('today',this)">СЕГОДНЯ</button>
-  <button class="gn-btn" onclick="showGPage('history',this)">ИСТОРИЯ</button>
-  <button class="gn-btn" onclick="showGPage('learning',this)">ОБУЧЕНИЕ</button>
-  <div class="gn-clock" id="gn-clock">00:00:00</div>
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn active" onclick="showPage('today',this)">СЕГОДНЯ</button>
+  <button class="nav-btn" onclick="showPage('history',this)">ИСТОРИЯ</button>
+  <button class="nav-btn" onclick="showPage('learning',this)">ОБУЧЕНИЕ</button>
+  <div class="nav-clock" id="nav-clock">00:00:00</div>
 </div>
 
-<!-- ══ PAGE: TODAY ══ -->
-<div class="gpage active" id="gpage-today">
-  <div class="today-body">
-    <!-- LEFT: top=stats, bottom=tasks -->
-    <div class="tl-col">
-      <div class="tl-header">
-        <div class="tl-date" id="tl-date">пятница, 27 марта</div>
-        <div class="tl-sub-row">
-          <span id="tl-sub-txt" class="tl-done-label">выполнено 0 из 29</span>
-          <div class="tl-progress-mini"><div class="tl-progress-mini-fill" id="tl-mini-bar" style="width:0%"></div></div>
-          <span id="tl-pct-mini" class="tl-pct-label">0%</span>
-          <button style="font-family:var(--mono);font-size:11px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:6px 14px;border-radius:6px;cursor:pointer;letter-spacing:.5px;margin-left:auto" onclick="resetDay()">СБРОС</button>
-        </div>
-        <div class="tl-stat-cards">
-          <div class="tl-stat-card green"><div class="tl-stat-val" id="sv-done2">0</div><div class="tl-stat-lbl">ГОТОВО</div></div>
-          <div class="tl-stat-card blue"><div class="tl-stat-val" id="sv-rem2">0</div><div class="tl-stat-lbl">ОСТАЛОСЬ</div></div>
-          <div class="tl-stat-card red"><div class="tl-stat-val" id="sv-miss2">0</div><div class="tl-stat-lbl">ПРОПУЩЕНО</div></div>
-        </div>
+<!-- TODAY -->
+<div class="page active" id="pg-today">
+  <div class="left-col">
+    <div class="left-header">
+      <div class="lh-date" id="lh-date">суббота, 28 марта</div>
+      <div class="lh-row">
+        <span class="lh-done" id="lh-done-txt">выполнено 0 из 29</span>
+        <div class="lh-bar-wrap"><div class="lh-bar" id="lh-bar" style="width:0%"></div></div>
+        <span class="lh-pct" id="lh-pct">0%</span>
+        <button class="lh-reset" onclick="resetDay()">СБРОС</button>
       </div>
-      <div class="tl-scroll" id="tl-scroll"></div>
+      <div class="lh-cards">
+        <div class="lh-card green"><div class="lh-card-val" id="lc-done">0</div><div class="lh-card-lbl">ГОТОВО</div></div>
+        <div class="lh-card blue"><div class="lh-card-val" id="lc-rem">0</div><div class="lh-card-lbl">ОСТАЛОСЬ</div></div>
+        <div class="lh-card red"><div class="lh-card-val" id="lc-miss">0</div><div class="lh-card-lbl">ПРОПУЩЕНО</div></div>
+      </div>
     </div>
-
-    <!-- RIGHT: sidebar stats -->
-    <div class="sb-col" id="sb-col"></div>
+    <div class="tasks-scroll" id="tasks-scroll"></div>
   </div>
+  <div class="right-col" id="right-col"></div>
 </div>
 
-<!-- ══ PAGE: HISTORY ══ -->
-<div class="gpage" id="gpage-history">
-  <div class="history-body" id="history-body">
+<!-- HISTORY -->
+<div class="page" id="pg-history">
+  <div class="hist-body">
     <div class="hist-title">История дней</div>
     <div class="hist-sub">Архив выполнения задач по дням</div>
-    <div class="hist-days" id="hist-days"></div>
+    <div id="hist-days"></div>
   </div>
 </div>
 
-<!-- ══ PAGE: LEARNING ══ -->
-<div class="gpage" id="gpage-learning">
-  <div class="learn-body">
-    <div class="learn-header">
-      <div>
-        <div class="learn-title">АПРЕЛЬ 2026</div>
-        <div style="font-size:10px;color:var(--t2);margin-top:4px;font-family:var(--mono)"><span id="hdn">0</span> / 43 видео · <span id="hdm">0</span> мин просмотрено</div>
+<!-- LEARNING -->
+<div class="page" id="pg-learning">
+  <div class="learn-hd">
+    <div>
+      <div class="learn-hd-title">АПРЕЛЬ 2026</div>
+      <div style="font-size:10px;color:var(--t2);margin-top:4px;font-family:var(--mono)"><span id="hdn">0</span> / 43 видео · <span id="hdm">0</span> мин</div>
+    </div>
+    <div class="learn-hd-right">
+      <div style="text-align:right">
+        <div class="learn-stat-val" id="learn-done-n">0</div>
+        <div class="learn-stat-lbl">ПРОСМОТРЕНО</div>
       </div>
-      <div class="learn-stats-row">
-        <div class="learn-stat">
-          <div class="learn-stat-val" id="learn-done-n">0</div>
-          <div class="learn-stat-lbl">ПРОСМОТРЕНО</div>
-        </div>
-        <div class="learn-ring">
-          <svg width="50" height="50" viewBox="0 0 50 50">
-            <circle fill="none" stroke="#1a1a28" stroke-width="4" cx="25" cy="25" r="20"/>
-            <circle fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"
-              cx="25" cy="25" r="20" stroke-dasharray="125.66" stroke-dashoffset="125.66"
-              id="learn-ring-fg" style="transition:stroke-dashoffset .5s"/>
-          </svg>
-          <div class="ring-pct" id="learn-ring-pct">0%</div>
-        </div>
+      <div class="learn-ring">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+          <circle fill="none" stroke="#1a1a28" stroke-width="4" cx="25" cy="25" r="20"/>
+          <circle fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"
+            cx="25" cy="25" r="20" stroke-dasharray="125.66" stroke-dashoffset="125.66"
+            id="learn-ring-fg" style="transition:stroke-dashoffset .5s"/>
+        </svg>
+        <div class="ring-pct" id="learn-ring-pct">0%</div>
       </div>
     </div>
-
-    <div class="learn-nav">
-      <button class="learn-nav-btn active" onclick="showLearnPage('videos',this)">ВИДЕО</button>
-      <button class="learn-nav-btn" onclick="showLearnPage('stats',this)">СТАТИСТИКА</button>
-      <button class="learn-nav-btn" onclick="showLearnPage('report',this)">ОТЧЁТ</button>
+  </div>
+  <div class="learn-nav">
+    <button class="learn-nav-btn active" onclick="showLearnPage('videos',this)">ВИДЕО</button>
+    <button class="learn-nav-btn" onclick="showLearnPage('stats',this)">СТАТИСТИКА</button>
+    <button class="learn-nav-btn" onclick="showLearnPage('report',this)">ОТЧЁТ</button>
+  </div>
+  <div class="learn-scroll">
+    <div class="lpage vis" id="lpage-videos">
+      <div class="vid-filters" id="vid-filters"></div>
+      <div id="vid-content"></div>
     </div>
-
-    <div class="learn-tabs-scroll">
-      <!-- VIDEOS PAGE -->
-      <div class="lpage vis" id="lpage-videos">
-        <div class="vid-filters" id="vid-filters"></div>
-        <div id="vid-content"></div>
-      </div>
-      <!-- STATS PAGE -->
-      <div class="lpage" id="lpage-stats">
-        <div class="lstats-grid" id="lstats-grid"></div>
-        <div class="lrep-section"><h3>По блокам</h3><div id="lblk-stats"></div></div>
-      </div>
-      <!-- REPORT PAGE -->
-      <div class="lpage" id="lpage-report">
-        <div id="lrep-content"></div>
-      </div>
+    <div class="lpage" id="lpage-stats">
+      <div class="lstats-grid" id="lstats-grid"></div>
+      <div class="lrep-section"><h3>По блокам</h3><div id="lblk-stats"></div></div>
     </div>
+    <div class="lpage" id="lpage-report"><div id="lrep-content"></div></div>
   </div>
 </div>
 
 <!-- Test overlay -->
 <div class="test-overlay" id="test-overlay" onclick="if(event.target===this)closeTest()">
   <div class="test-modal">
-    <div class="test-hd">
-      <div class="test-ttl" id="test-ttl"></div>
-      <button class="test-x" onclick="closeTest()">×</button>
-    </div>
+    <div class="test-hd"><div class="test-ttl" id="test-ttl"></div><button class="test-x" onclick="closeTest()">×</button></div>
     <div class="test-body" id="test-body"></div>
     <div class="test-ft" id="test-ft" style="display:none">
       <div class="test-prog" id="test-prog"></div>
@@ -397,16 +384,19 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
   </div>
 </div>
-
 <div class="conf-layer" id="confetti"></div>
 
 <script>
-/* ════════════════════════════════
-   TASKS DATA
-════════════════════════════════ */
-const TASK_SAVE='dash_v5';
-const HIST_SAVE='dash_hist_v1';
-
+const TASK_SAVE='dash_v5',HIST_SAVE='dash_hist_v1';
+const QUOTES=[
+  {t:'Дисциплина — это мост между целями и достижениями.',a:'Джим Рон'},
+  {t:'Не считай дни — сделай так, чтобы каждый день считался.',a:'Мухаммед Али'},
+  {t:'Маленький шаг каждый день приводит к большим результатам.',a:'—'},
+  {t:'Успех — это сумма небольших усилий, повторяемых изо дня в день.',a:'Роберт Кольер'},
+  {t:'Сделай сегодня то, что другие не хотят делать.',a:'—'},
+  {t:'Ты не обязан быть крутым — ты обязан становиться лучше.',a:'—'},
+  {t:'Фокус — это умение говорить "нет" всему, кроме главного.',a:'Стив Джобс'},
+];
 const INIT_TASKS=[
   {id:1,time:'06:30',name:'Подъём и стакан воды',cat:'health',dur:10},
   {id:2,time:'06:45',name:'Утренняя зарядка',cat:'sport',dur:15},
@@ -438,8 +428,7 @@ const INIT_TASKS=[
   {id:28,time:'22:20',name:'Чтение перед сном',cat:'study',dur:30},
   {id:29,time:'23:00',name:'Отбой',cat:'health',dur:0},
 ];
-
-const CAT_META={
+const CAT={
   work:{label:'Работа',color:'#3b82f6',tag:'tag-work'},
   health:{label:'Здоровье',color:'#22c55e',tag:'tag-health'},
   personal:{label:'Личное',color:'#f59e0b',tag:'tag-personal'},
@@ -447,23 +436,16 @@ const CAT_META={
   study:{label:'Учёба',color:'#06b6d4',tag:'tag-study'},
   sport:{label:'Спорт',color:'#f97316',tag:'tag-sport'},
 };
-
-function loadTasks(){try{const s=localStorage.getItem(TASK_SAVE);if(s)return JSON.parse(s);}catch(e){}return INIT_TASKS.map(t=>({...t,done:false}));}
-function saveTasks(t){try{localStorage.setItem(TASK_SAVE,JSON.stringify(t));}catch(e){}}
-function loadHist(){try{const s=localStorage.getItem(HIST_SAVE);if(s)return JSON.parse(s);}catch(e){}return [];}
-function saveHist(h){try{localStorage.setItem(HIST_SAVE,JSON.stringify(h));}catch(e){}}
-
-let tasks=loadTasks();
-let chartInst=null;
-let confDone=false;
-
+function lT(){try{const s=localStorage.getItem(TASK_SAVE);if(s)return JSON.parse(s);}catch(e){}return INIT_TASKS.map(t=>({...t,done:false}));}
+function sT(t){try{localStorage.setItem(TASK_SAVE,JSON.stringify(t));}catch(e){}}
+function lH(){try{const s=localStorage.getItem(HIST_SAVE);if(s)return JSON.parse(s);}catch(e){}return[];}
+function sH(h){try{localStorage.setItem(HIST_SAVE,JSON.stringify(h));}catch(e){}}
+let tasks=lT(),chartInst=null,confDone=false;
 const toMin=t=>{const[h,m]=t.split(':').map(Number);return h*60+m;};
 const nowMin=()=>{const n=new Date();return n.getHours()*60+n.getMinutes();};
 const fmt=d=>d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-const fmtDate=d=>d.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
 const fmtNow=()=>new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-const todayKey=()=>{const d=new Date();return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;};
-
+const todayKey=()=>{const d=new Date();return`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;};
 function getStats(){
   const total=tasks.length,done=tasks.filter(t=>t.done).length;
   const nm=nowMin();
@@ -474,8 +456,7 @@ function getStats(){
   const doneMin=tasks.filter(t=>t.done).reduce((a,t)=>a+(t.dur||0),0);
   return{total,done,missed,remaining,pct,totalMin,doneMin};
 }
-
-function getCatStats(){
+function getCS(){
   const r={};
   tasks.forEach(t=>{
     if(!r[t.cat])r[t.cat]={total:0,done:0,doneMin:0,totalMin:0};
@@ -484,26 +465,33 @@ function getCatStats(){
   });
   return r;
 }
-
 function timePct(){
   const START=6*60,END=23*60,nm=nowMin();
   if(nm<=START)return 0;if(nm>=END)return 100;
   return Math.round((nm-START)/(END-START)*100);
 }
+function hoursLeft(){
+  const END=23*60,nm=nowMin();
+  const mins=Math.max(0,END-nm);
+  return(mins/60).toFixed(1);
+}
+function dayPct(){
+  return timePct();
+}
 
-/* ── GLOBAL NAV ── */
-function showGPage(id,btn){
-  document.querySelectorAll('.gpage').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.gn-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('gpage-'+id).classList.add('active');
+/* ── PAGE NAV ── */
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pg-'+id).classList.add('active');
   btn.classList.add('active');
   if(id==='history')renderHistory();
   if(id==='learning'){renderLearnVideos();updLearnStats();}
 }
 
-/* ── RENDER TODAY ── */
+/* ── TIMELINE ── */
 function renderTimeline(){
-  const tl=document.getElementById('tl-scroll');if(!tl)return;
+  const tl=document.getElementById('tasks-scroll');if(!tl)return;
   const nm=nowMin();
   let html='',nowInserted=false;
   tasks.forEach((t,i)=>{
@@ -511,9 +499,9 @@ function renderTimeline(){
     const nextMin=tasks[i+1]?toMin(tasks[i+1].time):Infinity;
     if(!nowInserted&&((tMin<=nm&&nm<nextMin)||(i===0&&nm<tMin))){
       nowInserted=true;
-      html+=`<div class="now-bar"><div class="now-dot"></div><div class="now-time-lbl" id="nb-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`;
+      html+=`<div class="now-bar"><div class="now-dot"></div><div class="now-t" id="nb-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`;
     }
-    const m=CAT_META[t.cat]||CAT_META.work;
+    const m=CAT[t.cat]||CAT.work;
     const missed=!t.done&&tMin<nm;
     const current=tMin<=nm&&nm<tMin+(t.dur||30);
     html+=`<div class="task-card cat-${t.cat}${t.done?' done':''}${missed?' missed':''}${current&&!t.done?' current-task':''}" onclick="toggleTask(${t.id})">
@@ -524,1117 +512,217 @@ function renderTimeline(){
       <div class="ttag ${m.tag}">${m.label}</div>
     </div>`;
   });
-  if(!nowInserted)html=`<div class="now-bar"><div class="now-dot"></div><div class="now-time-lbl" id="nb-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`+html;
+  if(!nowInserted)html=`<div class="now-bar"><div class="now-dot"></div><div class="now-t" id="nb-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`+html;
   tl.innerHTML=html;
   setTimeout(()=>{const nb=tl.querySelector('.now-bar');if(nb)nb.scrollIntoView({block:'center',behavior:'smooth'});},100);
 }
 
+/* ── SIDEBAR ── */
 function renderSidebar(){
-  const sb=document.getElementById('sb-col');if(!sb)return;
-  const s=getStats(),cs=getCatStats();
-  const tp=timePct();
-  const doneH=Math.floor(s.doneMin/60),doneM=s.doneMin%60;
-  const totalH=Math.floor(s.totalMin/60);
+  const sb=document.getElementById('right-col');if(!sb)return;
+  const s=getStats(),cs=getCS(),tp=timePct();
+  const dH=Math.floor(s.doneMin/60),dM=s.doneMin%60,tH=Math.floor(s.totalMin/60);
 
   let catRows='';
-  Object.entries(CAT_META).forEach(([key,meta])=>{
-    const v=cs[key]||{total:0,done:0};
+  Object.entries(CAT).forEach(([k,m])=>{
+    const v=cs[k]||{total:0,done:0};
     const p=v.total?Math.round(v.done/v.total*100):0;
     catRows+=`<div class="cat-row">
-      <div class="cat-dot" style="background:${meta.color}"></div>
-      <div class="cat-name">${meta.label}</div>
-      <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${p}%;background:${meta.color}"></div></div>
+      <div class="cat-dot" style="background:${m.color}"></div>
+      <div class="cat-name">${m.label}</div>
+      <div class="cat-bg"><div class="cat-fill" style="width:${p}%;background:${m.color}"></div></div>
       <div class="cat-meta">${v.done}/${v.total} · ${p}%</div>
     </div>`;
   });
 
+  // Week activity
+  const hist=lH();
+  const weekDays=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  const today=new Date();
+  let weekHTML='';
+  for(let i=6;i>=0;i--){
+    const d=new Date(today);d.setDate(d.getDate()-i);
+    const key=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+    const entry=hist.find(h=>h.key===key);
+    const pct=entry?Math.round(entry.tasks.filter(t=>t.done).length/entry.tasks.length*100):0;
+    const isToday=i===0;
+    const color=pct>=80?'var(--green)':pct>=40?'var(--accent)':pct>0?'var(--t3)':'var(--b1)';
+    const dow=weekDays[(d.getDay()+6)%7];
+    weekHTML+=`<div class="week-bar-col">
+      <div class="week-bar-bg" style="position:relative">
+        <div class="week-bar-fill" style="height:${Math.max(4,pct)}%;background:${color};min-height:4px"></div>
+      </div>
+      <div class="week-bar-lbl" style="color:${isToday?'var(--a2)':'var(--t3)'}">${dow}</div>
+    </div>`;
+  }
+
+  // Streak
+  let streak=0;
+  const cur=new Date();
+  while(true){
+    const key=`${cur.getFullYear()}-${cur.getMonth()+1}-${cur.getDate()}`;
+    const entry=hist.find(h=>h.key===key);
+    const todayCheck=cur.toDateString()===today.toDateString();
+    if(entry&&entry.tasks.filter(t=>t.done).length>0){streak++;cur.setDate(cur.getDate()-1);}
+    else if(todayCheck){cur.setDate(cur.getDate()-1);}
+    else break;
+    if(streak>365)break;
+  }
+
+  // Quote
+  const q=QUOTES[today.getDate()%QUOTES.length];
+
+  // Countdown
+  const hl=hoursLeft();
+  const cdPct=dayPct();
+  const cdOffset=Math.round(245*(1-cdPct/100));
+
   sb.innerHTML=`
     <!-- PROGRESS -->
-    <div class="sb-block">
-      <div class="sb-block-title">Прогресс дня</div>
-      <div class="prog-item">
-        <div class="prog-meta"><span class="prog-name">Задачи</span><span class="prog-val" id="pp-tasks">${s.pct}%</span></div>
-        <div class="prog-bg" style="height:16px"><div class="prog-fill" id="pf-tasks" style="width:${s.pct}%;height:16px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
+    <div class="rb">
+      <div class="rb-title">Прогресс дня</div>
+      <div class="pi">
+        <div class="pi-meta"><span class="pi-name">Задачи</span><span class="pi-val" id="pp-tasks">${s.pct}%</span></div>
+        <div class="pi-bg" style="height:16px"><div class="pi-fill" id="pf-tasks" style="width:${s.pct}%;height:16px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
       </div>
-      <div class="prog-item">
-        <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val">${tp}%</span></div>
-        <div class="prog-bg" style="height:12px"><div class="prog-fill" id="pf-time" style="width:${tp}%;height:12px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
+      <div class="pi">
+        <div class="pi-meta"><span class="pi-name">Время дня</span><span class="pi-val">${tp}%</span></div>
+        <div class="pi-bg" style="height:12px"><div class="pi-fill" id="pf-time" style="width:${tp}%;height:12px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
       </div>
-      <div class="prog-item" style="margin-bottom:0">
-        <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" style="color:var(--study)">${doneH}ч ${doneM}м / ${totalH}ч</span></div>
-        <div class="prog-bg" style="height:12px"><div class="prog-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:12px;background:var(--study)"></div></div>
+      <div class="pi" style="margin-bottom:0">
+        <div class="pi-meta"><span class="pi-name">Продуктивных минут</span><span class="pi-val" style="color:var(--study)">${dH}ч ${dM}м / ${tH}ч</span></div>
+        <div class="pi-bg" style="height:12px"><div class="pi-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:12px;background:var(--study)"></div></div>
       </div>
     </div>
 
-    <!-- CAT BARS -->
-    <div class="sb-block">
-      <div class="sb-block-title">По категориям</div>
+    <!-- CATEGORIES -->
+    <div class="rb">
+      <div class="rb-title">По категориям</div>
       ${catRows}
     </div>
 
     <!-- DOUGHNUT -->
-    <div class="sb-block">
-      <div class="sb-block-title">Распределение</div>
-      <div class="chart-wrap"><canvas id="dnt"></canvas>
-        <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
-      </div>
-      <div class="chart-legend">
-        ${Object.entries(CAT_META).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
+    <div class="rb">
+      <div class="rb-title">Распределение</div>
+      <div class="chart-row">
+        <div class="chart-wrap"><canvas id="dnt"></canvas>
+          <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
+        </div>
+        <div class="chart-legend">
+          ${Object.entries(CAT).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
+        </div>
       </div>
     </div>
 
     <!-- MINI STATS -->
-    <div class="sb-block">
-      <div class="sb-block-title">Детали</div>
+    <div class="rb">
+      <div class="rb-title">Детали</div>
       <div class="mini-grid">
         <div class="mini-card"><div class="mini-val" id="ms-done">${s.done}</div><div class="mini-lbl">ЗАДАЧ ГОТОВО</div></div>
-        <div class="mini-card"><div class="mini-val">${doneH}ч ${doneM}м</div><div class="mini-lbl">ПРОДУКТИВНОСТЬ</div></div>
+        <div class="mini-card"><div class="mini-val">${dH}ч ${dM}м</div><div class="mini-lbl">ПРОДУКТИВНОСТЬ</div></div>
         <div class="mini-card"><div class="mini-val" style="color:var(--red)">${s.missed}</div><div class="mini-lbl">ПРОПУЩЕНО</div></div>
         <div class="mini-card"><div class="mini-val" style="color:var(--study)">${(cs.study||{done:0}).done}</div><div class="mini-lbl">УЧЁБА ГОТОВА</div></div>
       </div>
     </div>
-  `;
 
-  buildChart(s,cs);
-}
-
-function buildChart(s,cs){
-  const c=document.getElementById('dnt');if(!c)return;
-  if(chartInst){chartInst.destroy();chartInst=null;}
-  const labels=Object.keys(CAT_META);
-  const data=labels.map(k=>(cs[k]||{done:0}).done);
-  const colors=labels.map(k=>CAT_META[k].color);
-  const hasData=data.some(v=>v>0);
-  chartInst=new Chart(c,{
-    type:'doughnut',
-    data:{labels:labels.map(k=>CAT_META[k].label),datasets:[{data:hasData?data:[1],backgroundColor:hasData?colors:['#252535'],borderWidth:0,hoverOffset:6}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{enabled:hasData}}}
-  });
-}
-
-function patchTodayUI(){
-  const s=getStats(),cs=getCatStats(),nm=nowMin();
-  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('sv-done',s.done);byId('sv-rem',s.remaining);byId('sv-miss',s.missed);
-  byId('sv-done2',s.done);byId('sv-rem2',s.remaining);byId('sv-miss2',s.missed);
-  byId('cpct',s.pct+'%');byId('ms-done',s.done);
-  byId('pp-tasks',s.pct+'%');byId('tl-sub-txt',`выполнено ${s.done} из ${s.total}`);
-  byId('tl-pct-mini',s.pct+'%');
-  const pf=id=>document.getElementById(id);
-  if(pf('pf-tasks'))pf('pf-tasks').style.width=s.pct+'%';
-  if(pf('tl-mini-bar'))pf('tl-mini-bar').style.width=s.pct+'%';
-  if(pf('pf-time'))pf('pf-time').style.width=timePct()+'%';
-  if(pf('pf-min'))pf('pf-min').style.width=(s.totalMin?Math.round(s.doneMin/s.totalMin*100):0)+'%';
-  const catFills=document.querySelectorAll('.cat-bar-fill');
-  const catMetas=document.querySelectorAll('.cat-meta');
-  Object.keys(CAT_META).forEach((k,i)=>{
-    const v=cs[k]||{total:0,done:0};const p=v.total?Math.round(v.done/v.total*100):0;
-    if(catFills[i])catFills[i].style.width=p+'%';
-    if(catMetas[i])catMetas[i].textContent=`${v.done}/${v.total} · ${p}%`;
-  });
-  document.querySelectorAll('.task-card').forEach(card=>{
-    const oc=card.getAttribute('onclick')||'';
-    const m=oc.match(/toggleTask\((\d+)\)/);if(!m)return;
-    const t=tasks.find(t=>t.id===+m[1]);if(!t)return;
-    const cb=card.querySelector('.cb');
-    if(t.done){card.classList.add('done');if(cb)cb.classList.add('on');}
-    else{card.classList.remove('done');if(cb)cb.classList.remove('on');}
-  });
-  buildChart(s,cs);
-}
-
-function toggleTask(id){
-  tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
-  saveTasks(tasks);
-  saveHistoryEntry();
-  patchTodayUI();
-  const s=getStats();
-  if(s.done===s.total&&s.total>0&&!confDone)launchConfetti();
-}
-
-function saveHistoryEntry(){
-  const key=todayKey();
-  const hist=loadHist();
-  const now=new Date();
-  const label=now.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  const existing=hist.findIndex(h=>h.key===key);
-  const entry={key,label,tasks:tasks.map(t=>({id:t.id,name:t.name,cat:t.cat,time:t.time,done:t.done}))};
-  if(existing>=0)hist[existing]=entry;else hist.unshift(entry);
-  saveHist(hist.slice(0,30));
-}
-
-function resetDay(){
-  saveHistoryEntry();
-  tasks=INIT_TASKS.map(t=>({...t,done:false}));
-  saveTasks(tasks);
-  confDone=false;
-  renderTimeline();
-  renderSidebar();
-}
-
-/* ── HISTORY ── */
-function renderHistory(){
-  const container=document.getElementById('hist-days');if(!container)return;
-  const hist=loadHist();
-  if(!hist.length){
-    container.innerHTML=`<div class="no-history"><div class="no-hist-ico">📅</div><div>Здесь будет история твоих дней.<br>Она появится, как только ты начнёшь отмечать задачи.</div></div>`;
-    return;
-  }
-  container.innerHTML=hist.map((day,idx)=>{
-    const total=day.tasks.length;
-    const done=day.tasks.filter(t=>t.done).length;
-    const pct=total?Math.round(done/total*100):0;
-    const tasksHTML=day.tasks.map(t=>{
-      const m=CAT_META[t.cat]||CAT_META.work;
-      return`<div class="hist-task-row">
-        <div class="hist-task-dot" style="background:${m.color}"></div>
-        <div class="hist-task-name">${t.time} · ${t.name}</div>
-        <div class="hist-task-done ${t.done?'hist-done-yes':'hist-done-no'}">${t.done?'✓':'—'}</div>
-      </div>`;
-    }).join('');
-    return`<div class="hist-day">
-      <div class="hist-day-header" onclick="toggleHistDay(${idx})">
-        <div class="hist-day-date">${day.label}</div>
-        <div class="hist-day-meta">
-          <div class="hist-day-pct">${pct}%</div>
-          <div class="hist-day-bar-wrap"><div class="hist-day-bar" style="width:${pct}%"></div></div>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--t3)">${done}/${total}</span>
+    <!-- STREAK + WEEK -->
+    <div class="rb">
+      <div class="rb-title">Серия и активность</div>
+      <div class="streak-row" style="margin-bottom:16px">
+        <div class="streak-num">${streak}</div>
+        <div class="streak-info">
+          <div class="streak-lbl">🔥 дней подряд</div>
+          <div class="streak-sub">Не прерывай серию!</div>
         </div>
       </div>
-      <div class="hist-day-tasks" id="hd-tasks-${idx}">${tasksHTML}</div>
-    </div>`;
-  }).join('');
-}
+      <div class="week-bars" id="week-bars">${weekHTML}</div>
+    </div>
 
-function toggleHistDay(idx){
-  const el=document.getElementById('hd-tasks-'+idx);
-  if(el)el.classList.toggle('open');
-}
-
-/* ── LEARNING DATA ── */
-const BL={
-  "История":{c:"#c8854a",i:"📜"},
-  "Животный мир":{c:"#4a9e6b",i:"🐾"},
-  "Discovery":{c:"#4a7ec8",i:"🌍"},
-  "Философия":{c:"#9b6bc8",i:"🧠"},
-  "Экономика":{c:"#c8c84a",i:"💰"},
-  "ИИ":{c:"#c84a7e",i:"🤖"}
-};
-const VV=[
-  {id:1,t:"Тайна катаров: как зачищали Францию",b:"История",ch:"МИНАЕВ LIVE",d:"52:45",m:52.75},
-  {id:2,t:"Октябрьская революция",b:"История",ch:"МИНАЕВ LIVE",d:"1:04:57",m:64.95},
-  {id:3,t:"Викторианская эпоха",b:"История",ch:"МИНАЕВ LIVE",d:"53:09",m:53.15},
-  {id:4,t:"Викинги",b:"История",ch:"МИНАЕВ LIVE",d:"1:07:27",m:67.45},
-  {id:5,t:"Крестовые походы",b:"История",ch:"МИНАЕВ LIVE",d:"1:06:23",m:66.38},
-  {id:6,t:"Карибский кризис / Холодная война",b:"История",ch:"МИНАЕВ LIVE",d:"45:40",m:45.67},
-  {id:7,t:"Берлинская стена / Разделение ГДР и ФРГ",b:"История",ch:"МИНАЕВ LIVE",d:"43:16",m:43.27},
-  {id:8,t:"Афганская война / Почему СССР ввёл войска",b:"История",ch:"МИНАЕВ LIVE",d:"53:11",m:53.18},
-  {id:9,t:"Югославия / Распад Югославии",b:"История",ch:"МИНАЕВ LIVE",d:"58:41",m:58.68},
-  {id:10,t:"Ассасины / Секта наёмных убийц",b:"История",ch:"МИНАЕВ LIVE",d:"39:52",m:39.87},
-  {id:11,t:"Нефть: История войны",b:"История",ch:"МИНАЕВ LIVE",d:"57:15",m:57.25},
-  {id:12,t:"Комодский Варан: Самый опасный ящер",b:"Животный мир",ch:"PRO Животных",d:"12:43",m:12.72},
-  {id:13,t:"Гиена: Самый эффективный хищник саванны",b:"Животный мир",ch:"PRO Животных",d:"15:03",m:15.05},
-  {id:14,t:"Антилопа Гну: Жизненная сила саванны",b:"Животный мир",ch:"PRO Животных",d:"12:39",m:12.65},
-  {id:15,t:"Бородавочник: Самый смелый кабан в мире",b:"Животный мир",ch:"PRO Животных",d:"15:43",m:15.72},
-  {id:16,t:"Овцебык: Бык в овечьей шкуре",b:"Животный мир",ch:"PRO Животных",d:"13:50",m:13.83},
-  {id:17,t:"Носорог: Доисторический титан саванны",b:"Животный мир",ch:"PRO Животных",d:"19:18",m:19.30},
-  {id:18,t:"Nat Geo Wild. Мир документальных фильмов",b:"Животный мир",ch:"Мир Докум. Фильмов",d:"1:39:16",m:99.27},
-  {id:19,t:"Удивительный животный мир — Таиланд (1)",b:"Животный мир",ch:"Дикая природа",d:"45:01",m:45.02},
-  {id:20,t:"Удивительный животный мир — Таиланд (2)",b:"Животный мир",ch:"Дикая природа",d:"45:04",m:45.07},
-  {id:21,t:"Удивительный животный мир — Амазонка",b:"Животный мир",ch:"Дикая природа",d:"44:58",m:44.97},
-  {id:22,t:"Удивительный животный мир — Акулы",b:"Животный мир",ch:"Дикая природа",d:"47:38",m:47.63},
-  {id:23,t:"Удивительный животный мир — Сибирь",b:"Животный мир",ch:"Дикая природа",d:"46:52",m:46.87},
-  {id:24,t:"Нил | Дикие реки Африки",b:"Discovery",ch:"Discovery Channel Россия",d:"44:10",m:44.17},
-  {id:25,t:"Луангва | Дикие реки Африки",b:"Discovery",ch:"Discovery Channel Россия",d:"44:19",m:44.32},
-  {id:26,t:"Окаванго | Дикие реки Африки",b:"Discovery",ch:"Discovery Channel Россия",d:"28:27",m:28.45},
-  {id:27,t:"Замбези | Дикие реки Африки",b:"Discovery",ch:"Discovery Channel Россия",d:"43:57",m:43.95},
-  {id:28,t:"Река Санд | Дикие реки Африки",b:"Discovery",ch:"Discovery Channel Россия",d:"31:40",m:31.67},
-  {id:29,t:"Карибы | Неизведанные острова",b:"Discovery",ch:"Discovery Channel Россия",d:"43:56",m:43.93},
-  {id:30,t:"Филиппины | Неизведанные острова",b:"Discovery",ch:"Discovery Channel Россия",d:"43:51",m:43.85},
-  {id:31,t:"Гавайи | Самые изолированные острова",b:"Discovery",ch:"Discovery Channel Россия",d:"44:03",m:44.05},
-  {id:32,t:"Реки, озёра и океаны | Неизведанная Европа",b:"Discovery",ch:"Discovery Channel Россия",d:"43:52",m:43.87},
-  {id:33,t:"Античная философия. Лекция 1 — Возникновение",b:"Философия",ch:"Andrii Baumeister",d:"54:10",m:54.17},
-  {id:34,t:"Античная философия. Лекция 2 — Почему возникла",b:"Философия",ch:"Andrii Baumeister",d:"1:00:53",m:60.88},
-  {id:35,t:"Античная философия. Лекция 3 — Милетская школа",b:"Философия",ch:"Andrii Baumeister",d:"1:02:07",m:62.12},
-  {id:36,t:"Античная философия. Лекция 4 — Пифагор",b:"Философия",ch:"Andrii Baumeister",d:"1:03:48",m:63.80},
-  {id:37,t:"Античная философия. Лекция 5 — Гераклит",b:"Философия",ch:"Andrii Baumeister",d:"1:00:21",m:60.35},
-  {id:38,t:"Античная философия. Лекция 6 — Парменид",b:"Философия",ch:"Andrii Baumeister",d:"47:37",m:47.62},
-  {id:39,t:"Игра в мышление: создание ИИ",b:"ИИ",ch:"AI из первых уст",d:"1:21:04",m:81.07},
-  {id:40,t:"Уникальная трагедия. Страна без инфляции (Япония)",b:"Экономика",ch:"Простая экономика",d:"25:51",m:25.85},
-  {id:41,t:"Почему Германия до сих пор разделена?",b:"Экономика",ch:"Простая экономика",d:"37:34",m:37.57},
-  {id:42,t:"Лучшая Россия в истории. Нулевые",b:"Экономика",ch:"Простая экономика",d:"43:33",m:43.55},
-  {id:43,t:"Как Китай стал таким могущественным",b:"Экономика",ch:"Простая экономика",d:"56:34",m:56.57}
-];
-
-const VTOTAL=VV.reduce((s,v)=>s+v.m,0);
-let vDone=new Set(JSON.parse(localStorage.getItem('ap_done')||'[]'));
-let vScores=JSON.parse(localStorage.getItem('ap_sc')||'{}');
-let vFilter='all';
-
-function vsave(){localStorage.setItem('ap_done',JSON.stringify([...vDone]));localStorage.setItem('ap_sc',JSON.stringify(vScores));}
-function sc2col(p){return p>=80?'#4ac878':p>=50?'#c8c84a':'#dc3c3c';}
-
-function updLearnStats(){
-  const dc=vDone.size;
-  const dm=VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0);
-  const pct=Math.round(dm/VTOTAL*100);
-  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('hdn',dc);byId('hdm',Math.round(dm));byId('learn-done-n',dc);
-  byId('learn-ring-pct',pct+'%');
-  const rfg=document.getElementById('learn-ring-fg');
-  if(rfg)rfg.style.strokeDashoffset=125.66-(125.66*pct/100);
-  Object.keys(BL).forEach(block=>{
-    const bv=VV.filter(v=>v.b===block);
-    const bdc=bv.filter(v=>vDone.has(v.id)).length;
-    const bar=document.getElementById('vbar'+block);
-    if(bar)bar.style.width=(bv.length?bdc/bv.length*100:0)+'%';
-    const cnt=document.getElementById('vcnt'+block);
-    if(cnt)cnt.textContent=bdc+'/'+bv.length;
-    const tested=bv.filter(v=>vScores[v.id]);
-    const avg=tested.length?Math.round(tested.reduce((s,v)=>s+(vScores[v.id].c/vScores[v.id].t*100),0)/tested.length):null;
-    const bav=document.getElementById('vbav'+block);
-    if(bav){if(avg!==null){bav.textContent=avg+'%';bav.style.color=sc2col(avg);bav.style.display='inline-block';}else bav.style.display='none';}
-    bv.forEach(v=>{
-      const sb=document.getElementById('vsb'+v.id);if(!sb||!vScores[v.id])return;
-      const sp=Math.round(vScores[v.id].c/vScores[v.id].t*100);
-      sb.innerHTML=`<span class="scr-num" style="color:${sc2col(sp)}">${sp}%</span>`;
-      sb.className='vid-btn scr';sb.style.borderColor=sc2col(sp)+'44';
-    });
-  });
-}
-
-function renderLearnVideos(){
-  const order=["История","Животный мир","Discovery","Философия","Экономика","ИИ"];
-  // Filters
-  const ff=document.getElementById('vid-filters');
-  if(ff&&!ff.innerHTML){
-    ff.innerHTML=[{key:'all',label:'Все'},...order.map(o=>({key:o,label:BL[o].i+' '+o}))].map(f=>`<button class="vf-btn${f.key==='all'?' active':''}" onclick="vFlt('${f.key}',this)" style="${f.key==='all'?'background:#c8854a;color:#0a0a0f;border-color:#c8854a':''}">${f.label}</button>`).join('');
-  }
-  const vc=document.getElementById('vid-content');if(!vc)return;
-  vc.innerHTML=order.map(block=>{
-    const cfg=BL[block];
-    const bv=VV.filter(v=>v.b===block);
-    const show=vFilter==='all'||vFilter===block;
-    const rows=bv.map(v=>{
-      const isDone=vDone.has(v.id);
-      const sc=vScores[v.id]?Math.round(vScores[v.id].c/vScores[v.id].t*100):null;
-      const chkStyle=isDone?`background:${cfg.c};border-color:${cfg.c}`:'border-color:rgba(255,255,255,.18)';
-      const ytUrl='https://www.youtube.com/results?search_query='+encodeURIComponent(v.t+' '+v.ch);
-      const scrHtml=sc!==null?`<span class="scr-num" style="color:${sc2col(sc)}">${sc}%</span>`:'<span class="scr-no">тест</span>';
-      return `<div class="vid-row">
-        <div class="vid-card${isDone?' done':''}" id="vc${v.id}" onclick="vtoggle(${v.id})">
-          <div class="vid-chk" style="${chkStyle}">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="vid-info"><div class="vid-title">${v.t}</div><div class="vid-meta"><span class="vid-ch">${v.ch}</span><span class="vid-dur">${v.d}</span></div></div>
+    <!-- COUNTDOWN -->
+    <div class="rb">
+      <div class="rb-title">До конца дня</div>
+      <div class="countdown-row">
+        <div class="cd-left">
+          <div class="cd-num">${hl}</div>
+          <div class="cd-lbl">ЧАСОВ ОСТАЛОСЬ</div>
         </div>
-        <a class="vid-btn yt" href="${ytUrl}" target="_blank">▶</a>
-        <button class="vid-btn tst" onclick="startTest(${v.id})">📝</button>
-        <div class="vid-btn scr" id="vsb${v.id}" style="${sc!==null?'border-color:'+sc2col(sc)+'44':''}">${scrHtml}</div>
-      </div>`;
-    }).join('');
-    return `<div class="vblk${show?'':' hide'}" id="vblk${block}" style="${show?'':'display:none'}">
-      <div class="vblk-header">
-        <div class="vblk-dot" style="background:${cfg.c}"></div>
-        <div class="vblk-name" style="color:${cfg.c}">${cfg.i} ${block}</div>
-        <div class="vblk-cnt" id="vcnt${block}">0/${bv.length}</div>
-        <div class="vblk-avg" id="vbav${block}"></div>
-      </div>
-      <div class="vblk-bar"><div class="vblk-bar-fill" id="vbar${block}" style="background:${cfg.c};width:0%"></div></div>
-      <div class="vid-list">${rows}</div>
-    </div>`;
-  }).join('');
-  updLearnStats();
-}
-
-function vtoggle(id){
-  if(vDone.has(id))vDone.delete(id);else vDone.add(id);
-  vsave();
-  const v=VV.find(x=>x.id===id);const cfg=BL[v.b];
-  const card=document.getElementById('vc'+id);if(!card)return;
-  if(vDone.has(id))card.classList.add('done');else card.classList.remove('done');
-  const chk=card.querySelector('.vid-chk');
-  chk.style.background=vDone.has(id)?cfg.c:'';chk.style.borderColor=vDone.has(id)?cfg.c:'rgba(255,255,255,.18)';
-  updLearnStats();
-}
-
-function vFlt(block,btn){
-  document.querySelectorAll('.vf-btn').forEach(b=>{b.classList.remove('active');b.style.background='';b.style.color='';b.style.borderColor='';});
-  btn.classList.add('active');
-  const color=block==='all'?'#c8854a':(BL[block]?BL[block].c:'#c8854a');
-  btn.style.background=color;btn.style.color='#0a0a0f';btn.style.borderColor=color;
-  vFilter=block;
-  document.querySelectorAll('[id^="vblk"]').forEach(el=>{
-    const blkName=el.id.replace('vblk','');
-    el.style.display=(block==='all'||blkName===block)?'block':'none';
-  });
-}
-
-function showLearnPage(id,btn){
-  document.querySelectorAll('.lpage').forEach(p=>p.classList.remove('vis'));
-  document.querySelectorAll('.learn-nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('lpage-'+id).classList.add('vis');
-  btn.classList.add('active');
-  if(id==='stats')renderLearnStat();
-  if(id==='report')renderLearnReport();
-}
-
-/* ── TEST LOGIC ── */
-const TESTS={};
-let tId,tQs=[],tIdx=0,tOk=0,tAns=false;
-
-function startTest(id){
-  const v=VV.find(x=>x.id===id);if(!v)return;
-  const testData=TESTS[id];
-  if(!testData||!testData.questions||!testData.questions.length){
-    alert('Тест для этого видео пока не добавлен');return;
-  }
-  tId=id;tQs=testData.questions;tIdx=0;tOk=0;tAns=false;
-  document.getElementById('test-ttl').textContent=v.t.length>50?v.t.slice(0,50)+'…':v.t;
-  document.getElementById('test-ft').style.display='none';
-  document.getElementById('test-overlay').classList.add('open');
-  renderQ();
-}
-
-function renderQ(){
-  tAns=false;const q=tQs[tIdx];const tot=tQs.length;
-  document.getElementById('test-ft').style.display='flex';
-  document.getElementById('test-nxt').disabled=true;
-  document.getElementById('test-nxt').textContent=tIdx===tot-1?'Завершить ✓':'Далее →';
-  document.getElementById('test-prog').textContent=`Вопрос ${tIdx+1} из ${tot} · ${tOk} правильно`;
-  const dots=tQs.map((_,i)=>`<span class="q-dot" style="background:${i<tIdx?'#4ac878':i===tIdx?'#fff':'rgba(255,255,255,.18)'}"></span>`).join('');
-  document.getElementById('test-body').innerHTML=`<div class="q-dots">${dots}</div><div class="q-txt">${q.q}</div><div class="q-opts">${q.o.map((opt,i)=>`<button class="q-opt" onclick="answer(${i})">${opt}</button>`).join('')}</div>`;
-}
-
-function answer(idx){
-  if(tAns)return;tAns=true;const q=tQs[tIdx];
-  document.querySelectorAll('.q-opt').forEach((b,i)=>{
-    b.disabled=true;
-    if(i===q.a)b.classList.add('correct');
-    else if(i===idx)b.classList.add('wrong');
-    else b.classList.add('reveal');
-  });
-  if(idx===q.a)tOk++;
-  document.getElementById('test-nxt').disabled=false;
-  document.getElementById('test-prog').textContent=`Вопрос ${tIdx+1} из ${tQs.length} · ${tOk} правильно`;
-}
-
-function nextQ(){tIdx++;if(tIdx>=tQs.length)showRes();else renderQ();}
-
-function showRes(){
-  const tot=tQs.length,pct=Math.round(tOk/tot*100);
-  const emoji=pct>=90?'🏆':pct>=70?'🎯':pct>=50?'💪':'📚';
-  const lbl=pct>=90?'Отлично! Материал усвоен':pct>=70?'Хороший результат':pct>=50?'Стоит повторить':'Нужно пересмотреть';
-  vScores[tId]={c:tOk,t:tot};vsave();
-  document.getElementById('test-ft').style.display='none';
-  document.getElementById('test-body').innerHTML=`<div class="test-res"><div class="res-ico">${emoji}</div><div class="res-n" style="color:${sc2col(pct)}">${tOk}/${tot}</div><div class="res-l">${lbl}</div><button class="res-btn" onclick="closeTest()">Закрыть</button></div>`;
-  updLearnStats();
-}
-
-function closeTest(){document.getElementById('test-overlay').classList.remove('open');}
-
-function renderLearnStat(){
-  const doneMin=Math.round(VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0));
-  const testedCount=Object.keys(vScores).length;
-  const avgScore=testedCount?Math.round(Object.values(vScores).reduce((s,sc)=>s+(sc.c/sc.t*100),0)/testedCount):0;
-  const sg=document.getElementById('lstats-grid');
-  if(sg)sg.innerHTML=`
-    <div class="lstat-card"><div class="lstat-val" style="color:#4ac878">${vDone.size}</div><div class="lstat-lbl">ВИДЕО ПРОСМОТРЕНО</div></div>
-    <div class="lstat-card"><div class="lstat-val" style="color:#4a7ec8">${testedCount}</div><div class="lstat-lbl">ТЕСТОВ ПРОЙДЕНО</div></div>
-    <div class="lstat-card"><div class="lstat-val" style="color:#c8854a">${doneMin}</div><div class="lstat-lbl">МИНУТ КОНТЕНТА</div></div>
-    <div class="lstat-card"><div class="lstat-val" style="color:#9b6bc8">${avgScore||'—'}${avgScore?'%':''}</div><div class="lstat-lbl">СРЕДНИЙ БАЛЛ</div></div>
-  `;
-  const order=["История","Животный мир","Discovery","Философия","Экономика","ИИ"];
-  const bs=document.getElementById('lblk-stats');
-  if(bs)bs.innerHTML=order.map(block=>{
-    const cfg=BL[block];
-    const bv=VV.filter(v=>v.b===block);
-    const dc=bv.filter(v=>vDone.has(v.id)).length;
-    const pct=Math.round(dc/bv.length*100);
-    const tested=bv.filter(v=>vScores[v.id]);
-    const bavg=tested.length?Math.round(tested.reduce((s,v)=>s+vScores[v.id].c/vScores[v.id].t*100,0)/tested.length):null;
-    return`<div class="lblk-stat-row">
-      <div class="lblk-dot" style="background:${cfg.c}"></div>
-      <div class="lblk-name">${cfg.i} ${block}</div>
-      <div class="lblk-bar-wrap"><div class="lblk-bar" style="width:${pct}%;background:${cfg.c}"></div></div>
-      <div class="lblk-val" style="color:${cfg.c}">${dc}/${bv.length}</div>
-      <div class="lblk-score" style="color:${bavg?sc2col(bavg):'var(--t3)'}">${bavg!==null?bavg+'%':'—'}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderLearnReport(){
-  const totalVideos=43,doneCount=vDone.size;
-  const pctDone=Math.round(doneCount/totalVideos*100);
-  const testedCount=Object.keys(vScores).length;
-  const doneMin=Math.round(VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0));
-  const avgScore=testedCount?Math.round(Object.values(vScores).reduce((s,sc)=>s+(sc.c/sc.t*100),0)/testedCount):null;
-  const order=["История","Животный мир","Discovery","Философия","Экономика","ИИ"];
-  const status=pctDone===0?'🌱 Ещё не начато':pctDone<25?'🚀 Разгон':pctDone<50?'📈 Хороший темп':pctDone<75?'💪 Больше половины!':pctDone<100?'🏁 Финишная прямая':'🏆 Апрель закрыт!';
-  const rc=document.getElementById('lrep-content');if(!rc)return;
-  rc.innerHTML=`
-    <div class="lrep-section">
-      <h3>Итог апреля</h3>
-      <div style="text-align:center;padding:14px 0">
-        <div style="font-family:var(--title);font-size:44px;font-weight:800;color:${pctDone>0?'#4ac878':'var(--t3)'};">${pctDone}%</div>
-        <div style="font-size:13px;margin-top:6px">${status}</div>
-      </div>
-      <div class="lrep-row"><span>Видео просмотрено</span><span class="lrep-val">${doneCount} / ${totalVideos}</span></div>
-      <div class="lrep-row"><span>Тестов пройдено</span><span class="lrep-val">${testedCount} / ${totalVideos}</span></div>
-      <div class="lrep-row"><span>Часов контента</span><span class="lrep-val">${(doneMin/60).toFixed(1)} ч</span></div>
-      ${avgScore!==null?`<div class="lrep-row"><span>Средний балл</span><span class="lrep-val" style="color:${sc2col(avgScore)}">${avgScore}%</span></div>`:''}
-    </div>
-    <div class="lrep-section">
-      <h3>По блокам</h3>
-      ${order.map(block=>{
-        const cfg=BL[block];const bv=VV.filter(v=>v.b===block);
-        const dc=bv.filter(v=>vDone.has(v.id)).length;
-        const tested=bv.filter(v=>vScores[v.id]);
-        const bavg=tested.length?Math.round(tested.reduce((s,v)=>s+vScores[v.id].c/vScores[v.id].t*100,0)/tested.length):null;
-        return`<div class="lrep-row"><span>${cfg.i} ${block}</span><span style="display:flex;gap:8px;align-items:center">${bavg!==null?`<span style="font-size:10px;color:${sc2col(bavg)};font-family:var(--mono)">${bavg}%</span>`:''}<span class="lrep-val" style="color:${cfg.c}">${dc}/${bv.length}</span></span></div>`;
-      }).join('')}
-    </div>
-  `;
-}
-
-/* ── CONFETTI ── */
-function launchConfetti(){
-  confDone=true;
-  const layer=document.getElementById('confetti');if(!layer)return;
-  const colors=['#a78bfa','#60a5fa','#34d399','#f59e0b','#f87171','#c084fc','#fb923c','#06b6d4'];
-  for(let i=0;i<100;i++){
-    setTimeout(()=>{
-      const el=document.createElement('div');el.className='cp';
-      el.style.cssText=`left:${Math.random()*100}%;background:${colors[~~(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s`;
-      layer.appendChild(el);setTimeout(()=>el.remove(),5000);
-    },i*20);
-  }
-}
-
-/* ── CLOCK TICK ── */
-function tick(){
-  const now=new Date();
-  const cl=document.getElementById('gn-clock');if(cl)cl.textContent=fmt(now);
-  const nbt=document.getElementById('nb-t');if(nbt)nbt.textContent=fmtNow();
-  const pf2=document.getElementById('pf-time');if(pf2)pf2.style.width=timePct()+'%';
-}
-
-/* ── INIT ── */
-// Set date label
-const nowD=new Date();
-const dl=document.getElementById('tl-date');
-if(dl)dl.textContent=nowD.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
-
-renderTimeline();
-renderSidebar();
-// sync left stat cards
-const _s=getStats();
-['done','rem','miss'].forEach(k=>{const el=document.getElementById('sv-'+k+'2');if(el)el.textContent=_s[k==='done'?'done':k==='rem'?'remaining':'missed'];});
-setInterval(tick,1000);
-</script>
-</body>
-</html>.now-dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
-.now-time-lbl{font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700}
-.now-sep{font-size:10px;color:var(--t3)}
-
-/* — Sidebar — */
-.sb-col{display:flex;flex-direction:column;overflow:hidden;background:var(--s1);border-left:1px solid var(--b1)}
-.sb-grid{display:grid;grid-template-rows:auto auto 1fr auto;height:100%;overflow:hidden}
-.sb-top{padding:16px 20px 12px;border-bottom:1px solid var(--b1);background:var(--s1)}
-.sb-mid{padding:14px 20px;border-bottom:1px solid var(--b1);background:var(--s2)}
-.sb-main{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-bottom:1px solid var(--b1)}
-.sb-main-left{padding:14px 16px 14px 20px;border-right:1px solid var(--b1);overflow-y:auto;scrollbar-width:none}
-.sb-main-left::-webkit-scrollbar{display:none}
-.sb-main-right{padding:14px 20px 14px 16px;overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:12px}
-.sb-main-right::-webkit-scrollbar{display:none}
-.sb-bot{padding:14px 20px;background:var(--s1)}
-.sb-section{padding:20px 24px 18px;border-bottom:1px solid var(--b1)}
-.sb-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:12px}
-
-/* — Big stat cards — */
-.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.big-stat{background:var(--s3);border:1px solid var(--b1);border-radius:12px;padding:14px 12px;text-align:center}
-.big-stat-val{font-family:var(--title);font-size:32px;font-weight:800;line-height:1;margin-bottom:5px}
-.big-stat-lbl{font-size:9px;color:var(--t2);letter-spacing:.8px;font-family:var(--mono)}
-.big-stat.green .big-stat-val{color:var(--green)}
-.big-stat.blue .big-stat-val{color:var(--work)}
-.big-stat.red .big-stat-val{color:var(--red)}
-
-/* — Progress bars — */
-.prog-item{margin-bottom:10px}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.prog-name{font-size:12px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--a2)}
-.prog-bg{background:var(--s3);border-radius:6px;overflow:hidden;cursor:pointer}
-.prog-bg:active{opacity:.8}
-.prog-fill{border-radius:6px;transition:width .6s cubic-bezier(.4,0,.2,1)}
-
-/* — Cat bars — */
-.cat-row{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:11px;color:var(--t2);width:62px;flex-shrink:0;font-weight:500}
-.cat-bar-bg{flex:1;background:var(--s3);border-radius:4px;height:7px;overflow:hidden}
-.cat-bar-fill{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:10px;color:var(--t3);width:58px;text-align:right;flex-shrink:0}
-
-/* — Doughnut — */
-.chart-wrap{position:relative;width:150px;height:150px;margin:0 auto}
-.chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:28px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:9px;color:var(--t3);letter-spacing:1px;margin-top:2px;font-family:var(--mono)}
-.chart-legend{display:flex;flex-direction:column;gap:6px;margin-top:10px}
-.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--t2)}
-.leg-left{display:flex;align-items:center;gap:6px}
-.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:10px;color:var(--a2);font-weight:700}
-
-/* — Mini stat grid — */
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.mini-card{background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:12px 14px}
-.mini-val{font-family:var(--title);font-size:22px;font-weight:700;color:var(--a2);margin-bottom:3px}
-.mini-lbl{font-size:9px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
-
-/* ════════════════════════════════════════
-   TAB 2 — HISTORY
-════════════════════════════════════════ */
-.history-body{padding:24px 28px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.history-body::-webkit-scrollbar{width:4px}
-.history-body::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-
-.hist-title{font-family:var(--title);font-size:20px;font-weight:800;color:var(--text);margin-bottom:6px}
-.hist-sub{font-size:12px;color:var(--t2);margin-bottom:24px}
-
-.hist-days{display:flex;flex-direction:column;gap:16px}
-.hist-day{background:var(--s2);border:1px solid var(--b1);border-radius:12px;overflow:hidden}
-.hist-day-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
-.hist-day-header:hover{background:var(--s3)}
-.hist-day-date{font-family:var(--title);font-size:13px;font-weight:700;color:var(--text)}
-.hist-day-meta{display:flex;align-items:center;gap:12px}
-.hist-day-pct{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2)}
-.hist-day-bar-wrap{width:120px;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
-.hist-day-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .4s}
-.hist-day-tasks{padding:0 18px 14px;display:none;border-top:1px solid var(--b1)}
-.hist-day-tasks.open{display:block}
-.hist-task-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)22}
-.hist-task-row:last-child{border-bottom:none}
-.hist-task-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.hist-task-name{font-size:11px;flex:1;color:var(--t2)}
-.hist-task-done{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:3px}
-.hist-done-yes{background:#22c55e20;color:#4ade80}
-.hist-done-no{background:#ef444420;color:#f87171}
-
-.no-history{text-align:center;padding:60px 20px;color:var(--t3);font-size:13px}
-.no-hist-ico{font-size:48px;margin-bottom:12px}
-
-/* ════════════════════════════════════════
-   TAB 3 — LEARNING (апрель 2026)
-════════════════════════════════════════ */
-.learn-body{display:flex;flex-direction:column;overflow:hidden}
-.learn-header{padding:16px 20px 12px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.learn-title{font-family:var(--title);font-size:16px;font-weight:800;color:var(--text)}
-.learn-stats-row{display:flex;align-items:center;gap:16px}
-.learn-stat{text-align:right}
-.learn-stat-val{font-family:var(--title);font-size:18px;font-weight:800;color:var(--a2)}
-.learn-stat-lbl{font-size:9px;color:var(--t3);font-family:var(--mono);letter-spacing:.5px}
-.learn-ring{position:relative;width:50px;height:50px;flex-shrink:0}
-.learn-ring svg{transform:rotate(-90deg)}
-.ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--a2)}
-
-.learn-nav{display:flex;background:var(--s2);border-bottom:1px solid var(--b1);flex-shrink:0}
-.learn-nav-btn{flex:1;padding:9px 0;background:none;border:none;color:var(--t2);font-family:var(--mono);font-size:9px;letter-spacing:.8px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase}
-.learn-nav-btn.active{color:var(--a2);border-bottom-color:var(--accent)}
-
-.learn-tabs-scroll{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.learn-tabs-scroll::-webkit-scrollbar{width:3px}
-.learn-tabs-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-
-.lpage{display:none;padding:12px 16px}
-.lpage.vis{display:block}
-
-/* Video filter tabs */
-.vid-filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
-.vf-btn{padding:4px 10px;border-radius:20px;border:1px solid var(--b2);background:transparent;color:var(--t2);font-family:var(--sans);font-size:10px;cursor:pointer;transition:all .2s;white-space:nowrap}
-.vf-btn.active{font-weight:600;color:#0a0a0f}
-
-/* Video blocks */
-.vblk{margin-bottom:16px}
-.vblk-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.vblk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.vblk-name{font-family:var(--title);font-size:10px;font-weight:700;letter-spacing:.5px;flex:1}
-.vblk-cnt{font-size:10px;color:var(--t2)}
-.vblk-avg{font-family:var(--mono);font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:var(--s3);display:none}
-.vblk-bar{height:2px;background:var(--b1);border-radius:2px;margin-bottom:8px;overflow:hidden}
-.vblk-bar-fill{height:100%;border-radius:2px;transition:width .4s}
-.vid-list{display:flex;flex-direction:column;gap:3px}
-.vid-row{display:flex;align-items:stretch;gap:4px}
-.vid-card{flex:1;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;border:1px solid var(--b1);background:var(--s2);cursor:pointer;min-width:0;transition:opacity .2s}
-.vid-card:hover{border-color:var(--b2);background:var(--s3)}
-.vid-card.done{opacity:.38}
-.vid-card.done .vid-title{text-decoration:line-through}
-.vid-chk{width:16px;height:16px;border-radius:4px;border:1.5px solid rgba(255,255,255,.18);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.vid-chk svg{display:none}
-.vid-card.done .vid-chk svg{display:block}
-.vid-info{flex:1;min-width:0}
-.vid-title{font-size:11px;font-weight:500;line-height:1.3}
-.vid-meta{display:flex;gap:5px;margin-top:2px;align-items:center}
-.vid-ch{font-size:9px;color:var(--t2)}
-.vid-dur{font-size:8px;font-family:var(--mono);color:var(--t2);background:var(--s3);padding:1px 4px;border-radius:3px}
-.vid-btn{width:34px;flex-shrink:0;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;border:1px solid var(--b1);background:var(--s2);text-decoration:none;color:var(--t2);flex-direction:column;gap:1px}
-.vid-btn.yt{background:rgba(255,50,50,.1);border-color:rgba(255,50,50,.2);color:#ff5555}
-.vid-btn.tst{background:rgba(124,92,252,.1);border-color:rgba(124,92,252,.2);color:var(--a2)}
-.vid-btn.scr{font-size:9px}
-.scr-num{font-family:var(--mono);font-size:10px;font-weight:700}
-.scr-no{font-size:7px;color:var(--t3);text-align:center;line-height:1.2}
-
-/* Test modal */
-.test-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;overflow-y:auto;padding:16px;align-items:flex-start;justify-content:center}
-.test-overlay.open{display:flex}
-.test-modal{background:var(--s2);border:1px solid var(--b2);border-radius:14px;max-width:460px;width:100%;margin:auto}
-.test-hd{padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--b1);gap:8px}
-.test-ttl{font-family:var(--title);font-size:11px;font-weight:700;line-height:1.4;flex:1}
-.test-x{background:none;border:none;color:var(--t2);font-size:22px;cursor:pointer;line-height:1;flex-shrink:0}
-.test-body{padding:16px}
-.q-dots{margin-bottom:10px}
-.q-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 2px}
-.q-txt{font-size:13px;font-weight:500;line-height:1.5;margin-bottom:12px}
-.q-opts{display:flex;flex-direction:column;gap:6px}
-.q-opt{padding:9px 12px;border-radius:7px;border:1px solid var(--b1);background:var(--s3);font-size:12px;cursor:pointer;text-align:left;color:var(--text);transition:all .15s}
-.q-opt:hover{border-color:var(--b2)}
-.q-opt.correct{background:rgba(34,197,94,.2);border-color:#22c55e;color:#4ade80}
-.q-opt.wrong{background:rgba(239,68,68,.2);border-color:#ef4444;color:#f87171}
-.q-opt.reveal{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.2)}
-.test-ft{padding:10px 16px;border-top:1px solid var(--b1);display:flex;justify-content:space-between;align-items:center}
-.test-prog{font-size:10px;color:var(--t2);font-family:var(--mono)}
-.test-nxt{padding:7px 16px;border-radius:7px;border:none;cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:600;background:var(--accent);color:#fff;transition:opacity .2s}
-.test-nxt:disabled{opacity:.3;cursor:default}
-.test-res{text-align:center;padding:28px 16px}
-.res-ico{font-size:44px;margin-bottom:10px}
-.res-n{font-family:var(--title);font-size:36px;font-weight:800;margin-bottom:4px}
-.res-l{font-size:12px;color:var(--t2);margin-bottom:18px}
-.res-btn{padding:9px 22px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:600;background:var(--accent);color:#fff}
-
-/* Learn stats page */
-.lstats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.lstat-card{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px}
-.lstat-val{font-family:var(--title);font-size:22px;font-weight:800;margin-bottom:3px}
-.lstat-lbl{font-size:9px;color:var(--t2);font-family:var(--mono);letter-spacing:.5px}
-.lstat-card.wide{grid-column:span 2}
-.lblk-stat-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--b1)33}
-.lblk-stat-row:last-child{border-bottom:none}
-.lblk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.lblk-name{font-size:11px;flex:1}
-.lblk-bar-wrap{width:80px;height:4px;background:var(--b1);border-radius:2px;overflow:hidden}
-.lblk-bar{height:100%;border-radius:2px}
-.lblk-val{font-family:var(--mono);font-size:9px;font-weight:700;width:28px;text-align:right}
-.lblk-score{font-size:9px;width:30px;text-align:right;font-family:var(--mono)}
-.streak-big{text-align:center;padding:14px 0}
-.streak-num{font-family:var(--title);font-size:44px;font-weight:800;color:#c8854a}
-.streak-lbl{font-size:11px;color:var(--t2);margin-top:4px}
-
-/* Learn report page */
-.lrep-section{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-bottom:10px}
-.lrep-section h3{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--t3);margin-bottom:10px;text-transform:uppercase}
-.lrep-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--b1)33;font-size:11px}
-.lrep-row:last-child{border-bottom:none}
-.lrep-val{font-family:var(--mono);font-size:11px;font-weight:700}
-.lrep-best{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px;margin-bottom:7px}
-.lrep-best-l{font-size:9px;color:var(--t2);margin-bottom:2px;font-family:var(--mono)}
-.lrep-best-v{font-size:12px;font-weight:500}
-
-/* CONFETTI */
-.conf-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
-.cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
-@keyframes cpfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
-</style>
-</head>
-<body>
-
-<!-- GLOBAL NAV -->
-<div class="global-nav">
-  <button class="gn-btn active" onclick="showGPage('today',this)">СЕГОДНЯ</button>
-  <button class="gn-btn" onclick="showGPage('history',this)">ИСТОРИЯ</button>
-  <button class="gn-btn" onclick="showGPage('learning',this)">ОБУЧЕНИЕ</button>
-  <div class="gn-clock" id="gn-clock">00:00:00</div>
-</div>
-
-<!-- ══ PAGE: TODAY ══ -->
-<div class="gpage active" id="gpage-today">
-  <div class="today-body">
-    <!-- LEFT: Timeline -->
-    <div class="tl-col">
-      <div class="tl-header">
-        <div class="tl-date" id="tl-date">пятница, 27 марта</div>
-        <div class="tl-sub">
-          <span id="tl-sub-txt" style="font-family:var(--title);font-size:20px;font-weight:800;color:var(--text)">выполнено 0 из 29</span>
-          <div class="tl-progress-mini"><div class="tl-progress-mini-fill" id="tl-mini-bar" style="width:0%"></div></div>
-          <span id="tl-pct-mini" style="font-family:var(--mono);font-size:20px;color:var(--a2);font-weight:700">0%</span>
-          <button style="font-family:var(--mono);font-size:10px;background:transparent;border:1px solid var(--b2);color:var(--t2);padding:5px 12px;border-radius:5px;cursor:pointer;letter-spacing:.5px;margin-left:auto" onclick="resetDay()">СБРОС</button>
-        </div>
-      </div>
-      <div class="tl-scroll" id="tl-scroll"></div>
-    </div>
-
-    <!-- RIGHT: Sidebar stats -->
-    <div class="sb-col" id="sb-col">
-      <!-- filled by JS -->
-    </div>
-  </div>
-</div>
-
-<!-- ══ PAGE: HISTORY ══ -->
-<div class="gpage" id="gpage-history">
-  <div class="history-body" id="history-body">
-    <div class="hist-title">История дней</div>
-    <div class="hist-sub">Архив выполнения задач по дням</div>
-    <div class="hist-days" id="hist-days"></div>
-  </div>
-</div>
-
-<!-- ══ PAGE: LEARNING ══ -->
-<div class="gpage" id="gpage-learning">
-  <div class="learn-body">
-    <div class="learn-header">
-      <div>
-        <div class="learn-title">АПРЕЛЬ 2026</div>
-        <div style="font-size:10px;color:var(--t2);margin-top:4px;font-family:var(--mono)"><span id="hdn">0</span> / 43 видео · <span id="hdm">0</span> мин просмотрено</div>
-      </div>
-      <div class="learn-stats-row">
-        <div class="learn-stat">
-          <div class="learn-stat-val" id="learn-done-n">0</div>
-          <div class="learn-stat-lbl">ПРОСМОТРЕНО</div>
-        </div>
-        <div class="learn-ring">
-          <svg width="50" height="50" viewBox="0 0 50 50">
-            <circle fill="none" stroke="#1a1a28" stroke-width="4" cx="25" cy="25" r="20"/>
-            <circle fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"
-              cx="25" cy="25" r="20" stroke-dasharray="125.66" stroke-dashoffset="125.66"
-              id="learn-ring-fg" style="transition:stroke-dashoffset .5s"/>
+        <div class="cd-ring-wrap">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle fill="none" stroke="var(--b1)" stroke-width="7" cx="45" cy="45" r="38"/>
+            <circle fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"
+              cx="45" cy="45" r="38" stroke-dasharray="238.76"
+              stroke-dashoffset="${Math.round(238.76*(1-cdPct/100))}"
+              id="cd-ring" style="transform:rotate(-90deg);transform-origin:45px 45px;transition:stroke-dashoffset .5s"/>
           </svg>
-          <div class="ring-pct" id="learn-ring-pct">0%</div>
+          <div class="cd-pct-txt" id="cd-pct">${tp}%</div>
         </div>
       </div>
     </div>
 
-    <div class="learn-nav">
-      <button class="learn-nav-btn active" onclick="showLearnPage('videos',this)">ВИДЕО</button>
-      <button class="learn-nav-btn" onclick="showLearnPage('stats',this)">СТАТИСТИКА</button>
-      <button class="learn-nav-btn" onclick="showLearnPage('report',this)">ОТЧЁТ</button>
-    </div>
-
-    <div class="learn-tabs-scroll">
-      <!-- VIDEOS PAGE -->
-      <div class="lpage vis" id="lpage-videos">
-        <div class="vid-filters" id="vid-filters"></div>
-        <div id="vid-content"></div>
-      </div>
-      <!-- STATS PAGE -->
-      <div class="lpage" id="lpage-stats">
-        <div class="lstats-grid" id="lstats-grid"></div>
-        <div class="lrep-section"><h3>По блокам</h3><div id="lblk-stats"></div></div>
-      </div>
-      <!-- REPORT PAGE -->
-      <div class="lpage" id="lpage-report">
-        <div id="lrep-content"></div>
+    <!-- QUOTE -->
+    <div class="rb" style="border-bottom:none">
+      <div class="rb-title">Мысль дня</div>
+      <div class="quote-block">
+        <div class="quote-text">${q.t}</div>
+        <div class="quote-author">— ${q.a}</div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Test overlay -->
-<div class="test-overlay" id="test-overlay" onclick="if(event.target===this)closeTest()">
-  <div class="test-modal">
-    <div class="test-hd">
-      <div class="test-ttl" id="test-ttl"></div>
-      <button class="test-x" onclick="closeTest()">×</button>
-    </div>
-    <div class="test-body" id="test-body"></div>
-    <div class="test-ft" id="test-ft" style="display:none">
-      <div class="test-prog" id="test-prog"></div>
-      <button class="test-nxt" id="test-nxt" disabled onclick="nextQ()">Далее →</button>
-    </div>
-  </div>
-</div>
-
-<div class="conf-layer" id="confetti"></div>
-
-<script>
-/* ════════════════════════════════
-   TASKS DATA
-════════════════════════════════ */
-const TASK_SAVE='dash_v5';
-const HIST_SAVE='dash_hist_v1';
-
-const INIT_TASKS=[
-  {id:1,time:'06:30',name:'Подъём и стакан воды',cat:'health',dur:10},
-  {id:2,time:'06:45',name:'Утренняя зарядка',cat:'sport',dur:15},
-  {id:3,time:'07:00',name:'Контрастный душ',cat:'health',dur:10},
-  {id:4,time:'07:15',name:'Завтрак',cat:'personal',dur:20},
-  {id:5,time:'07:40',name:'Чтение новостей',cat:'study',dur:20},
-  {id:6,time:'08:00',name:'Пробежка 30 минут',cat:'sport',dur:30},
-  {id:7,time:'08:35',name:'Планирование дня',cat:'focus',dur:15},
-  {id:8,time:'09:00',name:'Проверить почту',cat:'work',dur:20},
-  {id:9,time:'09:30',name:'Обработка задач из почты',cat:'work',dur:30},
-  {id:10,time:'10:00',name:'Встреча с командой',cat:'work',dur:60},
-  {id:11,time:'11:00',name:'Deep work — основной проект',cat:'focus',dur:90},
-  {id:12,time:'12:30',name:'Обед',cat:'personal',dur:30},
-  {id:13,time:'13:00',name:'Код-ревью',cat:'work',dur:45},
-  {id:14,time:'13:50',name:'Ответы на Slack',cat:'work',dur:20},
-  {id:15,time:'14:00',name:'Звонок с клиентом',cat:'work',dur:45},
-  {id:16,time:'15:00',name:'Изучить новую библиотеку',cat:'study',dur:60},
-  {id:17,time:'15:30',name:'Написать отчёт',cat:'work',dur:60},
-  {id:18,time:'16:30',name:'Прогулка / разгрузка',cat:'health',dur:30},
-  {id:19,time:'17:00',name:'Блок фокусной работы',cat:'focus',dur:90},
-  {id:20,time:'18:00',name:'Чтение — 30 минут',cat:'study',dur:30},
-  {id:21,time:'18:30',name:'Приготовить ужин',cat:'personal',dur:30},
-  {id:22,time:'19:00',name:'Ужин',cat:'personal',dur:30},
-  {id:23,time:'19:30',name:'Онлайн-курс / лекция',cat:'study',dur:60},
-  {id:24,time:'20:00',name:'Спортзал',cat:'sport',dur:60},
-  {id:25,time:'21:00',name:'Медитация',cat:'health',dur:20},
-  {id:26,time:'21:30',name:'Журнал — записать мысли',cat:'personal',dur:15},
-  {id:27,time:'22:00',name:'Планирование на завтра',cat:'focus',dur:20},
-  {id:28,time:'22:20',name:'Чтение перед сном',cat:'study',dur:30},
-  {id:29,time:'23:00',name:'Отбой',cat:'health',dur:0},
-];
-
-const CAT_META={
-  work:{label:'Работа',color:'#3b82f6',tag:'tag-work'},
-  health:{label:'Здоровье',color:'#22c55e',tag:'tag-health'},
-  personal:{label:'Личное',color:'#f59e0b',tag:'tag-personal'},
-  focus:{label:'Фокус',color:'#ec4899',tag:'tag-focus'},
-  study:{label:'Учёба',color:'#06b6d4',tag:'tag-study'},
-  sport:{label:'Спорт',color:'#f97316',tag:'tag-sport'},
-};
-
-function loadTasks(){try{const s=localStorage.getItem(TASK_SAVE);if(s)return JSON.parse(s);}catch(e){}return INIT_TASKS.map(t=>({...t,done:false}));}
-function saveTasks(t){try{localStorage.setItem(TASK_SAVE,JSON.stringify(t));}catch(e){}}
-function loadHist(){try{const s=localStorage.getItem(HIST_SAVE);if(s)return JSON.parse(s);}catch(e){}return [];}
-function saveHist(h){try{localStorage.setItem(HIST_SAVE,JSON.stringify(h));}catch(e){}}
-
-let tasks=loadTasks();
-let chartInst=null;
-let confDone=false;
-
-const toMin=t=>{const[h,m]=t.split(':').map(Number);return h*60+m;};
-const nowMin=()=>{const n=new Date();return n.getHours()*60+n.getMinutes();};
-const fmt=d=>d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-const fmtDate=d=>d.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
-const fmtNow=()=>new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-const todayKey=()=>{const d=new Date();return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;};
-
-function getStats(){
-  const total=tasks.length,done=tasks.filter(t=>t.done).length;
-  const nm=nowMin();
-  const missed=tasks.filter(t=>!t.done&&toMin(t.time)<nm).length;
-  const remaining=total-done-missed;
-  const pct=total?Math.round(done/total*100):0;
-  const totalMin=tasks.reduce((a,t)=>a+(t.dur||0),0);
-  const doneMin=tasks.filter(t=>t.done).reduce((a,t)=>a+(t.dur||0),0);
-  return{total,done,missed,remaining,pct,totalMin,doneMin};
-}
-
-function getCatStats(){
-  const r={};
-  tasks.forEach(t=>{
-    if(!r[t.cat])r[t.cat]={total:0,done:0,doneMin:0,totalMin:0};
-    r[t.cat].total++;r[t.cat].totalMin+=t.dur||0;
-    if(t.done){r[t.cat].done++;r[t.cat].doneMin+=t.dur||0;}
-  });
-  return r;
-}
-
-function timePct(){
-  const START=6*60,END=23*60,nm=nowMin();
-  if(nm<=START)return 0;if(nm>=END)return 100;
-  return Math.round((nm-START)/(END-START)*100);
-}
-
-/* ── GLOBAL NAV ── */
-function showGPage(id,btn){
-  document.querySelectorAll('.gpage').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.gn-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('gpage-'+id).classList.add('active');
-  btn.classList.add('active');
-  if(id==='history')renderHistory();
-  if(id==='learning'){renderLearnVideos();updLearnStats();}
-}
-
-/* ── RENDER TODAY ── */
-function renderTimeline(){
-  const tl=document.getElementById('tl-scroll');if(!tl)return;
-  const nm=nowMin();
-  let html='',nowInserted=false;
-  tasks.forEach((t,i)=>{
-    const tMin=toMin(t.time);
-    const nextMin=tasks[i+1]?toMin(tasks[i+1].time):Infinity;
-    if(!nowInserted&&((tMin<=nm&&nm<nextMin)||(i===0&&nm<tMin))){
-      nowInserted=true;
-      html+=`<div class="now-bar"><div class="now-dot"></div><div class="now-time-lbl" id="nb-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`;
-    }
-    const m=CAT_META[t.cat]||CAT_META.work;
-    const missed=!t.done&&tMin<nm;
-    const current=tMin<=nm&&nm<tMin+(t.dur||30);
-    html+=`<div class="task-card cat-${t.cat}${t.done?' done':''}${missed?' missed':''}${current&&!t.done?' current-task':''}" onclick="toggleTask(${t.id})">
-      <div class="cb${t.done?' on':''}"></div>
-      <div class="ttime">${t.time}</div>
-      <div class="tname">${t.name}</div>
-      ${t.dur?`<div class="tdur">${t.dur}м</div>`:''}
-      <div class="ttag ${m.tag}">${m.label}</div>
-    </div>`;
-  });
-  if(!nowInserted)html=`<div class="now-bar"><div class="now-dot"></div><div class="now-time-lbl" id="nb-t">${fmtNow()}</div><div class="now-sep">— сейчас</div></div>`+html;
-  tl.innerHTML=html;
-  setTimeout(()=>{const nb=tl.querySelector('.now-bar');if(nb)nb.scrollIntoView({block:'center',behavior:'smooth'});},100);
-}
-
-function renderSidebar(){
-  const sb=document.getElementById('sb-col');if(!sb)return;
-  const s=getStats(),cs=getCatStats();
-  const tp=timePct();
-  const doneH=Math.floor(s.doneMin/60),doneM=s.doneMin%60;
-  const totalH=Math.floor(s.totalMin/60);
-
-  let catRows='';
-  Object.entries(CAT_META).forEach(([key,meta])=>{
-    const v=cs[key]||{total:0,done:0};
-    const p=v.total?Math.round(v.done/v.total*100):0;
-    catRows+=`<div class="cat-row">
-      <div class="cat-dot" style="background:${meta.color}"></div>
-      <div class="cat-name">${meta.label}</div>
-      <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${p}%;background:${meta.color}"></div></div>
-      <div class="cat-meta">${v.done}/${v.total} · ${p}%</div>
-    </div>`;
-  });
-
-  sb.innerHTML=`
-  <div style="display:grid;grid-template-rows:auto auto 1fr auto;height:100%;overflow:hidden">
-
-    <!-- ROW 1: BIG STATS -->
-    <div style="padding:14px 20px 12px;border-bottom:1px solid var(--b1);background:var(--s1)">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:10px">СВОДКА ДНЯ</div>
-      <div class="big-stats">
-        <div class="big-stat green"><div class="big-stat-val" id="sv-done">${s.done}</div><div class="big-stat-lbl">ГОТОВО</div></div>
-        <div class="big-stat blue"><div class="big-stat-val" id="sv-rem">${s.remaining}</div><div class="big-stat-lbl">ОСТАЛОСЬ</div></div>
-        <div class="big-stat red"><div class="big-stat-val" id="sv-miss">${s.missed}</div><div class="big-stat-lbl">ПРОПУЩЕНО</div></div>
-      </div>
-    </div>
-
-    <!-- ROW 2: PROGRESS BARS -->
-    <div style="padding:12px 20px 10px;border-bottom:1px solid var(--b1);background:var(--s2)">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:10px">ПРОГРЕСС</div>
-      <div class="prog-item" style="margin-bottom:8px">
-        <div class="prog-meta"><span class="prog-name">Задачи дня</span><span class="prog-val" id="pp-tasks">${s.pct}%</span></div>
-        <div class="prog-bg" style="height:12px"><div class="prog-fill" id="pf-tasks" style="width:${s.pct}%;height:12px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div></div>
-      </div>
-      <div class="prog-item" style="margin-bottom:8px">
-        <div class="prog-meta"><span class="prog-name">Время дня</span><span class="prog-val">${tp}%</span></div>
-        <div class="prog-bg" style="height:8px"><div class="prog-fill" id="pf-time" style="width:${tp}%;height:8px;background:linear-gradient(90deg,#ef4444,#f97316)"></div></div>
-      </div>
-      <div class="prog-item" style="margin-bottom:0">
-        <div class="prog-meta"><span class="prog-name">Продуктивных минут</span><span class="prog-val" style="color:var(--study)">${doneH}ч ${doneM}м / ${totalH}ч</span></div>
-        <div class="prog-bg" style="height:8px"><div class="prog-fill" id="pf-min" style="width:${s.totalMin?Math.round(s.doneMin/s.totalMin*100):0}%;height:8px;background:var(--study)"></div></div>
-      </div>
-    </div>
-
-    <!-- ROW 3: MAIN CONTENT — 2 columns -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;overflow:hidden;min-height:0">
-
-      <!-- LEFT: categories + mini rings -->
-      <div style="padding:14px 16px 14px 20px;border-right:1px solid var(--b1);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:0">
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:12px">ПО КАТЕГОРИЯМ</div>
-        ${catRows}
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin:14px 0 10px">МИНИ-ПРОГРЕСС</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-          ${Object.entries(CAT_META).map(([k,m])=>{
-            const v=cs[k]||{total:0,done:0};
-            const p=v.total?Math.round(v.done/v.total*100):0;
-            const r=22;const circ=2*Math.PI*r;
-            return`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:10px 6px">
-              <svg width="52" height="52" viewBox="0 0 52 52" style="transform:rotate(-90deg)">
-                <circle fill="none" stroke="var(--b1)" stroke-width="4" cx="26" cy="26" r="${r}"/>
-                <circle fill="none" stroke="${m.color}" stroke-width="4" stroke-linecap="round"
-                  cx="26" cy="26" r="${r}" stroke-dasharray="${(2*Math.PI*r).toFixed(1)}"
-                  stroke-dashoffset="${(2*Math.PI*r*(1-p/100)).toFixed(1)}"
-                  style="transition:stroke-dashoffset .6s"/>
-              </svg>
-              <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:${m.color}">${p}%</span>
-              <span style="font-size:9px;color:var(--t2);text-align:center">${m.label}</span>
-              <span style="font-size:9px;color:var(--t3);font-family:var(--mono)">${v.done}/${v.total}</span>
-            </div>`;
-          }).join('')}
-        </div>
-      </div>
-
-      <!-- RIGHT: doughnut + legend + mini stats -->
-      <div style="padding:14px 20px 14px 16px;overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column">
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin-bottom:12px">РАСПРЕДЕЛЕНИЕ</div>
-        <div class="chart-wrap" style="width:160px;height:160px"><canvas id="dnt"></canvas>
-          <div class="chart-center"><div class="chart-pct" id="cpct">${s.pct}%</div><div class="chart-sub">ГОТОВО</div></div>
-        </div>
-        <div class="chart-legend" style="margin-top:12px">
-          ${Object.entries(CAT_META).map(([k,m])=>{const v=cs[k]||{total:0,done:0};return`<div class="leg-item"><div class="leg-left"><div class="leg-dot" style="background:${m.color}"></div><span>${m.label}</span></div><span class="leg-val">${v.done}/${v.total}</span></div>`;}).join('')}
-        </div>
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t3);margin:16px 0 10px">ДЕТАЛИ</div>
-        <div class="mini-grid">
-          <div class="mini-card"><div class="mini-val" id="ms-done">${s.done}</div><div class="mini-lbl">ЗАДАЧ ГОТОВО</div></div>
-          <div class="mini-card"><div class="mini-val">${doneH}ч ${doneM}м</div><div class="mini-lbl">ПРОДУКТИВНОСТЬ</div></div>
-          <div class="mini-card"><div class="mini-val" style="color:var(--red)">${s.missed}</div><div class="mini-lbl">ПРОПУЩЕНО</div></div>
-          <div class="mini-card"><div class="mini-val" style="color:var(--study)">${(cs.study||{done:0}).done}</div><div class="mini-lbl">УЧЁБА ГОТОВА</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ROW 4: BOTTOM BAR -->
-    <div style="padding:10px 20px;border-top:1px solid var(--b1);background:var(--s1);display:flex;gap:16px;align-items:center">
-      ${Object.entries(CAT_META).map(([k,m])=>{
-        const v=cs[k]||{total:0,done:0};
-        return`<div style="display:flex;align-items:center;gap:5px">
-          <div style="width:6px;height:6px;border-radius:50%;background:${m.color}"></div>
-          <span style="font-size:10px;color:var(--t2)">${m.label}</span>
-          <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:${m.color}">${v.done}/${v.total}</span>
-        </div>`;
-      }).join('')}
-      <div style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--a2);font-weight:700">${s.pct}% дня выполнено</div>
-    </div>
-  </div>
   `;
-
   buildChart(s,cs);
 }
 
 function buildChart(s,cs){
   const c=document.getElementById('dnt');if(!c)return;
   if(chartInst){chartInst.destroy();chartInst=null;}
-  const labels=Object.keys(CAT_META);
+  const labels=Object.keys(CAT);
   const data=labels.map(k=>(cs[k]||{done:0}).done);
-  const colors=labels.map(k=>CAT_META[k].color);
+  const colors=labels.map(k=>CAT[k].color);
   const hasData=data.some(v=>v>0);
   chartInst=new Chart(c,{
     type:'doughnut',
-    data:{labels:labels.map(k=>CAT_META[k].label),datasets:[{data:hasData?data:[1],backgroundColor:hasData?colors:['#252535'],borderWidth:0,hoverOffset:6}]},
+    data:{labels:labels.map(k=>CAT[k].label),datasets:[{data:hasData?data:[1],backgroundColor:hasData?colors:['#252535'],borderWidth:0,hoverOffset:6}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{enabled:hasData}}}
   });
 }
 
-function patchTodayUI(){
-  const s=getStats(),cs=getCatStats(),nm=nowMin();
+function updateLeftHeader(){
+  const s=getStats();
   const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('sv-done',s.done);byId('sv-rem',s.remaining);byId('sv-miss',s.missed);
-  byId('cpct',s.pct+'%');byId('ms-done',s.done);
-  byId('pp-tasks',s.pct+'%');byId('tl-sub-txt',`выполнено ${s.done} из ${s.total}`);
-  byId('tl-pct-mini',s.pct+'%');
+  byId('lh-done-txt',`выполнено ${s.done} из ${s.total}`);
+  byId('lh-pct',s.pct+'%');
+  byId('lc-done',s.done);byId('lc-rem',s.remaining);byId('lc-miss',s.missed);
+  const bar=document.getElementById('lh-bar');if(bar)bar.style.width=s.pct+'%';
+}
+
+function patchSidebar(){
+  const s=getStats(),cs=getCS();
+  const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  byId('cpct',s.pct+'%');byId('ms-done',s.done);byId('pp-tasks',s.pct+'%');
   const pf=id=>document.getElementById(id);
   if(pf('pf-tasks'))pf('pf-tasks').style.width=s.pct+'%';
-  if(pf('tl-mini-bar'))pf('tl-mini-bar').style.width=s.pct+'%';
   if(pf('pf-time'))pf('pf-time').style.width=timePct()+'%';
   if(pf('pf-min'))pf('pf-min').style.width=(s.totalMin?Math.round(s.doneMin/s.totalMin*100):0)+'%';
-  const catFills=document.querySelectorAll('.cat-bar-fill');
-  const catMetas=document.querySelectorAll('.cat-meta');
-  Object.keys(CAT_META).forEach((k,i)=>{
-    const v=cs[k]||{total:0,done:0};const p=v.total?Math.round(v.done/v.total*100):0;
-    if(catFills[i])catFills[i].style.width=p+'%';
-    if(catMetas[i])catMetas[i].textContent=`${v.done}/${v.total} · ${p}%`;
+  document.querySelectorAll('.cat-fill').forEach((el,i)=>{
+    const k=Object.keys(CAT)[i];const v=cs[k]||{total:0,done:0};
+    const p=v.total?Math.round(v.done/v.total*100):0;
+    el.style.width=p+'%';
   });
+  document.querySelectorAll('.cat-meta').forEach((el,i)=>{
+    const k=Object.keys(CAT)[i];const v=cs[k]||{total:0,done:0};
+    const p=v.total?Math.round(v.done/v.total*100):0;
+    el.textContent=`${v.done}/${v.total} · ${p}%`;
+  });
+  document.querySelectorAll('.leg-val').forEach((el,i)=>{
+    const k=Object.keys(CAT)[i];const v=cs[k]||{total:0,done:0};
+    el.textContent=`${v.done}/${v.total}`;
+  });
+  buildChart(s,cs);
+}
+
+function toggleTask(id){
+  tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
+  sT(tasks);saveHistEntry();
+  updateLeftHeader();patchSidebar();
   document.querySelectorAll('.task-card').forEach(card=>{
     const oc=card.getAttribute('onclick')||'';
     const m=oc.match(/toggleTask\((\d+)\)/);if(!m)return;
@@ -1643,86 +731,63 @@ function patchTodayUI(){
     if(t.done){card.classList.add('done');if(cb)cb.classList.add('on');}
     else{card.classList.remove('done');if(cb)cb.classList.remove('on');}
   });
-  buildChart(s,cs);
-}
-
-function toggleTask(id){
-  tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
-  saveTasks(tasks);
-  saveHistoryEntry();
-  patchTodayUI();
   const s=getStats();
   if(s.done===s.total&&s.total>0&&!confDone)launchConfetti();
 }
 
-function saveHistoryEntry(){
-  const key=todayKey();
-  const hist=loadHist();
+function saveHistEntry(){
+  const key=todayKey();const hist=lH();
   const now=new Date();
   const label=now.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const existing=hist.findIndex(h=>h.key===key);
   const entry={key,label,tasks:tasks.map(t=>({id:t.id,name:t.name,cat:t.cat,time:t.time,done:t.done}))};
   if(existing>=0)hist[existing]=entry;else hist.unshift(entry);
-  saveHist(hist.slice(0,30));
+  sH(hist.slice(0,30));
 }
 
 function resetDay(){
-  saveHistoryEntry();
+  saveHistEntry();
   tasks=INIT_TASKS.map(t=>({...t,done:false}));
-  saveTasks(tasks);
-  confDone=false;
-  renderTimeline();
-  renderSidebar();
+  sT(tasks);confDone=false;
+  renderTimeline();renderSidebar();updateLeftHeader();
 }
 
 /* ── HISTORY ── */
 function renderHistory(){
   const container=document.getElementById('hist-days');if(!container)return;
-  const hist=loadHist();
+  const hist=lH();
   if(!hist.length){
-    container.innerHTML=`<div class="no-history"><div class="no-hist-ico">📅</div><div>Здесь будет история твоих дней.<br>Она появится, как только ты начнёшь отмечать задачи.</div></div>`;
+    container.innerHTML=`<div class="no-hist"><div class="no-hist-ico">📅</div><div>История появится после первых отмеченных задач</div></div>`;
     return;
   }
   container.innerHTML=hist.map((day,idx)=>{
-    const total=day.tasks.length;
-    const done=day.tasks.filter(t=>t.done).length;
+    const total=day.tasks.length,done=day.tasks.filter(t=>t.done).length;
     const pct=total?Math.round(done/total*100):0;
-    const tasksHTML=day.tasks.map(t=>{
-      const m=CAT_META[t.cat]||CAT_META.work;
+    const tHTML=day.tasks.map(t=>{
+      const m=CAT[t.cat]||CAT.work;
       return`<div class="hist-task-row">
         <div class="hist-task-dot" style="background:${m.color}"></div>
         <div class="hist-task-name">${t.time} · ${t.name}</div>
-        <div class="hist-task-done ${t.done?'hist-done-yes':'hist-done-no'}">${t.done?'✓':'—'}</div>
+        <div class="${t.done?'hist-done-y':'hist-done-n'}">${t.done?'✓':'—'}</div>
       </div>`;
     }).join('');
     return`<div class="hist-day">
-      <div class="hist-day-header" onclick="toggleHistDay(${idx})">
+      <div class="hist-day-hd" onclick="toggleHD(${idx})">
         <div class="hist-day-date">${day.label}</div>
         <div class="hist-day-meta">
           <div class="hist-day-pct">${pct}%</div>
-          <div class="hist-day-bar-wrap"><div class="hist-day-bar" style="width:${pct}%"></div></div>
+          <div class="hist-day-bw"><div class="hist-day-bf" style="width:${pct}%"></div></div>
           <span style="font-family:var(--mono);font-size:10px;color:var(--t3)">${done}/${total}</span>
         </div>
       </div>
-      <div class="hist-day-tasks" id="hd-tasks-${idx}">${tasksHTML}</div>
+      <div class="hist-tasks" id="hd-${idx}">${tHTML}</div>
     </div>`;
   }).join('');
 }
+function toggleHD(idx){const el=document.getElementById('hd-'+idx);if(el)el.classList.toggle('open');}
 
-function toggleHistDay(idx){
-  const el=document.getElementById('hd-tasks-'+idx);
-  if(el)el.classList.toggle('open');
-}
-
-/* ── LEARNING DATA ── */
-const BL={
-  "История":{c:"#c8854a",i:"📜"},
-  "Животный мир":{c:"#4a9e6b",i:"🐾"},
-  "Discovery":{c:"#4a7ec8",i:"🌍"},
-  "Философия":{c:"#9b6bc8",i:"🧠"},
-  "Экономика":{c:"#c8c84a",i:"💰"},
-  "ИИ":{c:"#c84a7e",i:"🤖"}
-};
+/* ── LEARNING ── */
+const BL={"История":{c:"#c8854a",i:"📜"},"Животный мир":{c:"#4a9e6b",i:"🐾"},"Discovery":{c:"#4a7ec8",i:"🌍"},"Философия":{c:"#9b6bc8",i:"🧠"},"Экономика":{c:"#c8c84a",i:"💰"},"ИИ":{c:"#c84a7e",i:"🤖"}};
 const VV=[
   {id:1,t:"Тайна катаров: как зачищали Францию",b:"История",ch:"МИНАЕВ LIVE",d:"52:45",m:52.75},
   {id:2,t:"Октябрьская революция",b:"История",ch:"МИНАЕВ LIVE",d:"1:04:57",m:64.95},
@@ -1768,31 +833,21 @@ const VV=[
   {id:42,t:"Лучшая Россия в истории. Нулевые",b:"Экономика",ch:"Простая экономика",d:"43:33",m:43.55},
   {id:43,t:"Как Китай стал таким могущественным",b:"Экономика",ch:"Простая экономика",d:"56:34",m:56.57}
 ];
-
 const VTOTAL=VV.reduce((s,v)=>s+v.m,0);
 let vDone=new Set(JSON.parse(localStorage.getItem('ap_done')||'[]'));
 let vScores=JSON.parse(localStorage.getItem('ap_sc')||'{}');
 let vFilter='all';
-
 function vsave(){localStorage.setItem('ap_done',JSON.stringify([...vDone]));localStorage.setItem('ap_sc',JSON.stringify(vScores));}
 function sc2col(p){return p>=80?'#4ac878':p>=50?'#c8c84a':'#dc3c3c';}
-
 function updLearnStats(){
-  const dc=vDone.size;
-  const dm=VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0);
-  const pct=Math.round(dm/VTOTAL*100);
+  const dc=vDone.size,dm=VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0),pct=Math.round(dm/VTOTAL*100);
   const byId=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  byId('hdn',dc);byId('hdm',Math.round(dm));byId('learn-done-n',dc);
-  byId('learn-ring-pct',pct+'%');
-  const rfg=document.getElementById('learn-ring-fg');
-  if(rfg)rfg.style.strokeDashoffset=125.66-(125.66*pct/100);
+  byId('hdn',dc);byId('hdm',Math.round(dm));byId('learn-done-n',dc);byId('learn-ring-pct',pct+'%');
+  const rfg=document.getElementById('learn-ring-fg');if(rfg)rfg.style.strokeDashoffset=125.66-(125.66*pct/100);
   Object.keys(BL).forEach(block=>{
-    const bv=VV.filter(v=>v.b===block);
-    const bdc=bv.filter(v=>vDone.has(v.id)).length;
-    const bar=document.getElementById('vbar'+block);
-    if(bar)bar.style.width=(bv.length?bdc/bv.length*100:0)+'%';
-    const cnt=document.getElementById('vcnt'+block);
-    if(cnt)cnt.textContent=bdc+'/'+bv.length;
+    const bv=VV.filter(v=>v.b===block),bdc=bv.filter(v=>vDone.has(v.id)).length;
+    const bar=document.getElementById('vbar'+block);if(bar)bar.style.width=(bv.length?bdc/bv.length*100:0)+'%';
+    const cnt=document.getElementById('vcnt'+block);if(cnt)cnt.textContent=bdc+'/'+bv.length;
     const tested=bv.filter(v=>vScores[v.id]);
     const avg=tested.length?Math.round(tested.reduce((s,v)=>s+(vScores[v.id].c/vScores[v.id].t*100),0)/tested.length):null;
     const bav=document.getElementById('vbav'+block);
@@ -1805,232 +860,13 @@ function updLearnStats(){
     });
   });
 }
-
 function renderLearnVideos(){
   const order=["История","Животный мир","Discovery","Философия","Экономика","ИИ"];
-  // Filters
   const ff=document.getElementById('vid-filters');
   if(ff&&!ff.innerHTML){
     ff.innerHTML=[{key:'all',label:'Все'},...order.map(o=>({key:o,label:BL[o].i+' '+o}))].map(f=>`<button class="vf-btn${f.key==='all'?' active':''}" onclick="vFlt('${f.key}',this)" style="${f.key==='all'?'background:#c8854a;color:#0a0a0f;border-color:#c8854a':''}">${f.label}</button>`).join('');
   }
   const vc=document.getElementById('vid-content');if(!vc)return;
   vc.innerHTML=order.map(block=>{
-    const cfg=BL[block];
-    const bv=VV.filter(v=>v.b===block);
-    const show=vFilter==='all'||vFilter===block;
-    const rows=bv.map(v=>{
-      const isDone=vDone.has(v.id);
-      const sc=vScores[v.id]?Math.round(vScores[v.id].c/vScores[v.id].t*100):null;
-      const chkStyle=isDone?`background:${cfg.c};border-color:${cfg.c}`:'border-color:rgba(255,255,255,.18)';
-      const ytUrl='https://www.youtube.com/results?search_query='+encodeURIComponent(v.t+' '+v.ch);
-      const scrHtml=sc!==null?`<span class="scr-num" style="color:${sc2col(sc)}">${sc}%</span>`:'<span class="scr-no">тест</span>';
-      return `<div class="vid-row">
-        <div class="vid-card${isDone?' done':''}" id="vc${v.id}" onclick="vtoggle(${v.id})">
-          <div class="vid-chk" style="${chkStyle}">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="vid-info"><div class="vid-title">${v.t}</div><div class="vid-meta"><span class="vid-ch">${v.ch}</span><span class="vid-dur">${v.d}</span></div></div>
-        </div>
-        <a class="vid-btn yt" href="${ytUrl}" target="_blank">▶</a>
-        <button class="vid-btn tst" onclick="startTest(${v.id})">📝</button>
-        <div class="vid-btn scr" id="vsb${v.id}" style="${sc!==null?'border-color:'+sc2col(sc)+'44':''}">${scrHtml}</div>
-      </div>`;
-    }).join('');
-    return `<div class="vblk${show?'':' hide'}" id="vblk${block}" style="${show?'':'display:none'}">
-      <div class="vblk-header">
-        <div class="vblk-dot" style="background:${cfg.c}"></div>
-        <div class="vblk-name" style="color:${cfg.c}">${cfg.i} ${block}</div>
-        <div class="vblk-cnt" id="vcnt${block}">0/${bv.length}</div>
-        <div class="vblk-avg" id="vbav${block}"></div>
-      </div>
-      <div class="vblk-bar"><div class="vblk-bar-fill" id="vbar${block}" style="background:${cfg.c};width:0%"></div></div>
-      <div class="vid-list">${rows}</div>
-    </div>`;
-  }).join('');
-  updLearnStats();
-}
-
-function vtoggle(id){
-  if(vDone.has(id))vDone.delete(id);else vDone.add(id);
-  vsave();
-  const v=VV.find(x=>x.id===id);const cfg=BL[v.b];
-  const card=document.getElementById('vc'+id);if(!card)return;
-  if(vDone.has(id))card.classList.add('done');else card.classList.remove('done');
-  const chk=card.querySelector('.vid-chk');
-  chk.style.background=vDone.has(id)?cfg.c:'';chk.style.borderColor=vDone.has(id)?cfg.c:'rgba(255,255,255,.18)';
-  updLearnStats();
-}
-
-function vFlt(block,btn){
-  document.querySelectorAll('.vf-btn').forEach(b=>{b.classList.remove('active');b.style.background='';b.style.color='';b.style.borderColor='';});
-  btn.classList.add('active');
-  const color=block==='all'?'#c8854a':(BL[block]?BL[block].c:'#c8854a');
-  btn.style.background=color;btn.style.color='#0a0a0f';btn.style.borderColor=color;
-  vFilter=block;
-  document.querySelectorAll('[id^="vblk"]').forEach(el=>{
-    const blkName=el.id.replace('vblk','');
-    el.style.display=(block==='all'||blkName===block)?'block':'none';
-  });
-}
-
-function showLearnPage(id,btn){
-  document.querySelectorAll('.lpage').forEach(p=>p.classList.remove('vis'));
-  document.querySelectorAll('.learn-nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('lpage-'+id).classList.add('vis');
-  btn.classList.add('active');
-  if(id==='stats')renderLearnStat();
-  if(id==='report')renderLearnReport();
-}
-
-/* ── TEST LOGIC ── */
-const TESTS={};
-let tId,tQs=[],tIdx=0,tOk=0,tAns=false;
-
-function startTest(id){
-  const v=VV.find(x=>x.id===id);if(!v)return;
-  const testData=TESTS[id];
-  if(!testData||!testData.questions||!testData.questions.length){
-    alert('Тест для этого видео пока не добавлен');return;
-  }
-  tId=id;tQs=testData.questions;tIdx=0;tOk=0;tAns=false;
-  document.getElementById('test-ttl').textContent=v.t.length>50?v.t.slice(0,50)+'…':v.t;
-  document.getElementById('test-ft').style.display='none';
-  document.getElementById('test-overlay').classList.add('open');
-  renderQ();
-}
-
-function renderQ(){
-  tAns=false;const q=tQs[tIdx];const tot=tQs.length;
-  document.getElementById('test-ft').style.display='flex';
-  document.getElementById('test-nxt').disabled=true;
-  document.getElementById('test-nxt').textContent=tIdx===tot-1?'Завершить ✓':'Далее →';
-  document.getElementById('test-prog').textContent=`Вопрос ${tIdx+1} из ${tot} · ${tOk} правильно`;
-  const dots=tQs.map((_,i)=>`<span class="q-dot" style="background:${i<tIdx?'#4ac878':i===tIdx?'#fff':'rgba(255,255,255,.18)'}"></span>`).join('');
-  document.getElementById('test-body').innerHTML=`<div class="q-dots">${dots}</div><div class="q-txt">${q.q}</div><div class="q-opts">${q.o.map((opt,i)=>`<button class="q-opt" onclick="answer(${i})">${opt}</button>`).join('')}</div>`;
-}
-
-function answer(idx){
-  if(tAns)return;tAns=true;const q=tQs[tIdx];
-  document.querySelectorAll('.q-opt').forEach((b,i)=>{
-    b.disabled=true;
-    if(i===q.a)b.classList.add('correct');
-    else if(i===idx)b.classList.add('wrong');
-    else b.classList.add('reveal');
-  });
-  if(idx===q.a)tOk++;
-  document.getElementById('test-nxt').disabled=false;
-  document.getElementById('test-prog').textContent=`Вопрос ${tIdx+1} из ${tQs.length} · ${tOk} правильно`;
-}
-
-function nextQ(){tIdx++;if(tIdx>=tQs.length)showRes();else renderQ();}
-
-function showRes(){
-  const tot=tQs.length,pct=Math.round(tOk/tot*100);
-  const emoji=pct>=90?'🏆':pct>=70?'🎯':pct>=50?'💪':'📚';
-  const lbl=pct>=90?'Отлично! Материал усвоен':pct>=70?'Хороший результат':pct>=50?'Стоит повторить':'Нужно пересмотреть';
-  vScores[tId]={c:tOk,t:tot};vsave();
-  document.getElementById('test-ft').style.display='none';
-  document.getElementById('test-body').innerHTML=`<div class="test-res"><div class="res-ico">${emoji}</div><div class="res-n" style="color:${sc2col(pct)}">${tOk}/${tot}</div><div class="res-l">${lbl}</div><button class="res-btn" onclick="closeTest()">Закрыть</button></div>`;
-  updLearnStats();
-}
-
-function closeTest(){document.getElementById('test-overlay').classList.remove('open');}
-
-function renderLearnStat(){
-  const doneMin=Math.round(VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0));
-  const testedCount=Object.keys(vScores).length;
-  const avgScore=testedCount?Math.round(Object.values(vScores).reduce((s,sc)=>s+(sc.c/sc.t*100),0)/testedCount):0;
-  const sg=document.getElementById('lstats-grid');
-  if(sg)sg.innerHTML=`
-    <div class="lstat-card"><div class="lstat-val" style="color:#4ac878">${vDone.size}</div><div class="lstat-lbl">ВИДЕО ПРОСМОТРЕНО</div></div>
-    <div class="lstat-card"><div class="lstat-val" style="color:#4a7ec8">${testedCount}</div><div class="lstat-lbl">ТЕСТОВ ПРОЙДЕНО</div></div>
-    <div class="lstat-card"><div class="lstat-val" style="color:#c8854a">${doneMin}</div><div class="lstat-lbl">МИНУТ КОНТЕНТА</div></div>
-    <div class="lstat-card"><div class="lstat-val" style="color:#9b6bc8">${avgScore||'—'}${avgScore?'%':''}</div><div class="lstat-lbl">СРЕДНИЙ БАЛЛ</div></div>
-  `;
-  const order=["История","Животный мир","Discovery","Философия","Экономика","ИИ"];
-  const bs=document.getElementById('lblk-stats');
-  if(bs)bs.innerHTML=order.map(block=>{
-    const cfg=BL[block];
-    const bv=VV.filter(v=>v.b===block);
-    const dc=bv.filter(v=>vDone.has(v.id)).length;
-    const pct=Math.round(dc/bv.length*100);
-    const tested=bv.filter(v=>vScores[v.id]);
-    const bavg=tested.length?Math.round(tested.reduce((s,v)=>s+vScores[v.id].c/vScores[v.id].t*100,0)/tested.length):null;
-    return`<div class="lblk-stat-row">
-      <div class="lblk-dot" style="background:${cfg.c}"></div>
-      <div class="lblk-name">${cfg.i} ${block}</div>
-      <div class="lblk-bar-wrap"><div class="lblk-bar" style="width:${pct}%;background:${cfg.c}"></div></div>
-      <div class="lblk-val" style="color:${cfg.c}">${dc}/${bv.length}</div>
-      <div class="lblk-score" style="color:${bavg?sc2col(bavg):'var(--t3)'}">${bavg!==null?bavg+'%':'—'}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderLearnReport(){
-  const totalVideos=43,doneCount=vDone.size;
-  const pctDone=Math.round(doneCount/totalVideos*100);
-  const testedCount=Object.keys(vScores).length;
-  const doneMin=Math.round(VV.filter(v=>vDone.has(v.id)).reduce((s,v)=>s+v.m,0));
-  const avgScore=testedCount?Math.round(Object.values(vScores).reduce((s,sc)=>s+(sc.c/sc.t*100),0)/testedCount):null;
-  const order=["История","Животный мир","Discovery","Философия","Экономика","ИИ"];
-  const status=pctDone===0?'🌱 Ещё не начато':pctDone<25?'🚀 Разгон':pctDone<50?'📈 Хороший темп':pctDone<75?'💪 Больше половины!':pctDone<100?'🏁 Финишная прямая':'🏆 Апрель закрыт!';
-  const rc=document.getElementById('lrep-content');if(!rc)return;
-  rc.innerHTML=`
-    <div class="lrep-section">
-      <h3>Итог апреля</h3>
-      <div style="text-align:center;padding:14px 0">
-        <div style="font-family:var(--title);font-size:44px;font-weight:800;color:${pctDone>0?'#4ac878':'var(--t3)'};">${pctDone}%</div>
-        <div style="font-size:13px;margin-top:6px">${status}</div>
-      </div>
-      <div class="lrep-row"><span>Видео просмотрено</span><span class="lrep-val">${doneCount} / ${totalVideos}</span></div>
-      <div class="lrep-row"><span>Тестов пройдено</span><span class="lrep-val">${testedCount} / ${totalVideos}</span></div>
-      <div class="lrep-row"><span>Часов контента</span><span class="lrep-val">${(doneMin/60).toFixed(1)} ч</span></div>
-      ${avgScore!==null?`<div class="lrep-row"><span>Средний балл</span><span class="lrep-val" style="color:${sc2col(avgScore)}">${avgScore}%</span></div>`:''}
-    </div>
-    <div class="lrep-section">
-      <h3>По блокам</h3>
-      ${order.map(block=>{
-        const cfg=BL[block];const bv=VV.filter(v=>v.b===block);
-        const dc=bv.filter(v=>vDone.has(v.id)).length;
-        const tested=bv.filter(v=>vScores[v.id]);
-        const bavg=tested.length?Math.round(tested.reduce((s,v)=>s+vScores[v.id].c/vScores[v.id].t*100,0)/tested.length):null;
-        return`<div class="lrep-row"><span>${cfg.i} ${block}</span><span style="display:flex;gap:8px;align-items:center">${bavg!==null?`<span style="font-size:10px;color:${sc2col(bavg)};font-family:var(--mono)">${bavg}%</span>`:''}<span class="lrep-val" style="color:${cfg.c}">${dc}/${bv.length}</span></span></div>`;
-      }).join('')}
-    </div>
-  `;
-}
-
-/* ── CONFETTI ── */
-function launchConfetti(){
-  confDone=true;
-  const layer=document.getElementById('confetti');if(!layer)return;
-  const colors=['#a78bfa','#60a5fa','#34d399','#f59e0b','#f87171','#c084fc','#fb923c','#06b6d4'];
-  for(let i=0;i<100;i++){
-    setTimeout(()=>{
-      const el=document.createElement('div');el.className='cp';
-      el.style.cssText=`left:${Math.random()*100}%;background:${colors[~~(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s`;
-      layer.appendChild(el);setTimeout(()=>el.remove(),5000);
-    },i*20);
-  }
-}
-
-/* ── CLOCK TICK ── */
-function tick(){
-  const now=new Date();
-  const cl=document.getElementById('gn-clock');if(cl)cl.textContent=fmt(now);
-  const nbt=document.getElementById('nb-t');if(nbt)nbt.textContent=fmtNow();
-  const pf2=document.getElementById('pf-time');if(pf2)pf2.style.width=timePct()+'%';
-}
-
-/* ── INIT ── */
-// Set date label
-const nowD=new Date();
-const dl=document.getElementById('tl-date');
-if(dl)dl.textContent=nowD.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
-
-renderTimeline();
-renderSidebar();
-setInterval(tick,1000);
-</script>
-</body>
-</html>
+    const cfg=BL[block],bv=VV.filter(v=>v.b===block);
+    const show
