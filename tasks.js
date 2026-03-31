@@ -13,8 +13,10 @@ var TODAY_TASKS = [
   { time: '10:30', name: 'Стоматолог',                   cat: 'health',   dur: 90  },
   { time: '14:00', name: 'Обед',                         cat: 'personal', dur: 60  },
   { time: '15:00', name: 'Отчёт для фонда',              cat: 'work',     dur: 60  },
-  { time: '16:00', name: 'Урок',                         cat: 'study',    dur: 60  },
+  { time: '16:00', name: 'Работа по Дашборду',           cat: 'focus',    dur: 30  },
+  { time: '16:30', name: 'ТЗ для личного ассистента',    cat: 'work',     dur: 30  },
   { time: '17:00', name: 'Парк с Сашей',                 cat: 'health',   dur: 60  },
   { time: '18:00', name: 'Ужин',                         cat: 'personal', dur: 60  },
   { time: '19:00', name: 'Время с Сашей',                cat: 'personal', dur: 120 },
+  { time: '21:00', name: 'Урок истории — Минаев',        cat: 'study',    dur: 60  },
 ];
