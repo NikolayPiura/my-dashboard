@@ -61,20 +61,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .card.b .card-val{color:var(--work)}
 .card.r .card-val{color:var(--red)}
 
-/* 3. Категории — под карточками */
+/* 3. Категории — под карточками, высокий блок */
 .lcats{
   flex-shrink:0;
-  padding:24px 40px 20px;
+  padding:28px 40px 24px;
   background:var(--s1);border-bottom:2px solid var(--b1);
+  height:26vh;
+  display:flex;flex-direction:column;
 }
-.lcats-title{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:16px}
-.cats-grid{display:flex;flex-direction:column;gap:10px}
-.cat{display:flex;align-items:center;gap:12px}
-.cat-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:15px;color:var(--t2);width:88px;flex-shrink:0;font-weight:500}
-.cat-bg{flex:1;background:var(--s3);border-radius:7px;height:12px;overflow:hidden}
-.cat-fill{height:100%;border-radius:7px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:12px;color:var(--t3);width:76px;text-align:right;flex-shrink:0}
+.lcats-title{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;flex-shrink:0}
+.cats-grid{display:flex;flex-direction:column;justify-content:space-between;flex:1;padding-top:18px}
+.cat{display:flex;align-items:center;gap:14px}
+.cat-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:18px;color:var(--t2);width:106px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:8px;height:16px;overflow:hidden}
+.cat-fill{height:100%;border-radius:8px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:14px;color:var(--t3);width:88px;text-align:right;flex-shrink:0}
 
 /* 4. Задачи — весь остаток */
 .tasks{flex:1;overflow-y:auto;padding:12px 16px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
@@ -122,14 +124,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .nowsep{font-size:12px;color:var(--t3)}
 
 /* ══ ПРАВАЯ КОЛОНКА — 3 блока ══ */
-/* Прогресс: 12%, Диаграмма: 26%, Цели: 1fr */
+/* Прогресс: 10%, Диаграмма: 26vh, Цели: 1fr */
 .right{
   display:grid;
-  grid-template-rows:12% 26% 1fr;
+  grid-template-rows:10% 26vh 1fr;
   height:100vh;overflow:hidden;
   background:var(--s1);
 }
-.rb{display:flex;flex-direction:column;padding:24px 36px;border-bottom:2px solid var(--b1);overflow:hidden}
+.rb{display:flex;flex-direction:column;padding:24px 40px;border-bottom:2px solid var(--b1);overflow:hidden}
 .rb:last-child{border-bottom:none}
 .rb-title{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:16px;flex-shrink:0}
 
@@ -158,14 +160,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .goals-inner::-webkit-scrollbar{width:3px}
 .goals-inner::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
-.dyn-block{padding-bottom:18px;margin-bottom:4px;border-bottom:1px solid var(--b1)}
+.dyn-block{padding-bottom:22px;margin-bottom:4px;border-bottom:1px solid var(--b1)}
 .dyn-block:last-child{border-bottom:none;margin-bottom:0}
-.dyn-title{font-family:var(--title);font-size:14px;font-weight:800;color:var(--accent);letter-spacing:.5px;margin-bottom:10px;margin-top:20px}
+.dyn-title{font-family:var(--title);font-size:18px;font-weight:800;color:var(--accent);letter-spacing:.5px;margin-bottom:14px;margin-top:26px}
 .dyn-block:first-child .dyn-title{margin-top:0}
-.goal-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:8px}
+.goal-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
 .goal-item:last-child{margin-bottom:0}
-.goal-num{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2);flex-shrink:0;min-width:32px;margin-top:2px}
-.goal-text{font-family:var(--sans);font-size:14px;color:var(--t2);font-style:italic;line-height:1.5}
+.goal-num{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--a2);flex-shrink:0;min-width:36px;margin-top:2px}
+.goal-text{font-family:var(--sans);font-size:17px;color:var(--t2);font-style:italic;line-height:1.55}
 
 .conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
