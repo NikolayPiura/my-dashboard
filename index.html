@@ -22,43 +22,61 @@
   --sans:'Golos Text',sans-serif;
 }
 html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
-
 .app{display:grid;grid-template-columns:1fr 1fr;width:100vw;height:100vh;overflow:hidden}
 
-/* ══ ЛЕВАЯ ══ */
+/* ══ ЛЕВАЯ КОЛОНКА ══ */
 .left{display:flex;flex-direction:column;height:100vh;border-right:2px solid var(--b1);overflow:hidden}
 
+/* 1. Часы */
 .ltop{
-  flex-shrink:0;padding:36px 44px 30px;
+  flex-shrink:0;
+  padding:44px 48px 38px;
   background:var(--s1);border-bottom:2px solid var(--b1);
   display:flex;align-items:center;justify-content:space-between;
 }
-.clock{font-family:var(--mono);font-size:64px;font-weight:700;letter-spacing:5px;color:var(--text);line-height:1}
+.clock{font-family:var(--mono);font-size:68px;font-weight:700;letter-spacing:5px;color:var(--text);line-height:1}
 .date-block{text-align:right}
-.date-day{font-family:var(--title);font-size:18px;font-weight:700;color:var(--t2);margin-bottom:6px}
-.date-num{font-family:var(--title);font-size:28px;font-weight:800;color:var(--text)}
+.date-day{font-family:var(--title);font-size:20px;font-weight:700;color:var(--t2);margin-bottom:8px}
+.date-num{font-family:var(--title);font-size:30px;font-weight:800;color:var(--text)}
 
+/* 2. Выполнено + карточки */
 .lmid{
-  flex-shrink:0;padding:26px 36px 22px;
+  flex-shrink:0;
+  padding:30px 40px 26px;
   background:var(--s1);border-bottom:2px solid var(--b1);
-  display:flex;flex-direction:column;gap:18px;
+  display:flex;flex-direction:column;gap:20px;
 }
 .done-row{display:flex;align-items:center;gap:14px}
-.done-txt{font-family:var(--title);font-size:22px;font-weight:800;color:var(--text);white-space:nowrap}
-.done-pct{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--a2);white-space:nowrap}
+.done-txt{font-family:var(--title);font-size:24px;font-weight:800;color:var(--text);white-space:nowrap}
+.done-pct{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--a2);white-space:nowrap}
 .bar-wrap{flex:1;height:12px;background:var(--b1);border-radius:6px;overflow:hidden}
 .bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
 .reset-btn{font-family:var(--mono);font-size:12px;background:transparent;border:1.5px solid var(--b2);color:var(--t2);padding:8px 16px;border-radius:8px;cursor:pointer;flex-shrink:0;transition:all .2s;letter-spacing:.5px}
 .reset-btn:hover{border-color:var(--accent);color:var(--a2)}
-
-.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.card{background:var(--s3);border:1.5px solid var(--b1);border-radius:16px;padding:20px 14px;text-align:center}
-.card-val{font-family:var(--title);font-size:64px;font-weight:800;line-height:1;margin-bottom:8px}
+.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.card{background:var(--s3);border:1.5px solid var(--b1);border-radius:16px;padding:24px 14px;text-align:center}
+.card-val{font-family:var(--title);font-size:68px;font-weight:800;line-height:1;margin-bottom:8px}
 .card-lbl{font-size:12px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
 .card.g .card-val{color:var(--green)}
 .card.b .card-val{color:var(--work)}
 .card.r .card-val{color:var(--red)}
 
+/* 3. Категории — под карточками */
+.lcats{
+  flex-shrink:0;
+  padding:24px 40px 20px;
+  background:var(--s1);border-bottom:2px solid var(--b1);
+}
+.lcats-title{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:16px}
+.cats-grid{display:flex;flex-direction:column;gap:10px}
+.cat{display:flex;align-items:center;gap:12px}
+.cat-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:15px;color:var(--t2);width:88px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:7px;height:12px;overflow:hidden}
+.cat-fill{height:100%;border-radius:7px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:12px;color:var(--t3);width:76px;text-align:right;flex-shrink:0}
+
+/* 4. Задачи — весь остаток */
 .tasks{flex:1;overflow-y:auto;padding:12px 16px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
 .tasks::-webkit-scrollbar{width:4px}
 .tasks::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
@@ -66,8 +84,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .task{
   display:flex;align-items:center;gap:12px;
   background:var(--s2);border:1.5px solid var(--b1);
-  border-radius:12px;padding:18px 18px;
-  margin-bottom:8px;cursor:pointer;
+  border-radius:12px;padding:17px 16px;
+  margin-bottom:7px;cursor:pointer;
   transition:all .18s;position:relative;overflow:hidden;
 }
 .task::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px}
@@ -88,7 +106,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .cb.on{background:var(--accent);border-color:var(--accent)}
 .cb.on::after{content:'✓';font-size:13px;color:#fff;font-weight:700}
 .ttime{font-family:var(--mono);font-size:13px;color:var(--t3);flex-shrink:0;min-width:44px}
-.tname{font-size:17px;flex:1;line-height:1.3;font-weight:500}
+.tname{font-size:16px;flex:1;line-height:1.3;font-weight:500}
 .tdur{font-size:12px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
 .ttag{font-size:12px;padding:4px 10px;border-radius:6px;font-weight:600;flex-shrink:0}
 .tag-work{background:#1a3050;color:#60a5fa}
@@ -97,46 +115,37 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .tag-focus{background:#400a25;color:#f9a8d4}
 .tag-study{background:#052535;color:#67e8f9}
 .tag-sport{background:#38200a;color:#fb923c}
-
 .nowbar{display:flex;align-items:center;gap:10px;margin:6px 0;padding:9px 14px;background:#ef444412;border:1.5px solid #ef444440;border-radius:10px}
 .nowdot{width:12px;height:12px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 .nowt{font-family:var(--mono);font-size:13px;color:var(--red);font-weight:700}
 .nowsep{font-size:12px;color:var(--t3)}
 
-/* ══ ПРАВАЯ — 4 блока: задачи / категории / диаграмма / цели ══ */
+/* ══ ПРАВАЯ КОЛОНКА — 3 блока ══ */
+/* Прогресс: 12%, Диаграмма: 26%, Цели: 1fr */
 .right{
   display:grid;
-  grid-template-rows:18% 22% 25% 1fr;
+  grid-template-rows:12% 26% 1fr;
   height:100vh;overflow:hidden;
   background:var(--s1);
 }
 .rb{display:flex;flex-direction:column;padding:24px 36px;border-bottom:2px solid var(--b1);overflow:hidden}
 .rb:last-child{border-bottom:none}
-.rb-title{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:18px;flex-shrink:0}
+.rb-title{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:16px;flex-shrink:0}
 
-/* Прогресс — только задачи */
+/* Прогресс */
 .prog-single{flex:1;display:flex;flex-direction:column;justify-content:center}
-.prog-meta{display:flex;justify-content:space-between;margin-bottom:14px}
+.prog-meta{display:flex;justify-content:space-between;margin-bottom:12px}
 .prog-name{font-size:20px;color:var(--t2);font-weight:500}
 .prog-val{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--a2)}
 .prog-bg{background:var(--s3);border-radius:12px;overflow:hidden}
 .prog-fill{border-radius:12px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
-/* Категории */
-.cats{display:flex;flex-direction:column;justify-content:space-between;flex:1}
-.cat{display:flex;align-items:center;gap:12px}
-.cat-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:16px;color:var(--t2);width:90px;flex-shrink:0;font-weight:500}
-.cat-bg{flex:1;background:var(--s3);border-radius:7px;height:14px;overflow:hidden}
-.cat-fill{height:100%;border-radius:7px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:13px;color:var(--t3);width:82px;text-align:right;flex-shrink:0}
-
 /* Диаграмма */
 .chart-section{display:flex;align-items:center;gap:24px;flex:1;min-height:0}
-.chart-wrap{position:relative;width:150px;height:150px;flex-shrink:0}
+.chart-wrap{position:relative;width:160px;height:160px;flex-shrink:0}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:30px;font-weight:800;color:var(--a2)}
+.chart-pct{font-family:var(--title);font-size:32px;font-weight:800;color:var(--a2)}
 .chart-sub{font-size:10px;color:var(--t3);letter-spacing:1px;margin-top:3px;font-family:var(--mono)}
 .legend{display:flex;flex-direction:column;justify-content:space-between;flex:1;height:100%}
 .leg-item{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--t2);background:var(--s3);border:1.5px solid var(--b1);border-radius:9px;padding:8px 12px}
@@ -144,18 +153,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
 .leg-val{font-family:var(--mono);font-size:13px;color:var(--a2);font-weight:700}
 
-/* Цели */
-.goals-scroll{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
-.goals-scroll::-webkit-scrollbar{width:3px}
-.goals-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-.dyn-block{margin-bottom:4px;padding-bottom:14px;border-bottom:1px solid var(--b1)}
+/* Цели — большой блок со скроллом */
+.goals-inner{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent;min-height:0}
+.goals-inner::-webkit-scrollbar{width:3px}
+.goals-inner::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+
+.dyn-block{padding-bottom:18px;margin-bottom:4px;border-bottom:1px solid var(--b1)}
 .dyn-block:last-child{border-bottom:none;margin-bottom:0}
-.dyn-title{font-family:var(--title);font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.5px;margin-bottom:8px;margin-top:16px}
+.dyn-title{font-family:var(--title);font-size:14px;font-weight:800;color:var(--accent);letter-spacing:.5px;margin-bottom:10px;margin-top:20px}
 .dyn-block:first-child .dyn-title{margin-top:0}
-.goal-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
+.goal-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:8px}
 .goal-item:last-child{margin-bottom:0}
-.goal-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--a2);flex-shrink:0;min-width:30px;margin-top:2px}
-.goal-text{font-family:var(--sans);font-size:13px;color:var(--t2);font-style:italic;line-height:1.45}
+.goal-num{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--a2);flex-shrink:0;min-width:32px;margin-top:2px}
+.goal-text{font-family:var(--sans);font-size:14px;color:var(--t2);font-style:italic;line-height:1.5}
 
 .conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
@@ -167,6 +177,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 
   <!-- ЛЕВАЯ -->
   <div class="left">
+    <!-- Часы -->
     <div class="ltop">
       <div class="clock" id="clock">00:00:00</div>
       <div class="date-block">
@@ -174,6 +185,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
         <div class="date-num" id="date-num">3 апреля</div>
       </div>
     </div>
+
+    <!-- Выполнено + карточки -->
     <div class="lmid">
       <div class="done-row">
         <span class="done-txt" id="done-txt">выполнено 0 из 0</span>
@@ -187,13 +200,21 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
         <div class="card r"><div class="card-val" id="s-miss">0</div><div class="card-lbl">ПРОПУЩЕНО</div></div>
       </div>
     </div>
+
+    <!-- Категории -->
+    <div class="lcats">
+      <div class="lcats-title">По категориям</div>
+      <div class="cats-grid" id="cats"></div>
+    </div>
+
+    <!-- Задачи -->
     <div class="tasks" id="tasks"></div>
   </div>
 
   <!-- ПРАВАЯ -->
   <div class="right">
 
-    <!-- 1: ПРОГРЕСС -->
+    <!-- Прогресс -->
     <div class="rb">
       <div class="rb-title">Прогресс дня</div>
       <div class="prog-single">
@@ -207,13 +228,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
       </div>
     </div>
 
-    <!-- 2: КАТЕГОРИИ -->
-    <div class="rb">
-      <div class="rb-title">По категориям</div>
-      <div class="cats" id="cats"></div>
-    </div>
-
-    <!-- 3: ДИАГРАММА -->
+    <!-- Диаграмма -->
     <div class="rb">
       <div class="rb-title">Распределение</div>
       <div class="chart-section">
@@ -228,10 +243,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
       </div>
     </div>
 
-    <!-- 4: ЦЕЛИ -->
+    <!-- Цели -->
     <div class="rb">
       <div class="rb-title">Цели</div>
-      <div class="goals-scroll">
+      <div class="goals-inner">
         <div class="dyn-block">
           <div class="dyn-title">1 ДИНАМИКА</div>
           <div class="goal-item"><span class="goal-num">№1</span><span class="goal-text">Построить функциональное, здоровое и эстетичное тело</span></div>
