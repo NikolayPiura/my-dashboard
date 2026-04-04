@@ -30,22 +30,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 /* 1. Часы */
 .ltop{
   flex-shrink:0;
-  padding:24px 48px 20px;
+  height:22vh;
+  padding:0 44px;
   background:var(--s1);border-bottom:2px solid var(--b1);
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;flex-direction:column;justify-content:center;gap:18px;
 }
-.clock{font-family:var(--mono);font-size:68px;font-weight:700;letter-spacing:5px;color:var(--text);line-height:1}
+.clock-date-row{display:flex;align-items:center;justify-content:space-between}
+.clock{font-family:var(--mono);font-size:56px;font-weight:700;letter-spacing:5px;color:var(--text);line-height:1}
 .date-block{text-align:right}
-.date-day{font-family:var(--title);font-size:20px;font-weight:700;color:var(--t2);margin-bottom:8px}
-.date-num{font-family:var(--title);font-size:30px;font-weight:800;color:var(--text)}
-
-/* 2. Выполнено + карточки */
-.lmid{
-  flex-shrink:0;
-  padding:20px 40px 18px;
-  background:var(--s1);border-bottom:2px solid var(--b1);
-  display:flex;flex-direction:column;gap:16px;
-}
+.date-day{font-family:var(--title);font-size:18px;font-weight:700;color:var(--t2);margin-bottom:6px}
+.date-num{font-family:var(--title);font-size:26px;font-weight:800;color:var(--text)}
 .done-row{display:flex;align-items:center;gap:14px}
 .done-txt{font-family:var(--title);font-size:22px;font-weight:800;color:var(--text);white-space:nowrap}
 .done-pct{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--a2);white-space:nowrap}
@@ -179,17 +173,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 
   <!-- ЛЕВАЯ -->
   <div class="left">
-    <!-- Часы -->
+    <!-- Часы + выполнено + карточки — единый блок 22vh -->
     <div class="ltop">
-      <div class="clock" id="clock">00:00:00</div>
-      <div class="date-block">
-        <div class="date-day" id="date-day">пятница</div>
-        <div class="date-num" id="date-num">3 апреля</div>
+      <div class="clock-date-row">
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="date-block">
+          <div class="date-day" id="date-day">пятница</div>
+          <div class="date-num" id="date-num">3 апреля</div>
+        </div>
       </div>
-    </div>
-
-    <!-- Выполнено + карточки -->
-    <div class="lmid">
       <div class="done-row">
         <span class="done-txt" id="done-txt">выполнено 0 из 0</span>
         <div class="bar-wrap"><div class="bar-fill" id="bar" style="width:0%"></div></div>
