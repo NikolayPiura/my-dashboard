@@ -23,28 +23,14 @@
 }
 html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans)}
 
-.app{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  width:100vw;height:100vh;
-  overflow:hidden;
-}
+.app{display:grid;grid-template-columns:1fr 1fr;width:100vw;height:100vh;overflow:hidden}
 
-/* ══════════════════════
-   ЛЕВАЯ КОЛОНКА
-══════════════════════ */
-.left{
-  display:flex;flex-direction:column;
-  height:100vh;
-  border-right:2px solid var(--b1);
-  overflow:hidden;
-}
+/* ══ ЛЕВАЯ ══ */
+.left{display:flex;flex-direction:column;height:100vh;border-right:2px solid var(--b1);overflow:hidden}
 
 .ltop{
-  flex-shrink:0;
-  padding:36px 44px 32px;
-  background:var(--s1);
-  border-bottom:2px solid var(--b1);
+  flex-shrink:0;padding:36px 44px 30px;
+  background:var(--s1);border-bottom:2px solid var(--b1);
   display:flex;align-items:center;justify-content:space-between;
 }
 .clock{font-family:var(--mono);font-size:64px;font-weight:700;letter-spacing:5px;color:var(--text);line-height:1}
@@ -53,40 +39,34 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .date-num{font-family:var(--title);font-size:28px;font-weight:800;color:var(--text)}
 
 .lmid{
-  flex-shrink:0;
-  padding:28px 36px 24px;
-  background:var(--s1);
-  border-bottom:2px solid var(--b1);
-  display:flex;flex-direction:column;gap:20px;
+  flex-shrink:0;padding:26px 36px 22px;
+  background:var(--s1);border-bottom:2px solid var(--b1);
+  display:flex;flex-direction:column;gap:18px;
 }
-.done-row{display:flex;align-items:center;gap:16px}
-.done-txt{font-family:var(--title);font-size:24px;font-weight:800;color:var(--text);white-space:nowrap}
-.done-pct{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--a2);white-space:nowrap}
+.done-row{display:flex;align-items:center;gap:14px}
+.done-txt{font-family:var(--title);font-size:22px;font-weight:800;color:var(--text);white-space:nowrap}
+.done-pct{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--a2);white-space:nowrap}
 .bar-wrap{flex:1;height:12px;background:var(--b1);border-radius:6px;overflow:hidden}
 .bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s}
-.reset-btn{font-family:var(--mono);font-size:12px;background:transparent;border:1.5px solid var(--b2);color:var(--t2);padding:8px 18px;border-radius:8px;cursor:pointer;flex-shrink:0;transition:all .2s;letter-spacing:.5px}
+.reset-btn{font-family:var(--mono);font-size:12px;background:transparent;border:1.5px solid var(--b2);color:var(--t2);padding:8px 16px;border-radius:8px;cursor:pointer;flex-shrink:0;transition:all .2s;letter-spacing:.5px}
 .reset-btn:hover{border-color:var(--accent);color:var(--a2)}
 
-.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-.card{background:var(--s3);border:1.5px solid var(--b1);border-radius:16px;padding:22px 14px;text-align:center}
-.card-val{font-family:var(--title);font-size:68px;font-weight:800;line-height:1;margin-bottom:8px}
+.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.card{background:var(--s3);border:1.5px solid var(--b1);border-radius:16px;padding:20px 14px;text-align:center}
+.card-val{font-family:var(--title);font-size:64px;font-weight:800;line-height:1;margin-bottom:8px}
 .card-lbl{font-size:12px;color:var(--t2);letter-spacing:1px;font-family:var(--mono)}
 .card.g .card-val{color:var(--green)}
 .card.b .card-val{color:var(--work)}
 .card.r .card-val{color:var(--red)}
 
-.tasks{
-  flex:1;overflow-y:auto;
-  padding:14px 16px;
-  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
-}
+.tasks{flex:1;overflow-y:auto;padding:12px 16px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
 .tasks::-webkit-scrollbar{width:4px}
 .tasks::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
 .task{
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:center;gap:12px;
   background:var(--s2);border:1.5px solid var(--b1);
-  border-radius:13px;padding:20px 20px;
+  border-radius:12px;padding:18px 18px;
   margin-bottom:8px;cursor:pointer;
   transition:all .18s;position:relative;overflow:hidden;
 }
@@ -104,13 +84,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .task.done .ttag{opacity:.35}
 .task.tnow{border-color:var(--accent)}
 .task.missed:not(.done){border-color:#ef444428}
-.cb{width:24px;height:24px;border-radius:6px;border:2px solid var(--b2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cb{width:22px;height:22px;border-radius:6px;border:2px solid var(--b2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .cb.on{background:var(--accent);border-color:var(--accent)}
-.cb.on::after{content:'✓';font-size:14px;color:#fff;font-weight:700}
-.ttime{font-family:var(--mono);font-size:14px;color:var(--t3);flex-shrink:0;min-width:48px}
-.tname{font-size:18px;flex:1;line-height:1.3;font-weight:500}
-.tdur{font-size:13px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
-.ttag{font-size:13px;padding:5px 12px;border-radius:7px;font-weight:600;flex-shrink:0}
+.cb.on::after{content:'✓';font-size:13px;color:#fff;font-weight:700}
+.ttime{font-family:var(--mono);font-size:13px;color:var(--t3);flex-shrink:0;min-width:44px}
+.tname{font-size:17px;flex:1;line-height:1.3;font-weight:500}
+.tdur{font-size:12px;color:var(--t3);font-family:var(--mono);flex-shrink:0}
+.ttag{font-size:12px;padding:4px 10px;border-radius:6px;font-weight:600;flex-shrink:0}
 .tag-work{background:#1a3050;color:#60a5fa}
 .tag-health{background:#0f3020;color:#4ade80}
 .tag-personal{background:#382008;color:#fbbf24}
@@ -118,104 +98,64 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .tag-study{background:#052535;color:#67e8f9}
 .tag-sport{background:#38200a;color:#fb923c}
 
-.nowbar{display:flex;align-items:center;gap:10px;margin:6px 0;padding:10px 16px;background:#ef444412;border:1.5px solid #ef444440;border-radius:10px}
+.nowbar{display:flex;align-items:center;gap:10px;margin:6px 0;padding:9px 14px;background:#ef444412;border:1.5px solid #ef444440;border-radius:10px}
 .nowdot{width:12px;height:12px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 .nowt{font-family:var(--mono);font-size:13px;color:var(--red);font-weight:700}
 .nowsep{font-size:12px;color:var(--t3)}
 
-/* ══════════════════════
-   СРЕДНЯЯ КОЛОНКА
-══════════════════════ */
-.mid{
+/* ══ ПРАВАЯ — 4 блока: задачи / категории / диаграмма / цели ══ */
+.right{
   display:grid;
-  grid-template-rows:1fr 1fr 1fr;
-  height:100vh;
-  border-right:2px solid var(--b1);
-  overflow:hidden;
+  grid-template-rows:18% 22% 25% 1fr;
+  height:100vh;overflow:hidden;
   background:var(--s1);
 }
-.rb{display:flex;flex-direction:column;padding:32px 40px;border-bottom:2px solid var(--b1);overflow:hidden}
+.rb{display:flex;flex-direction:column;padding:24px 36px;border-bottom:2px solid var(--b1);overflow:hidden}
 .rb:last-child{border-bottom:none}
-.rb-title{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:24px;flex-shrink:0}
+.rb-title{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:18px;flex-shrink:0}
 
 /* Прогресс — только задачи */
-.prog-single{display:flex;flex-direction:column;justify-content:center;flex:1;gap:16px}
+.prog-single{flex:1;display:flex;flex-direction:column;justify-content:center}
 .prog-meta{display:flex;justify-content:space-between;margin-bottom:14px}
-.prog-name{font-size:22px;color:var(--t2);font-weight:500}
-.prog-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--a2)}
+.prog-name{font-size:20px;color:var(--t2);font-weight:500}
+.prog-val{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--a2)}
 .prog-bg{background:var(--s3);border-radius:12px;overflow:hidden}
 .prog-fill{border-radius:12px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 
 /* Категории */
 .cats{display:flex;flex-direction:column;justify-content:space-between;flex:1}
-.cat{display:flex;align-items:center;gap:14px}
-.cat-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
-.cat-name{font-size:18px;color:var(--t2);width:100px;flex-shrink:0;font-weight:500}
-.cat-bg{flex:1;background:var(--s3);border-radius:8px;height:18px;overflow:hidden}
-.cat-fill{height:100%;border-radius:8px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.cat-meta{font-family:var(--mono);font-size:14px;color:var(--t3);width:90px;text-align:right;flex-shrink:0}
+.cat{display:flex;align-items:center;gap:12px}
+.cat-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:16px;color:var(--t2);width:90px;flex-shrink:0;font-weight:500}
+.cat-bg{flex:1;background:var(--s3);border-radius:7px;height:14px;overflow:hidden}
+.cat-fill{height:100%;border-radius:7px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cat-meta{font-family:var(--mono);font-size:13px;color:var(--t3);width:82px;text-align:right;flex-shrink:0}
 
 /* Диаграмма */
-.chart-section{display:flex;align-items:center;gap:28px;flex:1;min-height:0}
-.chart-wrap{position:relative;width:180px;height:180px;flex-shrink:0}
+.chart-section{display:flex;align-items:center;gap:24px;flex:1;min-height:0}
+.chart-wrap{position:relative;width:150px;height:150px;flex-shrink:0}
 .chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.chart-pct{font-family:var(--title);font-size:36px;font-weight:800;color:var(--a2)}
-.chart-sub{font-size:11px;color:var(--t3);letter-spacing:1px;margin-top:4px;font-family:var(--mono)}
+.chart-pct{font-family:var(--title);font-size:30px;font-weight:800;color:var(--a2)}
+.chart-sub{font-size:10px;color:var(--t3);letter-spacing:1px;margin-top:3px;font-family:var(--mono)}
 .legend{display:flex;flex-direction:column;justify-content:space-between;flex:1;height:100%}
-.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:15px;color:var(--t2);background:var(--s3);border:1.5px solid var(--b1);border-radius:10px;padding:10px 14px}
-.leg-left{display:flex;align-items:center;gap:10px}
-.leg-dot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
-.leg-val{font-family:var(--mono);font-size:14px;color:var(--a2);font-weight:700}
+.leg-item{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--t2);background:var(--s3);border:1.5px solid var(--b1);border-radius:9px;padding:8px 12px}
+.leg-left{display:flex;align-items:center;gap:9px}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.leg-val{font-family:var(--mono);font-size:13px;color:var(--a2);font-weight:700}
 
-/* ══════════════════════
-   ПРАВАЯ КОЛОНКА — ЦЕЛИ
-══════════════════════ */
-.goals-col{
-  display:flex;flex-direction:column;
-  height:100vh;overflow:hidden;
-  background:var(--s1);
-}
-.goals-header{
-  flex-shrink:0;
-  padding:36px 40px 28px;
-  border-bottom:2px solid var(--b1);
-}
-.goals-title{
-  font-family:var(--title);font-size:32px;font-weight:800;
-  color:var(--text);letter-spacing:2px;
-}
-.goals-scroll{
-  flex:1;overflow-y:auto;
-  padding:24px 40px 40px;
-  scrollbar-width:thin;scrollbar-color:var(--b2) transparent;
-}
-.goals-scroll::-webkit-scrollbar{width:4px}
+/* Цели */
+.goals-scroll{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.goals-scroll::-webkit-scrollbar{width:3px}
 .goals-scroll::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-
-.dyn-block{margin-bottom:8px;padding-bottom:24px;border-bottom:1px solid var(--b1)}
-.dyn-block:last-child{border-bottom:none}
-.dyn-title{
-  font-family:var(--title);font-size:15px;font-weight:800;
-  color:var(--accent);letter-spacing:1px;
-  margin-bottom:14px;margin-top:28px;
-}
+.dyn-block{margin-bottom:4px;padding-bottom:14px;border-bottom:1px solid var(--b1)}
+.dyn-block:last-child{border-bottom:none;margin-bottom:0}
+.dyn-title{font-family:var(--title);font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.5px;margin-bottom:8px;margin-top:16px}
 .dyn-block:first-child .dyn-title{margin-top:0}
-.goal-item{
-  display:flex;align-items:flex-start;gap:10px;
-  margin-bottom:10px;
-}
+.goal-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
 .goal-item:last-child{margin-bottom:0}
-.goal-num{
-  font-family:var(--mono);font-size:14px;font-weight:700;
-  color:var(--a2);flex-shrink:0;min-width:34px;
-  margin-top:2px;
-}
-.goal-text{
-  font-family:var(--sans);font-size:15px;
-  color:var(--t2);font-style:italic;
-  line-height:1.5;
-}
+.goal-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--a2);flex-shrink:0;min-width:30px;margin-top:2px}
+.goal-text{font-family:var(--sans);font-size:13px;color:var(--t2);font-style:italic;line-height:1.45}
 
 .conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
@@ -225,7 +165,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 <body>
 <div class="app">
 
-  <!-- ══ ЛЕВАЯ ══ -->
+  <!-- ЛЕВАЯ -->
   <div class="left">
     <div class="ltop">
       <div class="clock" id="clock">00:00:00</div>
@@ -250,28 +190,30 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="tasks" id="tasks"></div>
   </div>
 
-  <!-- ══ СРЕДНЯЯ ══ -->
-  <div class="mid">
+  <!-- ПРАВАЯ -->
+  <div class="right">
+
+    <!-- 1: ПРОГРЕСС -->
     <div class="rb">
       <div class="rb-title">Прогресс дня</div>
       <div class="prog-single">
-        <div>
-          <div class="prog-meta">
-            <span class="prog-name">Задачи выполнены</span>
-            <span class="prog-val" id="pp">0%</span>
-          </div>
-          <div class="prog-bg" style="height:32px">
-            <div class="prog-fill" id="pf-t" style="width:0%;height:32px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div>
-          </div>
+        <div class="prog-meta">
+          <span class="prog-name">Задачи выполнены</span>
+          <span class="prog-val" id="pp">0%</span>
+        </div>
+        <div class="prog-bg" style="height:32px">
+          <div class="prog-fill" id="pf-t" style="width:0%;height:32px;background:linear-gradient(90deg,var(--accent),var(--a2))"></div>
         </div>
       </div>
     </div>
 
+    <!-- 2: КАТЕГОРИИ -->
     <div class="rb">
       <div class="rb-title">По категориям</div>
       <div class="cats" id="cats"></div>
     </div>
 
+    <!-- 3: ДИАГРАММА -->
     <div class="rb">
       <div class="rb-title">Распределение</div>
       <div class="chart-section">
@@ -285,66 +227,55 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
         <div class="legend" id="legend"></div>
       </div>
     </div>
-  </div>
 
-  <!-- ══ ПРАВАЯ — ЦЕЛИ ══ -->
-  <div class="goals-col">
-    <div class="goals-header">
-      <div class="goals-title">ЦЕЛИ</div>
+    <!-- 4: ЦЕЛИ -->
+    <div class="rb">
+      <div class="rb-title">Цели</div>
+      <div class="goals-scroll">
+        <div class="dyn-block">
+          <div class="dyn-title">1 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№1</span><span class="goal-text">Построить функциональное, здоровое и эстетичное тело</span></div>
+          <div class="goal-item"><span class="goal-num">№2</span><span class="goal-text">Получить образование, эрудированность, развить навыки</span></div>
+          <div class="goal-item"><span class="goal-num">№3</span><span class="goal-text">Достичь состояния Тэта - Клир</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">2 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№4</span><span class="goal-text">Построить группу без взаимных овертов, которая имеет потомство</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">3 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№5</span><span class="goal-text">Построить личный инвестиционный фонд в 10 млн $ и мин. в 12% годовых</span></div>
+          <div class="goal-item"><span class="goal-num">№6</span><span class="goal-text">Построить бизнес с доходом от 1 млн $ в год</span></div>
+          <div class="goal-item"><span class="goal-num">№7</span><span class="goal-text">Получить в управление 100 млн $</span></div>
+          <div class="goal-item"><span class="goal-num">№8</span><span class="goal-text">Достигнуть уровня КМС (Настольный теннис, Шахматы)</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">4 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№8</span><span class="goal-text">Помочь избавиться от наркотической, алкогольной, табачной зависимости 1.000 людям</span></div>
+          <div class="goal-item"><span class="goal-num">№9</span><span class="goal-text">Вырастить клиента, который качественно повлияет на планету (от 10 млн в $ эквиваленте)</span></div>
+          <div class="goal-item"><span class="goal-num">№10</span><span class="goal-text">Посодействовать клонированию 100 человек, 10 отклонировать лично</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">5 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№11</span><span class="goal-text">Стерилизовать 1.000.000 кошек и котов</span></div>
+          <div class="goal-item"><span class="goal-num">№12</span><span class="goal-text">Посадить 1.000.000 деревьев</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">6 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№13</span><span class="goal-text">Сделать 10.000 акций по уборке мусора</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">7 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№14</span><span class="goal-text">Восстановить собственную идентичность</span></div>
+        </div>
+        <div class="dyn-block">
+          <div class="dyn-title">8 ДИНАМИКА</div>
+          <div class="goal-item"><span class="goal-num">№15</span><span class="goal-text">Понять концепт, достигнуть абсолют, восстановить идентичность</span></div>
+        </div>
+      </div>
     </div>
-    <div class="goals-scroll">
 
-      <div class="dyn-block">
-        <div class="dyn-title">1 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№1</span><span class="goal-text">Построить функциональное, здоровое и эстетичное тело</span></div>
-        <div class="goal-item"><span class="goal-num">№2</span><span class="goal-text">Получить образование, эрудированность, развить навыки</span></div>
-        <div class="goal-item"><span class="goal-num">№3</span><span class="goal-text">Достичь состояния Тэта - Клир</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">2 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№4</span><span class="goal-text">Построить группу без взаимных овертов, которая имеет потомство</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">3 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№5</span><span class="goal-text">Построить личный инвестиционный фонд в 10 млн $ и мин. в 12% годовых</span></div>
-        <div class="goal-item"><span class="goal-num">№6</span><span class="goal-text">Построить бизнес с доходом от 1 млн $ в год</span></div>
-        <div class="goal-item"><span class="goal-num">№7</span><span class="goal-text">Получить в управление 100 млн $</span></div>
-        <div class="goal-item"><span class="goal-num">№8</span><span class="goal-text">Достигнуть уровня КМС (Настольный теннис, Шахматы)</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">4 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№8</span><span class="goal-text">Помочь избавиться от наркотической, алкогольной, табачной зависимости 1.000 людям</span></div>
-        <div class="goal-item"><span class="goal-num">№9</span><span class="goal-text">Вырастить клиента, который качественно повлияет на планету (от 10 млн в $ эквиваленте)</span></div>
-        <div class="goal-item"><span class="goal-num">№10</span><span class="goal-text">Посодействовать клонированию 100 человек, 10 отклонировать лично</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">5 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№11</span><span class="goal-text">Стерилизовать 1.000.000 кошек и котов</span></div>
-        <div class="goal-item"><span class="goal-num">№12</span><span class="goal-text">Посадить 1.000.000 деревьев</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">6 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№13</span><span class="goal-text">Сделать 10.000 акций по уборке мусора</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">7 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№14</span><span class="goal-text">Восстановить собственную идентичность</span></div>
-      </div>
-
-      <div class="dyn-block">
-        <div class="dyn-title">8 ДИНАМИКА</div>
-        <div class="goal-item"><span class="goal-num">№15</span><span class="goal-text">Понять концепт, достигнуть абсолют, восстановить идентичность</span></div>
-      </div>
-
-    </div>
   </div>
-
 </div>
 <div class="conf" id="conf"></div>
 
@@ -378,9 +309,7 @@ function getStats(){
   const nm=nowMin();
   const missed=tasks.filter(t=>!t.done&&toMin(t.time)<nm).length;
   const pct=total?Math.round(done/total*100):0;
-  const totalMin=tasks.reduce((a,t)=>a+(t.dur||0),0);
-  const doneMin=tasks.filter(t=>t.done).reduce((a,t)=>a+(t.dur||0),0);
-  return{total,done,missed,remaining:total-done-missed,pct,totalMin,doneMin};
+  return{total,done,missed,remaining:total-done-missed,pct};
 }
 function getCS(){const r={};tasks.forEach(t=>{if(!r[t.cat])r[t.cat]={total:0,done:0};r[t.cat].total++;if(t.done)r[t.cat].done++;});return r;}
 
