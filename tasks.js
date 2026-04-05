@@ -6,13 +6,8 @@
 // ═══════════════════════════════════════════════════════
 
 var TODAY_TASKS = [
-  { time: '08:00', name: 'Работа с дашбордом',           cat: 'focus',    dur: 30  },
-  { time: '08:30', name: 'Координация с Георгием',       cat: 'work',     dur: 90  },
-  { time: '10:00', name: 'Коммуникации',                 cat: 'work',     dur: 60  },
-  { time: '11:00', name: 'Координация с Александрой',    cat: 'work',     dur: 60  },
-  { time: '12:00', name: 'Обед',                         cat: 'personal', dur: 60  },
-  { time: '13:00', name: 'Отдых',                        cat: 'personal', dur: 120 },
-  { time: '15:00', name: 'Настольный теннис',            cat: 'sport',    dur: 120 },
-  { time: '17:00', name: 'Время с Сашей',                cat: 'personal', dur: 120 },
-  { time: '19:00', name: 'Поездка в парк',               cat: 'health',   dur: 60  },
+  { time: '08:00', name: 'Созвон с Дмитрием',   cat: 'work',     dur: 120 },
+  { time: '10:00', name: 'Созвон с Никитой',    cat: 'work',     dur: 120 },
+  { time: '12:00', name: 'Обед',                cat: 'personal', dur: 60  },
+  { time: '13:00', name: 'Время с Сашей',       cat: 'personal', dur: 180 },
 ];
