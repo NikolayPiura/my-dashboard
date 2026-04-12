@@ -6,10 +6,9 @@
 // ═══════════════════════════════════════════════════════
 
 var TODAY_TASKS = [
-  { time: '08:00', name: 'Созвон с Георгием',      cat: 'work',     dur: 120 },
-  { time: '10:00', name: 'Созвон с Никитой',       cat: 'work',     dur: 120 },
-  { time: '12:00', name: 'Созвон с Александрой',   cat: 'work',     dur: 60  },
-  { time: '13:00', name: 'Обед',                   cat: 'personal', dur: 60  },
-  { time: '14:00', name: 'Коммуникация в КЭ',      cat: 'work',     dur: 60  },
-  { time: '15:00', name: 'Время с Сашей',          cat: 'personal', dur: 180 },
+  { time: '08:00', name: 'Созвон с Дмитрием',      cat: 'work',     dur: 120 },
+  { time: '10:00', name: 'Работа по КЭ',           cat: 'focus',    dur: 120 },
+  { time: '12:00', name: 'Встреча с Александрой',  cat: 'work',     dur: 60  },
+  { time: '13:00', name: 'Теннис',                 cat: 'sport',    dur: 60  },
+  { time: '14:00', name: 'Время с Сашей',          cat: 'personal', dur: 180 },
 ];
