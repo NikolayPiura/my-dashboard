@@ -6,9 +6,16 @@
 // ═══════════════════════════════════════════════════════
 
 var TODAY_TASKS = [
-  { time: '08:00', name: 'Созвон с Дмитрием',      cat: 'work',     dur: 120 },
-  { time: '10:00', name: 'Работа по КЭ',           cat: 'focus',    dur: 120 },
-  { time: '12:00', name: 'Встреча с Александрой',  cat: 'work',     dur: 60  },
-  { time: '13:00', name: 'Теннис',                 cat: 'sport',    dur: 60  },
-  { time: '14:00', name: 'Время с Сашей',          cat: 'personal', dur: 180 },
+  { time: '08:00', name: 'Коммуникация в Климате',         cat: 'work',     dur: 30  },
+  { time: '08:30', name: 'Работа по КЭ',                   cat: 'focus',    dur: 60  },
+  { time: '09:30', name: 'Координации',                    cat: 'work',     dur: 60  },
+  { time: '10:30', name: 'Работа по ПФФ',                  cat: 'work',     dur: 30  },
+  { time: '11:00', name: 'Урок по шахматам',               cat: 'study',    dur: 60  },
+  { time: '12:00', name: 'Обед',                           cat: 'personal', dur: 60  },
+  { time: '13:00', name: 'Время с Сашей',                  cat: 'personal', dur: 60  },
+  { time: '14:00', name: 'Поездка в банк',                 cat: 'personal', dur: 60  },
+  { time: '15:00', name: 'Поездка в Тампу',                cat: 'personal', dur: 60  },
+  { time: '16:00', name: 'Учить стих',                     cat: 'study',    dur: 60  },
+  { time: '17:00', name: 'Дашборды по Админ шкале',        cat: 'focus',    dur: 60  },
+  { time: '18:00', name: 'Ужин',                           cat: 'personal', dur: 60  },
 ];
