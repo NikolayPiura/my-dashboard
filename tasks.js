@@ -6,14 +6,15 @@
 // ═══════════════════════════════════════════════════════
 
 var TODAY_TASKS = [
-  { time: '08:00', name: 'Коммуникации',            cat: 'work',     dur: 30  },
-  { time: '08:30', name: 'Работа по КЭ',            cat: 'focus',    dur: 30  },
-  { time: '09:00', name: 'Работа по фондам',        cat: 'work',     dur: 120 },
-  { time: '11:00', name: 'Сделать урок',            cat: 'study',    dur: 60  },
-  { time: '12:00', name: 'Обед',                    cat: 'personal', dur: 60  },
-  { time: '13:00', name: 'Время с Сашей',           cat: 'personal', dur: 120 },
-  { time: '15:00', name: 'План по обучению',        cat: 'focus',    dur: 60  },
-  { time: '16:00', name: 'Учить стих',              cat: 'study',    dur: 60  },
-  { time: '17:00', name: 'Поездка в парк',          cat: 'health',   dur: 60  },
-  { time: '18:00', name: 'Ужин',                    cat: 'personal', dur: 60  },
+  { time: '08:00', name: 'Коммуникации в Климате',         cat: 'work',     dur: 60  },
+  { time: '09:00', name: 'Работа по КЭ',                   cat: 'focus',    dur: 60  },
+  { time: '09:00', name: 'Работа по Фонду Друг',           cat: 'work',     dur: 60  },
+  { time: '10:00', name: 'Работа по ПФФ',                  cat: 'work',     dur: 30  },
+  { time: '10:30', name: 'Прочитать книгу (половину)',     cat: 'study',    dur: 30  },
+  { time: '11:00', name: 'Начать писать письмо',           cat: 'focus',    dur: 60  },
+  { time: '12:00', name: 'Обед',                           cat: 'personal', dur: 60  },
+  { time: '13:00', name: 'Время с Сашей',                  cat: 'personal', dur: 120 },
+  { time: '15:00', name: 'Доделать письмо',                cat: 'focus',    dur: 60  },
+  { time: '16:00', name: 'Учить стих',                     cat: 'study',    dur: 120 },
+  { time: '18:00', name: 'Настольный теннис',              cat: 'sport',    dur: 90  },
 ];
