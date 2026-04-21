@@ -163,7 +163,31 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .goal-num{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--a2);flex-shrink:0;min-width:40px;margin-top:2px}
 .goal-text{font-family:var(--sans);font-size:18px;color:var(--t2);font-style:italic;line-height:1.4}
 
-.conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+/* Карандаш */
+.edit-btn{position:fixed;top:16px;right:16px;z-index:500;width:36px;height:36px;border-radius:50%;background:var(--s3);border:1.5px solid var(--b2);color:var(--t2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.edit-btn:hover{border-color:var(--accent);color:var(--a2)}
+
+/* Модалка редактора */
+.editor-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;align-items:center;justify-content:center}
+.editor-overlay.open{display:flex}
+.editor-modal{background:var(--s2);border:1.5px solid var(--b2);border-radius:16px;width:560px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
+.editor-hd{padding:18px 22px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between}
+.editor-hd-title{font-family:var(--title);font-size:14px;font-weight:800;color:var(--text)}
+.editor-close{background:none;border:none;color:var(--t2);font-size:22px;cursor:pointer;line-height:1}
+.editor-body{flex:1;overflow-y:auto;padding:16px 22px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent}
+.editor-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;background:var(--s3);border:1px solid var(--b1);border-radius:10px;padding:10px 12px}
+.editor-time{font-family:var(--mono);font-size:13px;background:var(--s2);border:1px solid var(--b2);color:var(--text);border-radius:6px;padding:5px 8px;width:68px}
+.editor-name{font-size:14px;flex:1;background:var(--s2);border:1px solid var(--b2);color:var(--text);border-radius:6px;padding:5px 10px}
+.editor-cat{font-size:12px;background:var(--s2);border:1px solid var(--b2);color:var(--text);border-radius:6px;padding:5px 8px;width:90px}
+.editor-dur{font-family:var(--mono);font-size:13px;background:var(--s2);border:1px solid var(--b2);color:var(--text);border-radius:6px;padding:5px 8px;width:58px}
+.editor-del{background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer;flex-shrink:0;transition:color .2s}
+.editor-del:hover{color:var(--red)}
+.editor-add{margin-top:8px;width:100%;padding:10px;background:var(--s3);border:1.5px dashed var(--b2);color:var(--t2);border-radius:10px;cursor:pointer;font-family:var(--sans);font-size:13px;transition:all .2s}
+.editor-add:hover{border-color:var(--accent);color:var(--a2)}
+.editor-ft{padding:14px 22px;border-top:1px solid var(--b1);display:flex;justify-content:flex-end;gap:10px}
+.editor-save{padding:9px 22px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:600;background:var(--accent);color:#fff}
+.editor-cancel{padding:9px 22px;border-radius:8px;border:1.5px solid var(--b2);cursor:pointer;font-family:var(--sans);font-size:13px;color:var(--t2);background:transparent}
+.editor-cancel:hover{border-color:var(--accent);color:var(--a2)}
 .cp{position:absolute;border-radius:2px;animation:cpfall linear forwards}
 @keyframes cpfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 </style>
@@ -286,6 +310,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 
   </div>
 </div>
+<button class="edit-btn" onclick="openEditor()" title="Редактировать задачи">✏️</button>
+
+<div class="editor-overlay" id="editor-overlay" onclick="if(event.target===this)closeEditor()">
+  <div class="editor-modal">
+    <div class="editor-hd">
+      <div class="editor-hd-title">Редактировать задачи</div>
+      <button class="editor-close" onclick="closeEditor()">×</button>
+    </div>
+    <div class="editor-body" id="editor-body"></div>
+    <div class="editor-ft">
+      <button class="editor-cancel" onclick="closeEditor()">Отмена</button>
+      <button class="editor-save" onclick="saveEditor()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
 <div class="conf" id="conf"></div>
 
 <script>
@@ -421,6 +461,69 @@ function tick(){
 const nowD=new Date();
 const dd=document.getElementById('date-day');if(dd)dd.textContent=nowD.toLocaleDateString('ru-RU',{weekday:'long'});
 const dn2=document.getElementById('date-num');if(dn2)dn2.textContent=nowD.toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
+
+/* ── РЕДАКТОР ЗАДАЧ ── */
+function openEditor(){
+  const body=document.getElementById('editor-body');if(!body)return;
+  body.innerHTML=tasks.map((t,i)=>`
+    <div class="editor-row" id="erow-${i}">
+      <input class="editor-time" value="${t.time}" placeholder="09:00">
+      <input class="editor-name" value="${t.name}" placeholder="Название задачи">
+      <select class="editor-cat">
+        ${['work','health','personal','focus','study','sport'].map(c=>`<option value="${c}"${t.cat===c?' selected':''}>${{work:'Работа',health:'Здоровье',personal:'Личное',focus:'Фокус',study:'Учёба',sport:'Спорт'}[c]}</option>`).join('')}
+      </select>
+      <input class="editor-dur" type="number" value="${t.dur||30}" placeholder="30" min="5" step="5">
+      <button class="editor-del" onclick="delEditorRow(${i})">×</button>
+    </div>
+  `).join('')+`<button class="editor-add" onclick="addEditorRow()">+ Добавить задачу</button>`;
+  document.getElementById('editor-overlay').classList.add('open');
+}
+
+function addEditorRow(){
+  const body=document.getElementById('editor-body');if(!body)return;
+  const btn=body.querySelector('.editor-add');
+  const idx=body.querySelectorAll('.editor-row').length;
+  const div=document.createElement('div');
+  div.className='editor-row';div.id='erow-'+idx;
+  div.innerHTML=`
+    <input class="editor-time" value="09:00" placeholder="09:00">
+    <input class="editor-name" value="" placeholder="Название задачи">
+    <select class="editor-cat">
+      ${['work','health','personal','focus','study','sport'].map(c=>`<option value="${c}">${{work:'Работа',health:'Здоровье',personal:'Личное',focus:'Фокус',study:'Учёба',sport:'Спорт'}[c]}</option>`).join('')}
+    </select>
+    <input class="editor-dur" type="number" value="30" placeholder="30" min="5" step="5">
+    <button class="editor-del" onclick="this.closest('.editor-row').remove()">×</button>
+  `;
+  body.insertBefore(div,btn);
+}
+
+function delEditorRow(i){
+  const row=document.getElementById('erow-'+i);if(row)row.remove();
+}
+
+function saveEditor(){
+  const rows=document.querySelectorAll('#editor-body .editor-row');
+  const newTasks=[];
+  rows.forEach((row,i)=>{
+    const time=row.querySelector('.editor-time').value.trim();
+    const name=row.querySelector('.editor-name').value.trim();
+    const cat=row.querySelector('.editor-cat').value;
+    const dur=parseInt(row.querySelector('.editor-dur').value)||30;
+    if(time&&name)newTasks.push({id:i+1,time,name,cat,dur,done:false});
+  });
+  // сохраняем done из старых задач
+  tasks=newTasks.map(t=>{
+    const old=tasks.find(x=>x.time===t.time&&x.name===t.name);
+    return old?{...t,done:old.done}:t;
+  });
+  saveT(tasks);saveHist2();
+  closeEditor();
+  renderTasks();updateUI();
+}
+
+function closeEditor(){
+  document.getElementById('editor-overlay').classList.remove('open');
+}
 
 renderTasks();updateUI();
 setInterval(tick,1000);
